@@ -1,0 +1,64 @@
+{
+  "name": "smartvui",
+  "private": false,
+  "version": "0.0.0",
+  "source": "src/index.ts",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "pnpm run dev:lib & pnpm run dev:docs & pnpm run test",
+    "build": "pnpm run build:lib & pnpm run build:docs",
+    "dev:lib": "vue-tsc --noEmit && vite build -w",
+    "build:lib": "vue-tsc --noEmit && vite build && vue-tsc -p tsconfig.build-dts.json --declaration --emitDeclarationOnly",
+    "dev:docs": "vite --config vite.config.docs.ts --host",
+    "build:docs": "vite build --config vite.config.docs.ts",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint . --ext=.ts,.vue --fix",
+    "clean": "pnpm exec -- rm -rf node_modules dist docs coverage .cache",
+    "typecheck": "vue-tsc --noEmit",
+    "release": "release-it"
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.13.0",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.35.2",
+    "@release-it/conventional-changelog": "^5.1.1",
+    "@senojs/rollup-plugin-style-inject": "^0.2.3",
+    "@types/node": "^18.14.1",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@viteplay/plugin": "^0.2.4",
+    "@viteplay/vue": "^0.2.4",
+    "@vue/test-utils": "^2.3.0",
+    "c8": "^7.13.0",
+    "eslint": "^8.34.0",
+    "happy-dom": "^8.7.2",
+    "pnpm": "^7.27.1",
+    "release-it": "^15.6.0",
+    "sass": "^1.58.3",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4",
+    "vitest": "^0.28.5",
+    "vue-tsc": "^1.1.7"
+  },
+  "peerDependencies": {
+    "@vueuse/core": "^9.13.0"
+  },
+  "resolutions": {
+    "@vue/server-renderer": "^3.2.47"
+  }
+}
