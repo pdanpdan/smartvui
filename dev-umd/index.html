@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Test SmartVui</title>
+
+    <link href="../dist/styles/tokens.css" rel="stylesheet" type="text/css">
+    <link href="../dist/styles/SmartVui.css" rel="stylesheet" type="text/css">
+    <link href="../dist/styles/theme-light.css" rel="stylesheet" type="text/css" media="print, screen and (prefers-color-scheme: light)">
+    <link href="../dist/styles/theme-dark.css" rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: dark)">
+  </head>
+
+  <body>
+    <div id="sv-app">
+      <the-component :msg="`It's alive - v${ version }`"></the-component>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/@vueuse/shared"></script>
+    <script src="https://unpkg.com/@vueuse/core"></script>
+
+    <script src="../dist/SmartVui.js"></script>
+
+    <script>
+      const app = Vue.createApp({
+        setup() {
+          return {
+            version: SmartVui.version,
+          };
+        }
+      });
+
+      app.use(SmartVui);
+      app.mount('#sv-app');
+    </script>
+  </body>
+</html>

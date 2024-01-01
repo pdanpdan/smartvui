@@ -1,37 +1,71 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "baseUrl": ".",
-    "module": "ESNext",
+    "incremental": true,
     "target": "ESNext",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
     "lib": [
       "DOM",
+      "DOM.Iterable",
       "ESNext"
     ],
-    "strict": true,
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "incremental": false,
-    "skipLibCheck": true,
-    "moduleResolution": "node",
+    "useDefineForClassFields": true,
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "paths": {
+      "$lib/*": [
+        "./src/*"
+      ],
+      "$docs/*": [
+        "./docs/src/*"
+      ],
+      "$dev/*": [
+        "./dev/src/*"
+      ]
+    },
     "resolveJsonModule": true,
-    "noUnusedLocals": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
     "types": [
+      "vike",
       "vite/client",
       "vitest"
     ],
-    "paths": {
-      "~/*": [
-        "src/*"
-      ]
+    "allowImportingTsExtensions": true,
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "skipLibCheck": true
+  },
+  "ts-node": {
+    "transpileOnly": true,
+    "esm": true,
+    "compilerOptions": {
+      "module": "Node16",
+      "moduleResolution": "Node16"
     }
   },
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.vue"
+  ],
   "exclude": [
     "dist",
-    "docs",
+    "public",
+    "docs/dist",
     "coverage",
-    "node_modules"
+    "node_modules",
+    "_tmp"
   ]
 }

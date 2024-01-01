@@ -1,0 +1,4 @@
+@use "dark-mixin"
+
+[data-sv-theme]:where(:not([data-sv-theme="light"]))
+  @include dark-mixin.theme

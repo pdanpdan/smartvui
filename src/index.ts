@@ -1,4 +1,21 @@
-// import TheComponent from './components/TheComponent.vue'
-import OtherComponent from './components/OtherComponent/OtherComponent.vue'
+import type { Plugin } from 'vue';
 
-export { /* TheComponent, */ OtherComponent }
+import install, { components, composables, version } from './install';
+
+/**
+ * @public
+ */
+const SmartVuiPlugin: Plugin = {
+  install,
+};
+
+export default SmartVuiPlugin;
+
+export {
+  version,
+
+  install,
+
+  components,
+  composables,
+};
