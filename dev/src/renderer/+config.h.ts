@@ -31,6 +31,9 @@ const toggleRenderRelatedConfig: ConfigEffect = ({ configDefinedAt, configValue 
 
 // https://vike.dev/config
 export default {
+  onRenderHtml: 'import:./+onRenderHtml:onRenderHtml',
+  onRenderClient: 'import:./+onRenderClient:onRenderClient',
+
   // A page can define an onBeforeRender() hook to be run on the server, which
   // can fetch data and return it as additional page context. Typically it will
   // return the page's root Vue component's props and additional data that can
@@ -49,7 +52,7 @@ export default {
     'platform',
   ],
   clientRouting: true,
-  hydrationCanBeAborted: false,
+  hydrationCanBeAborted: true,
   prefetchStaticAssets: 'viewport',
 
   // https://vike.dev/meta
@@ -77,6 +80,10 @@ export default {
     renderMode: {
       env: { config: true },
       effect: toggleRenderRelatedConfig,
+    },
+
+    stream: {
+      env: { server: true },
     },
 
     vuePlugins: {

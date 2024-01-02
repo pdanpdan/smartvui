@@ -1,4 +1,4 @@
-import { createApp as createSPAApp, createSSRApp, defineComponent, h, markRaw, reactive } from 'vue';
+import { createApp as createSPAApp, createSSRApp, defineComponent, h, markRaw, nextTick, reactive } from 'vue';
 import type { Config, PageContext } from 'vike/types';
 import { setPageContext } from '$dev/renderer/usePageContext';
 import objectAssign from '$dev/utils/objectAssign';
@@ -45,11 +45,27 @@ export function createApp(pageContext: PageContext, ssrApp: boolean = false, ren
 
   // We use `app.changePage()` to do Client Routing, see `+onRenderClient.ts`
   objectAssign(app, {
-    changePage: (pageContext: PageContext) => {
+    changePage: async (pageContext: PageContext) => {
+      let returned = false;
+      let err: unknown;
+      app.config.errorHandler = (err_) => {
+        if (returned) {
+          console.error(err_);
+        } else {
+          err = err_;
+        }
+      };
+
       Object.assign(pageContextReactive, pageContext);
       rootComponent.Page = markRaw(pageContext.Page);
       rootComponent.pageProps = markRaw(pageContext.pageProps || {});
       rootComponent.config = markRaw(pageContext.config);
+
+      await nextTick();
+      returned = true;
+      if (err) {
+        throw err;
+      }
     },
   });
 

@@ -2,6 +2,10 @@ import type { PageContext } from 'vike/types';
 import isCallable from '$dev/utils/isCallable';
 
 export function getPageTitle(pageContext: PageContext): string | null {
+  if (pageContext.data?.title !== undefined) {
+    return pageContext.data.title;
+  }
+
   if (pageContext.title !== undefined) {
     return pageContext.title;
   }

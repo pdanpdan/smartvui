@@ -14,6 +14,12 @@ declare global {
       title?: string;
       abortReason?: string;
 
+      // Needed by getTitle()
+      data?: {
+        /** &lt;title>${title}&lt;/title> - set by data() hook, has precedence over the onBeforeRender() hook */
+        title?: string;
+      };
+
       isHydration?: boolean;
 
       prefersDark?: boolean | null;
@@ -26,12 +32,16 @@ declare global {
       /** Vue component rendered and appended into &lt;head>&lt;/head> */
       Head?: Component;
       Layout?: Component;
+
       /** &lt;title>${title}&lt;/title> */
       title?: string | ((pageContext: PageContext) => string);
+
       /** &lt;meta name="description" content="${description}" /> */
       description?: string;
+
       /** &lt;link rel="icon" href="${favicon}" /> */
       favicon?: string;
+
       /**
        * &lt;html lang="${lang}">
        *
@@ -39,18 +49,23 @@ declare global {
        *
        */
       lang?: string;
+
       /**
-       * If true, render mode is SSR or pre-rendering (aka SSG). In other words, the
-       * page's HTML will be rendered at build-time or request-time.
-       * If false, render mode is SPA. In other words, the page will only be
-       * rendered in the browser.
-       *
        * See https://vike.dev/render-modes
        *
-       * @default true
+       * @default 'SSR'
        *
        */
       renderMode?: 'HTML' | 'SPA' | 'SSR';
+
+      /**
+       * Whether to stream the page's HTML. Requires Server-Side Rendering (`ssr: true`).
+       *
+       * @default false
+       *
+       */
+      stream?: boolean;
+
       /**
        * List of Vue plugins (and their respective options) to be installed with
        * `app.vue(plugin, options)`.
@@ -64,6 +79,7 @@ declare global {
         plugin: Plugin;
         options?: unknown;
       }[];
+
       /** The page's root Vue component */
       Page?: Component;
     }
