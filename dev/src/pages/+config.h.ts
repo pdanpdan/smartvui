@@ -10,4 +10,6 @@ export default {
   title: 'SmartVui Demo',
   description: 'Demo showcasing SmartVui',
   favicon: logoUrl,
+
+  stream: true,
 } satisfies Config;

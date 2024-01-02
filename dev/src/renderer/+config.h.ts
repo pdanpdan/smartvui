@@ -31,9 +31,6 @@ const toggleRenderRelatedConfig: ConfigEffect = ({ configDefinedAt, configValue 
 
 // https://vike.dev/config
 export default {
-  onRenderHtml: 'import:./+onRenderHtml:onRenderHtml',
-  onRenderClient: 'import:./+onRenderClient:onRenderClient',
-
   // A page can define an onBeforeRender() hook to be run on the server, which
   // can fetch data and return it as additional page context. Typically it will
   // return the page's root Vue component's props and additional data that can
