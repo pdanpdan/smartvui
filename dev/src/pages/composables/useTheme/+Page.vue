@@ -175,7 +175,6 @@ const { isDark } = useDark();
   grid-template-columns: [c1-start] 1fr [c1-end c2-start] 1fr [c2-end c3-start] 1fr [c3-end c4-start] 1fr [c4-end]
   grid-template-rows: [r1-start] auto [r1-end r2-start] auto [r2-end r3-start] auto [r3-end r2-start]
   padding: 1rem
-  min-height: 100%
 
   @media print, screen and (max-width: #{$bp-tablet})
     display: flex
