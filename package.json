@@ -96,21 +96,17 @@
     "lib:build": "vue-tsc -p tsconfig.build.json && vite build && vite build --config vite.cjs.config.ts && vite build --config vite.umd.config.ts",
     "lib:api": "api-extractor run --local --verbose && api-documenter markdown -i dist/api/api-extractor -o dist/api/api-documenter && find \"./dist/api/api-documenter\" -name \"*.md\" -type f -exec sed -i -e 's/[[:space:]]*$//;' {} \\; -exec sed -i -e ':a;N;s/\\r\\n/\\n/g;ba' {} \\; -exec sed -i -e '/./b' -e :n -e 'N;s/\\n$//;tn' {} \\; -exec sed -i -e '$d' {} \\;",
 
-    "dev:dev": "vite --config vite.dev.config.ts --host",
-    "dev:dev-express": "tsx ./dev/express-entry.ts",
+    "dev:dev": "tsx ./dev/express-entry.ts",
     "dev:build": "vite build --config vite.dev.config.ts",
 
-    "dev:preview": "vite preview --config vite.dev.config.ts --host",
-    "dev:preview-express": "pnpm dev:build && NODE_ENV=production tsx ./dev/express-entry.ts",
-    "dev:preview-express:static": "pnpm dev:build && NODE_ENV=production tsx ./dev/express-entry.ts static",
+    "dev:preview": "pnpm dev:build && NODE_ENV=production tsx ./dev/express-entry.ts",
+    "dev:preview:static": "pnpm dev:build && NODE_ENV=production tsx ./dev/express-entry.ts static",
 
-    "docs:dev": "vite --config vite.docs.config.ts --host",
-    "docs:dev-express": "tsx ./docs/express-entry.ts",
+    "docs:dev": "tsx ./docs/express-entry.ts",
     "docs:build": "vite build --config vite.docs.config.ts",
 
-    "docs:preview": "vite preview --config vite.docs.config.ts --host",
-    "docs:preview-express": "pnpm docs:build && NODE_ENV=production tsx ./docs/express-entry.ts",
-    "docs:preview-express:static": "pnpm docs:build && NODE_ENV=production tsx ./docs/express-entry.ts static",
+    "docs:preview": "pnpm docs:build && NODE_ENV=production tsx ./docs/express-entry.ts",
+    "docs:preview:static": "pnpm docs:build && NODE_ENV=production tsx ./docs/express-entry.ts static",
 
     "tests": "vitest",
     "tests:ui": "vitest --ui",

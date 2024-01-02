@@ -11,26 +11,6 @@ import Vue from '@vitejs/plugin-vue';
 import Vike from 'vike/plugin';
 import MkCert from 'vite-plugin-mkcert';
 import { defineConfig } from 'vite';
-import type { Connect, PreviewServer, ViteDevServer } from 'vite';
-
-function setPrefersColorSchemeHeaders() {
-  const middleware: Connect.NextHandleFunction = (_, response, next) => {
-    response.setHeader('Accept-Ch', 'Sec-Ch-Prefers-Color-Scheme');
-    response.setHeader('Critical-Ch', 'Sec-Ch-Prefers-Color-Scheme');
-    response.setHeader('Vary', 'Sec-Ch-Prefers-Color-Scheme');
-    next();
-  };
-
-  return {
-    name: 'set-prefers-color-scheme-headers',
-    configureServer: (server: ViteDevServer) => {
-      server.middlewares.use(middleware);
-    },
-    configurePreviewServer: (server: PreviewServer) => {
-      server.middlewares.use(middleware);
-    },
-  };
-}
 
 export default defineConfig({
   base: '/smartvui/',
@@ -49,8 +29,6 @@ export default defineConfig({
         defineModel: true,
       },
     }),
-
-    setPrefersColorSchemeHeaders(),
 
     Vike({
       prerender: true,
