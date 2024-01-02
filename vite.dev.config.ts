@@ -50,6 +50,8 @@ export default defineConfig({
       },
     }),
 
+    setPrefersColorSchemeHeaders(),
+
     Vike({
       prerender: true,
       trailingSlash: false,
@@ -99,8 +101,6 @@ export default defineConfig({
     }),
 
     MkCert(),
-
-    setPrefersColorSchemeHeaders(),
   ],
 
   root: resolve(__dirname, 'dev'),

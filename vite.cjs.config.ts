@@ -31,16 +31,6 @@ function scanEntries(entryDirs: string | string[]) {
 }
 
 const entries = {
-  tokens: resolve(__dirname, './src/style/tokens/index.sass'),
-  'tokens-colors': resolve(__dirname, './src/style/tokens/colors.sass'),
-  'tokens-typography': resolve(__dirname, './src/style/tokens/typography.sass'),
-
-  base: resolve(__dirname, './src/style/base/index.sass'),
-
-  themes: resolve(__dirname, './src/style/themes/index.sass'),
-  'theme-light': resolve(__dirname, './src/style/themes/light.sass'),
-  'theme-dark': resolve(__dirname, './src/style/themes/dark.sass'),
-
   index: resolve(__dirname, './src/index.ts'),
 
   ...scanEntries([
