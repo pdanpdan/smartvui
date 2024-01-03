@@ -84,6 +84,12 @@ export default defineConfig({
   root: resolve(__dirname, 'docs'),
   publicDir: resolve(__dirname, 'docs', 'public'),
 
+  server: {
+    hmr: {
+      port: 3333,
+    },
+  },
+
   build: {
     emptyOutDir: true,
     outDir: resolve(__dirname, 'docs', 'dist'),
