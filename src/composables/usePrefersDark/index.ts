@@ -23,9 +23,7 @@ let media: MediaQueryList;
  * @returns Preference for `dark` mode. `null` value is returned in auto detect mode on server-side and on hydration on client-side.
  */
 export function usePrefersDark(forcePrefersDark?: MaybeRef<boolean | null>) {
-  const instance = getCurrentInstance();
-
-  if (instance) {
+  if (getCurrentInstance()) {
     onMounted(() => {
       mountedCount += 1;
 
@@ -42,8 +40,8 @@ export function usePrefersDark(forcePrefersDark?: MaybeRef<boolean | null>) {
         if (mountedCount === 0) {
           media.removeEventListener('change', update);
         }
-      }, instance);
-    }, instance);
+      });
+    });
   }
 
   return computed(() => {
