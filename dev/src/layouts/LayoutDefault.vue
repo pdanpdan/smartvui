@@ -244,6 +244,10 @@ const {
         content: attr(data-label)
         padding-inline-start: 1ch
 
+    &[type="radio"]
+      &:before
+        border-radius: 50%
+
     &[type="color"]
       margin: 0
       padding: 0

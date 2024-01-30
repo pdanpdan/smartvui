@@ -52,5 +52,5 @@ li > ul
       height: auto
 
 .sv-link
-  display: block
+  display: flex
 </style>
