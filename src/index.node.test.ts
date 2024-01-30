@@ -7,11 +7,11 @@ import * as esm from './index';
 
 describe('should find composables', () => {
   it('should have composables in esm', () => {
-    expect(esm).toHaveProperty('composables');
+    expect.soft(esm).toHaveProperty('composables');
   });
 
   it('should have composables in umd', () => {
-    expect(umd).toHaveProperty('composables');
+    expect.soft(umd).toHaveProperty('composables');
   });
 });
 
@@ -24,5 +24,5 @@ it('should install components', () => {
   };
   esm.install(app as App);
 
-  expect(components.length).toBeGreaterThanOrEqual(1);
+  expect.soft(components.length).toBeGreaterThanOrEqual(1);
 });

@@ -8,23 +8,23 @@ import { usePrefersDark } from '..';
 
 describe('should return value', () => {
   it('should return forced fixed value', () => {
-    expect(usePrefersDark().value).toBe(null);
-    expect(usePrefersDark(null).value).toBe(null);
-    expect(usePrefersDark(true).value).toBe(true);
-    expect(usePrefersDark(false).value).toBe(false);
+    expect.soft(usePrefersDark().value).toBe(null);
+    expect.soft(usePrefersDark(null).value).toBe(null);
+    expect.soft(usePrefersDark(true).value).toBe(true);
+    expect.soft(usePrefersDark(false).value).toBe(false);
   });
 
   it('should return forced reactive value', () => {
-    const forcedDark = ref<boolean | null>(null);
-    const isDark = usePrefersDark(forcedDark);
+    const forceDark = ref<boolean | null>(null);
+    const isDark = usePrefersDark(forceDark);
 
-    expect(isDark.value).toBe(null);
+    expect.soft(isDark.value).toBe(null);
 
-    forcedDark.value = true;
-    expect(isDark.value).toBe(true);
+    forceDark.value = true;
+    expect.soft(isDark.value).toBe(true);
 
-    forcedDark.value = false;
-    expect(isDark.value).toBe(false);
+    forceDark.value = false;
+    expect.soft(isDark.value).toBe(false);
   });
 
   it('should return forced value on SSR', async () => {
@@ -38,6 +38,6 @@ describe('should return value', () => {
     });
 
     const contents = await renderToString(Component);
-    expect(contents).toBe('null');
+    expect.soft(contents).toBe('null');
   });
 });

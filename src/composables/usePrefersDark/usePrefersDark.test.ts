@@ -49,20 +49,20 @@ describe('should respect mediaQuery after mount', () => {
 
   it('should keep SSR value on mount', () => {
     const wrapper = mount(Component);
-    expect(wrapper.text()).toBe('null');
+    expect.soft(wrapper.text()).toBe('null');
     wrapper.unmount();
   });
 
   it('should add listener on mount', () => {
     const wrapper = mount(Component);
-    expect(matchMediaListeners.length).toBe(1);
+    expect.soft(matchMediaListeners.length).toBe(1);
     wrapper.unmount();
   });
 
   it('should use browser value after mount', async () => {
     const wrapper = mount(Component);
     await nextTick();
-    expect(wrapper.text()).toBe('false');
+    expect.soft(wrapper.text()).toBe('false');
     wrapper.unmount();
   });
 
@@ -70,14 +70,14 @@ describe('should respect mediaQuery after mount', () => {
     const wrapper = mount(Component);
     window.matchMedia('').dispatchEvent({ matches: true } as MediaQueryListEvent);
     await nextTick();
-    expect(wrapper.text()).toBe('true');
+    expect.soft(wrapper.text()).toBe('true');
     wrapper.unmount();
   });
 
   it('should remove listener on unmount', () => {
     const wrapper = mount(Component);
-    expect(matchMediaListeners.length).toBe(1);
+    expect.soft(matchMediaListeners.length).toBe(1);
     wrapper.unmount();
-    expect(matchMediaListeners.length).toBe(0);
+    expect.soft(matchMediaListeners.length).toBe(0);
   });
 });
