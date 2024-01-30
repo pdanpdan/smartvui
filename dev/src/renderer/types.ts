@@ -26,6 +26,7 @@ declare global {
       prefersLang?: string | null;
       isMobile?: boolean | null;
       platform?: string | null;
+      userAgent?: string | null;
     }
 
     interface Config {

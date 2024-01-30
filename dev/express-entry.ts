@@ -58,6 +58,7 @@ async function startServer() {
         prefersLang: req.headers[ 'accept-language' ] || null as string | null,
         isMobile: req.headers[ 'sec-ch-ua-mobile' ] && req.headers[ 'sec-ch-ua-mobile' ].includes('1'),
         platform: req.headers[ 'sec-ch-ua-platform' ] || null as string | null,
+        userAgent: req.headers[ 'user-agent' ] || null as string | null,
       };
 
       if (req.headers[ 'sec-ch-prefers-color-scheme' ] === 'dark') {
@@ -94,6 +95,7 @@ async function startServer() {
 
   await listen(app, {
     qr: true,
+    ws: true,
     https: true,
     public: true,
     baseURL,

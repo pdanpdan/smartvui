@@ -47,6 +47,7 @@ export default {
     'prefersLang',
     'isMobile',
     'platform',
+    'userAgent',
   ],
   clientRouting: true,
   hydrationCanBeAborted: true,
