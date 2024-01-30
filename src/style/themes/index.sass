@@ -2,8 +2,10 @@
 @use "_dark-mixin"
 
 [data-sv-theme="auto"]
+  color-scheme: light
   @include light-mixin.theme
 
 @media screen and (prefers-color-scheme: dark)
   [data-sv-theme="auto"]
+    color-scheme: dark
     @include dark-mixin.theme

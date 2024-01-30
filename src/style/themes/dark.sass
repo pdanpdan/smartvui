@@ -1,4 +1,5 @@
 @use "_dark-mixin"
 
 [data-sv-theme]:where(:not([data-sv-theme="light"]))
+  color-scheme: dark
   @include dark-mixin.theme
