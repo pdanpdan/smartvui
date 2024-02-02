@@ -24,8 +24,10 @@ declare global {
 
       prefersDark?: boolean | null;
       prefersLang?: string | null;
-      isMobile?: boolean | null;
-      platform?: string | null;
+      viewport?: {
+        width?: number | null;
+        height?: number | null;
+      };
       userAgent?: string | null;
     }
 

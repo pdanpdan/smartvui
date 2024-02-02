@@ -71,7 +71,7 @@ function parseUserAgent(
   maxTouchPoints?: number,
   userAgentData?: unknown,
 ) {
-  const platform = {
+  const agentPlatform = {
     isDesktop: false,
     isMobile: false,
 
@@ -90,52 +90,52 @@ function parseUserAgent(
   };
 
   if (/iphone|ipad|ipod/i.test(userAgent) || (/macintosh/i.test(userAgent) && hasTouch === true)) {
-    platform.isMobile = true;
-    platform.isIos = true;
+    agentPlatform.isMobile = true;
+    agentPlatform.isIos = true;
 
     if (/crios/i.test(userAgent)) {
-      platform.isChrome = true;
+      agentPlatform.isChrome = true;
     } else if (/fxios/i.test(userAgent)) {
-      platform.isFirefox = true;
+      agentPlatform.isFirefox = true;
     } else {
-      platform.isSafari = true;
+      agentPlatform.isSafari = true;
     }
 
     if ((vendor != null && /apple/i.test(vendor) === false) || maxTouchPoints === 0 || maxTouchPoints === 1) {
-      platform.isEmulated = true;
+      agentPlatform.isEmulated = true;
     }
   } else {
     if (/macintosh/i.test(userAgent)) {
-      platform.isMacos = true;
-      platform.isDesktop = true;
+      agentPlatform.isMacos = true;
+      agentPlatform.isDesktop = true;
     } else if (/cros/i.test(userAgent)) {
-      platform.isChromeos = true;
-      platform.isDesktop = true;
+      agentPlatform.isChromeos = true;
+      agentPlatform.isDesktop = true;
     } else if (/android/i.test(userAgent)) {
-      platform.isAndroid = true;
-      platform.isMobile = true;
+      agentPlatform.isAndroid = true;
+      agentPlatform.isMobile = true;
 
       if (maxTouchPoints === 0 || maxTouchPoints === 1) {
-        platform.isEmulated = true;
+        agentPlatform.isEmulated = true;
       }
     } else if (/linux|x11/i.test(userAgent)) {
-      platform.isLinux = true;
-      platform.isDesktop = true;
+      agentPlatform.isLinux = true;
+      agentPlatform.isDesktop = true;
     } else if (/windows/i.test(userAgent)) {
-      platform.isWindows = true;
-      platform.isDesktop = true;
+      agentPlatform.isWindows = true;
+      agentPlatform.isDesktop = true;
     }
 
     if (/firefox/i.test(userAgent)) {
-      platform.isFirefox = true;
+      agentPlatform.isFirefox = true;
     } else if (/chrom/i.test(userAgent) || userAgentData != null) {
-      platform.isChrome = true;
+      agentPlatform.isChrome = true;
     } else if (/safari/i.test(userAgent)) {
-      platform.isSafari = true;
+      agentPlatform.isSafari = true;
     }
   }
 
-  return platform;
+  return agentPlatform;
 }
 
 /**
@@ -236,18 +236,18 @@ export function usePlatform(options: UsePlatformOptions = {}) {
           (navigator as unknown as Record<string, unknown>).userAgentData,
         ));
       }
+    });
 
-      onUnmounted(() => {
-        mountedCount -= 1;
+    onUnmounted(() => {
+      mountedCount = mountedCount > 0 ? mountedCount - 1 : 0;
 
-        if (mountedCount === 0) {
-          mediaPointerFine.removeEventListener('change', updatePointerFine);
-          mediaPointerCoarse.removeEventListener('change', updatePointerCoarse);
-          mediaPointerNone.removeEventListener('change', updatePointerNone);
-          mediaPointerHover.removeEventListener('change', updatePointerHover);
-          mediaModeStandalone.removeEventListener('change', updateModeStandalone);
-        }
-      });
+      if (mountedCount === 0) {
+        mediaPointerFine.removeEventListener('change', updatePointerFine);
+        mediaPointerCoarse.removeEventListener('change', updatePointerCoarse);
+        mediaPointerNone.removeEventListener('change', updatePointerNone);
+        mediaPointerHover.removeEventListener('change', updatePointerHover);
+        mediaModeStandalone.removeEventListener('change', updateModeStandalone);
+      }
     });
   }
 

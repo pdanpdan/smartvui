@@ -33,14 +33,14 @@ export function usePrefersDark(forcePrefersDark?: MaybeRef<boolean | null>) {
 
         prefersDark.value = media.matches;
       }
+    });
 
-      onUnmounted(() => {
-        mountedCount -= 1;
+    onUnmounted(() => {
+      mountedCount = mountedCount > 0 ? mountedCount - 1 : 0;
 
-        if (mountedCount === 0) {
-          media.removeEventListener('change', update);
-        }
-      });
+      if (mountedCount === 0) {
+        media.removeEventListener('change', update);
+      }
     });
   }
 

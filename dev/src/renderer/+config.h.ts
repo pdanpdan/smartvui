@@ -45,8 +45,7 @@ export default {
 
     'prefersDark',
     'prefersLang',
-    'isMobile',
-    'platform',
+    'viewport',
     'userAgent',
   ],
   clientRouting: true,
