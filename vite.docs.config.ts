@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 
 import Markdown from 'unplugin-vue-markdown/vite';
 import LinkAttributes from 'markdown-it-link-attributes';
-import Shiki from 'markdown-it-shikiji';
+import Shiki from '@shikijs/markdown-it';
 import { alert } from '@mdit/plugin-alert';
 import { snippet } from '@mdit/plugin-snippet';
 
@@ -52,7 +52,6 @@ export default defineConfig({
         });
         md.use(await Shiki({
           defaultColor: false,
-          highlightLines: true,
           themes: {
             light: 'material-theme-lighter',
             dark: 'material-theme-darker',
