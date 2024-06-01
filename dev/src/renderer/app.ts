@@ -1,8 +1,7 @@
-import { createApp as createSPAApp, createSSRApp, defineComponent, h, markRaw, nextTick, reactive } from 'vue';
-import type { Config, PageContext } from 'vike/types';
+import { createApp as createSPAApp, createSSRApp, defineComponent, h, markRaw, nextTick, reactive, ref } from 'vue';
+import type { PageContext } from 'vike/types';
 import { setPageContext } from '$dev/renderer/usePageContext';
 import objectAssign from '$dev/utils/objectAssign';
-import type { Component, PageProps } from '$dev/renderer/types';
 
 import '$lib/style/tokens/typography.sass';
 import '$lib/style/tokens/colors.sass';
@@ -11,29 +10,31 @@ import '$lib/style/themes/index.sass';
 
 import '$dev/assets/styles/index.sass';
 
-export function createApp(pageContext: PageContext, ssrApp: boolean = false, renderHead: boolean = false) {
+export function createApp(
+  pageContext: PageContext,
+  ssrApp: boolean = false,
+  renderHead: boolean = false,
+) {
   const { Page } = pageContext;
   const Head = renderHead ? pageContext.config.Head : undefined;
 
-  let rootComponent: Component & { Page: Component; pageProps: PageProps; config: Config };
+  const pageRef = ref(markRaw(Head || Page));
+  const pagePropsRef = ref(markRaw(pageContext.pageProps || {}));
+  const configRef = ref(markRaw(pageContext.config));
+
   const PageWithLayout = defineComponent({
-    data: () => ({
-      Page: markRaw(Head || Page),
-      pageProps: markRaw(pageContext.pageProps || {}),
-      config: markRaw(pageContext.config),
-    }),
-    created() {
-      // eslint-disable-next-line ts/no-this-alias
-      rootComponent = this;
-    },
     render() {
-      if (this.config.Layout && !renderHead) {
-        return h(this.config.Layout, {}, {
-          default: () => this.Page === null ? null : h(this.Page, this.pageProps),
-        });
+      if (configRef.value.Layout && !renderHead) {
+        return h(
+          configRef.value.Layout,
+          {},
+          {
+            default: () => pageRef.value === null ? null : h(pageRef.value, pagePropsRef.value),
+          },
+        );
       }
 
-      return this.Page === null ? null : h(this.Page, this.pageProps);
+      return pageRef.value === null ? null : h(pageRef.value, pagePropsRef.value);
     },
   });
 
@@ -57,9 +58,9 @@ export function createApp(pageContext: PageContext, ssrApp: boolean = false, ren
       };
 
       Object.assign(pageContextReactive, pageContext);
-      rootComponent.Page = markRaw(pageContext.Page);
-      rootComponent.pageProps = markRaw(pageContext.pageProps || {});
-      rootComponent.config = markRaw(pageContext.config);
+      pageRef.value = markRaw(pageContext.Page);
+      pagePropsRef.value = markRaw(pageContext.pageProps || {});
+      configRef.value = markRaw(pageContext.config);
 
       await nextTick();
       returned = true;

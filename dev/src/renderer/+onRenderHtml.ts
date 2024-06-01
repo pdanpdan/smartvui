@@ -2,11 +2,13 @@ import { renderToNodeStream, renderToString } from '@vue/server-renderer';
 import { dangerouslySkipEscape, escapeInject } from 'vike/server';
 import type { OnRenderHtmlAsync } from 'vike/types';
 import type { App } from 'vue';
+import type { SSRContext } from '@vue/server-renderer';
 import { createApp } from '$dev/renderer/app';
 import { getPageTitle } from '$dev/renderer/getPageMeta';
 
 export const onRenderHtml: OnRenderHtmlAsync = async (pageContext): ReturnType<OnRenderHtmlAsync> => {
   const { stream } = pageContext.config;
+  const ctx: SSRContext = {};
   let pageView: ReturnType<typeof dangerouslySkipEscape> | ReturnType<typeof renderToNodeStream> | string = '';
 
   if (pageContext.Page !== undefined) {
@@ -18,8 +20,8 @@ export const onRenderHtml: OnRenderHtmlAsync = async (pageContext): ReturnType<O
       });
     }
     pageView = stream === true
-      ? renderToNodeStreamWithErrorHandling(app)
-      : dangerouslySkipEscape(await renderToStringWithErrorHandling(app));
+      ? renderToNodeStreamWithErrorHandling(app, ctx)
+      : dangerouslySkipEscape(await renderToStringWithErrorHandling(app, ctx));
   }
 
   const lang = pageContext.config.lang || 'en';
@@ -31,7 +33,7 @@ export const onRenderHtml: OnRenderHtmlAsync = async (pageContext): ReturnType<O
   let headHtml: ReturnType<typeof dangerouslySkipEscape> | string = '';
   if (pageContext.config.Head !== undefined) {
     const app = createApp(pageContext, /* ssrApp */ true, /* renderHead */ true);
-    headHtml = dangerouslySkipEscape(await renderToStringWithErrorHandling(app));
+    headHtml = dangerouslySkipEscape(await renderToStringWithErrorHandling(app, ctx));
   }
 
   const documentHtml = escapeInject`<!DOCTYPE html>
@@ -45,6 +47,7 @@ export const onRenderHtml: OnRenderHtmlAsync = async (pageContext): ReturnType<O
   </head>
   <body>
     <div id="app">${ pageView }</div>
+    <div id="modals-holder">${ dangerouslySkipEscape(ctx.teleports?.[ '#modals-holder' ] ?? '') }</div>
   </body>
 </html>`;
 
@@ -57,7 +60,7 @@ export const onRenderHtml: OnRenderHtmlAsync = async (pageContext): ReturnType<O
   };
 };
 
-async function renderToStringWithErrorHandling(app: App) {
+async function renderToStringWithErrorHandling(app: App, ctx?: SSRContext) {
   let returned = false;
   let err: unknown;
   // Workaround: renderToString_() swallows errors in production, see https://github.com/vuejs/core/issues/7876
@@ -68,7 +71,7 @@ async function renderToStringWithErrorHandling(app: App) {
       err = err_;
     }
   };
-  const appHtml = await renderToString(app);
+  const appHtml = await renderToString(app, ctx);
   returned = true;
   if (err) {
     throw err;
@@ -76,7 +79,7 @@ async function renderToStringWithErrorHandling(app: App) {
   return appHtml;
 }
 
-function renderToNodeStreamWithErrorHandling(app: App) {
+function renderToNodeStreamWithErrorHandling(app: App, ctx?: SSRContext) {
   let returned = false;
   let err: unknown;
   app.config.errorHandler = (err_) => {
@@ -86,7 +89,7 @@ function renderToNodeStreamWithErrorHandling(app: App) {
       err = err_;
     }
   };
-  const appHtml = renderToNodeStream(app);
+  const appHtml = renderToNodeStream(app, ctx);
   returned = true;
   if (err) {
     throw err;

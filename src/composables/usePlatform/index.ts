@@ -236,18 +236,18 @@ export function usePlatform(options: UsePlatformOptions = {}) {
           (navigator as unknown as Record<string, unknown>).userAgentData,
         ));
       }
-    });
 
-    onUnmounted(() => {
-      mountedCount = mountedCount > 0 ? mountedCount - 1 : 0;
+      onUnmounted(() => {
+        mountedCount = mountedCount > 0 ? mountedCount - 1 : 0;
 
-      if (mountedCount === 0) {
-        mediaPointerFine.removeEventListener('change', updatePointerFine);
-        mediaPointerCoarse.removeEventListener('change', updatePointerCoarse);
-        mediaPointerNone.removeEventListener('change', updatePointerNone);
-        mediaPointerHover.removeEventListener('change', updatePointerHover);
-        mediaModeStandalone.removeEventListener('change', updateModeStandalone);
-      }
+        if (mountedCount === 0) {
+          mediaPointerFine.removeEventListener('change', updatePointerFine);
+          mediaPointerCoarse.removeEventListener('change', updatePointerCoarse);
+          mediaPointerNone.removeEventListener('change', updatePointerNone);
+          mediaPointerHover.removeEventListener('change', updatePointerHover);
+          mediaModeStandalone.removeEventListener('change', updateModeStandalone);
+        }
+      });
     });
   }
 
