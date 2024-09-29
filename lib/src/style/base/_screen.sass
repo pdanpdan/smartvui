@@ -1,0 +1,47 @@
+@mixin size
+  html,
+  body
+    margin: 0
+    padding: 0
+
+  html
+    min-inline-size: fit-content
+
+  body
+    inline-size: 100%
+    min-block-size: 100%
+
+@mixin lock
+  [data-sv-scroll-locked-gutter]
+    scrollbar-gutter: stable
+
+  [data-sv-scroll-locked="desktop"],
+  [data-sv-scroll-locked="android"]
+    overflow: hidden
+
+    body
+      overscroll-behavior: contain
+
+  [data-sv-scroll-locked="ios"]
+    contain: strict
+    inline-size: 100vw
+    block-size: calc(100lvh + 6px)
+
+    body
+      position: absolute
+      inset-inline-start: var(--sv-scroll-locked-inline-start, 0)
+      inset-block-start: var(--sv-scroll-locked-block-start, 0)
+      overscroll-behavior: contain
+
+@mixin editable
+  [data-sv-ios-focus-fix-target]
+    position: fixed !important
+    inset: 25lvh auto auto 50vw !important
+    font-size: 16px !important
+    inline-size: 0 !important
+    block-size: 0 !important
+    opacity: 0 !important
+    pointer-events: none !important
+    animation: none !important
+    transition: none !important
+    transform: none !important

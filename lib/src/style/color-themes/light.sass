@@ -1,0 +1,6 @@
+@use "_light-mixin"
+
+@layer general
+  [data-sv-color-scheme]:where(:not([data-sv-color-scheme="dark"]))
+    color-scheme: light
+    @include light-mixin.color-scheme

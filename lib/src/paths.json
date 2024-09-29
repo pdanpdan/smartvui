@@ -1,0 +1,14 @@
+{
+  "components": [
+    "SvRipple",
+    "SvSurfaceModal",
+    "SvSurfacePopover"
+  ],
+  "composables": [
+    "useColorTheme",
+    "usePlatform",
+    "usePrefersDark",
+    "useRender",
+    "useScreen"
+  ]
+}

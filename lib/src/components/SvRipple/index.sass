@@ -1,0 +1,25 @@
+@layer components
+  .sv-ripple
+    position: absolute
+    display: block
+    inset: 0
+    contain: strict
+    pointer-events: none
+
+    i
+      position: absolute
+      display: block
+      block-size: 100%
+      inline-size: 100%
+      opacity: 0
+      background-image: radial-gradient(circle, currentColor 10%, transparent 10.01%)
+      background-repeat: no-repeat
+      inset-inline-start: calc(var(--sv-ripple-x, 0) - 50%)
+      inset-block-start: calc(var(--sv-ripple-y, 0) - 50%)
+      transform: scale(20, 20)
+      transition: transform 1s, opacity 1s
+
+      &.sv-ripple--active
+        opacity: .2
+        transform: scale(0, 0)
+        transition: 0s

@@ -1,0 +1,10 @@
+@use "variables" as *
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap')
+
+.sv-page
+  &--padded
+    padding: 8px 16px
+
+    @media screen and (min-width: #{$bp-mobile + 1px})
+      padding: 8px 32px

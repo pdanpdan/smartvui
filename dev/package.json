@@ -1,0 +1,44 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env ORIGIN=https://localhost hattip serve ./hattip-entry.ts --client --host",
+    "build": "cross-env NODE_ENV=production hattip build ./hattip-entry.ts --target es2022 --client"
+  },
+  "dependencies": {
+    "@floating-ui/vue": "^1.1.5",
+    "@hattip/core": "^0.0.48",
+    "@hattip/router": "^0.0.48",
+    "@mdit/plugin-alert": "^0.13.1",
+    "@mdit/plugin-snippet": "^0.13.1",
+    "@pdanpdan/vue-keyboard-trap": "^1.2.0",
+    "@shikijs/markdown-it": "^1.21.0",
+    "@types/markdown-it-link-attributes": "^3.0.5",
+    "@universal-middleware/core": "^0.2.11",
+    "@universal-middleware/hattip": "^0.2.7",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vue/compiler-sfc": "^3.5.10",
+    "@vue/server-renderer": "^3.5.10",
+    "@vueuse/core": "^11.1.0",
+    "hattip": "^0.0.33",
+    "markdown-it-link-attributes": "^4.0.1",
+    "unplugin-vue-markdown": "^0.26.2",
+    "vike-vue": "^0.8.5",
+    "vite-plugin-mkcert": "^1.17.6",
+    "vue": "^3.5.10"
+  },
+  "devDependencies": {
+    "@hattip/adapter-node": "^0.0.48",
+    "@hattip/vite": "^0.0.48",
+    "@iconify-json/mdi": "^1.2.0",
+    "@unocss/postcss": "^0.63.1",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.47",
+    "postcss-rtlcss": "^5.5.0",
+    "sass-embedded": "^1.79.4",
+    "typescript": "^5.6.2",
+    "unocss": "^0.63.1",
+    "vike": "^0.4.197",
+    "vite": "^5.4.8"
+  }
+}

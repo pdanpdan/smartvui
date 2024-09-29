@@ -1,0 +1,125 @@
+{
+  "name": "@pdanpdan/smartvui",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "SmartVui",
+  "productName": "SmartVui",
+  "author": {
+    "name": "Dan Popescu",
+    "email": "pdan.popescu@gmail.com",
+    "url": "https://github.com/pdanpdan"
+  },
+  "license": "MIT",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/pdanpdan"
+  },
+  "homepage": "https://pdanpdan.github.io/smartvui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pdanpdan/smartvui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pdanpdan/smartvui/issues"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "smartvui",
+    "ui",
+    "components"
+  ],
+  "sideEffects": [
+    "*.css",
+    "*.sass",
+    "*.vue"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "module": "./dist/mjs/index.mjs",
+      "import": "./dist/mjs/index.mjs",
+      "require": "./dist/cjs/index.cjs",
+      "script": "./dist/SmartVui.js",
+      "browser": "./dist/SmartVui.js",
+      "style": "./dist/SmartVui.css"
+    },
+    "./components/*.sass": {
+      "import": "./src/components/*/index.sass",
+      "sass": "./src/components/*/index.sass"
+    },
+    "./components/*": {
+      "types": "./dist/types/components/*/index.d.ts",
+      "module": "./dist/mjs/components/*/index.mjs",
+      "import": "./dist/mjs/components/*/index.mjs",
+      "require": "./dist/cjs/components/*/index.cjs",
+      "style": "./dist/styles/components/*.css",
+      "sass": "./src/components/*/index.sass"
+    },
+    "./composables/*": {
+      "types": "./dist/types/composables/*/index.d.ts",
+      "module": "./dist/mjs/composables/*/index.mjs",
+      "import": "./dist/mjs/composables/*/index.mjs",
+      "require": "./dist/cjs/composables/*/index.cjs"
+    },
+    "./styles/*": "./dist/styles/*",
+    "./src/*": "./src/*"
+  },
+  "main": "./dist/SmartVui.js",
+  "module": "./dist/mjs/index.mjs",
+  "unpkg": "./dist/SmartVui.js",
+  "jsdelivr": "./dist/SmartVui.js",
+  "types": "./dist/types/index.d.ts",
+  "browser": "./dist/SmartVui.js",
+  "style": "./dist/SmartVui.css",
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "engines": {
+    "node": "^18 || ^20"
+  },
+  "scripts": {
+    "prebuild": "node ./scripts/preBuild.mjs",
+    "build": "vue-tsc -p tsconfig.build.json && vite build --config vite.esm.config.ts && vite build --config vite.cjs.config.ts && vite build --config vite.umd.config.ts",
+    "postbuild": "api-extractor run --local --verbose && node ./scripts/vueComponentMetaApi.mjs",
+    "test": "vitest --config vite.esm.config.ts",
+    "test:ui": "vitest --ui --config vite.esm.config.ts",
+    "coverage": "vitest run --coverage --config vite.esm.config.ts",
+    "typecheck": "vue-tsc",
+    "clean": "pnpm exec -- rm -rf dist docs/dist dev/dist coverage .cache",
+    "release": "bumpp --all",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "@material/material-color-utilities": ">=0.3.0",
+    "vue": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@material/material-color-utilities": "^0.3.0",
+    "@microsoft/api-extractor": "^7.47.9",
+    "@types/node": "^22.7.4",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vitest/coverage-v8": "^2.1.1",
+    "@vitest/ui": "^2.1.1",
+    "@vue/server-renderer": "^3.5.10",
+    "@vue/shared": "^3.5.10",
+    "@vue/test-utils": "^2.4.6",
+    "autoprefixer": "^10.4.20",
+    "bumpp": "^9.6.1",
+    "happy-dom": "^15.7.4",
+    "lightningcss": "^1.27.0",
+    "postcss": "^8.4.47",
+    "postcss-rtlcss": "^5.5.0",
+    "sass-embedded": "^1.79.4",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^4.2.2",
+    "vitest": "^2.1.1",
+    "vue": "^3.5.10",
+    "vue-component-meta": "^2.1.6",
+    "vue-component-type-helpers": "^2.1.6",
+    "vue-tsc": "^2.1.6"
+  }
+}

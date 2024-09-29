@@ -1,0 +1,26 @@
+@layer components
+  .sv-surface-popover
+    position: absolute
+    inset: 0 auto auto 0
+    width: max-content
+    max-inline-size: calc(100% - 2em - 6px)
+    max-block-size: calc(100% - 2em - 6px)
+    padding: 0
+    border: none
+    background: transparent
+    overflow: auto
+    transition-behavior: allow-discrete
+
+    &--fixed
+      position: fixed
+
+    &:where(:popover-open)
+      display: none
+
+    &[data-sv-surface-open],
+    &[data-sv-surface-animating]
+      display: block
+
+    &[data-sv-surface-maximized]
+      max-inline-size: 100%
+      max-block-size: 100%

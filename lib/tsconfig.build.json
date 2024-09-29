@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "**/*.umd.ts",
+    "**/*.test.ts",
+    "**/*.story.*",
+    "**/*.setup.*",
+    "**/test_utils/*"
+  ]
+}

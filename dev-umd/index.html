@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Test SmartVui</title>
+
+    <link href="../lib/dist/styles/tokens.css" rel="stylesheet" type="text/css">
+    <link href="../lib/dist/SmartVui.css" rel="stylesheet" type="text/css">
+    <link href="../lib/dist/styles/color-theme-light.css" rel="stylesheet" type="text/css" media="print, screen and (prefers-color-scheme: light)">
+    <link href="../lib/dist/styles/color-theme-dark.css" rel="stylesheet" type="text/css" media="screen and (prefers-color-scheme: dark)">
+
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="sv-app" style="padding: 24px" v-cloak>
+      <h1>It's alive - v{{ version }}</h1>
+      <p>
+        <button type="button" @click="open = open !== true">Open dialog</button>
+      </p>
+
+      <sv-surface-modal v-model="open" backdrop-close v-slot="{ hide }">
+        <div style="background-color: yellow; color: black; padding: 24px">
+          <h1>Dialog</h1>
+
+          <button type="button" @click="hide">Close</button>
+        </div>
+      </sv-surface-modal>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+
+    <script src="../lib/dist/SmartVui.js"></script>
+
+    <script>
+      const app = Vue.createApp({
+        setup() {
+          const open = Vue.ref(false);
+
+          return {
+            open,
+            version: SmartVui.version,
+          };
+        }
+      });
+
+      app.use(SmartVui);
+      app.mount('#sv-app');
+    </script>
+  </body>
+</html>
