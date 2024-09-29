@@ -1,10 +1,11 @@
-@use "_colors"
-@use "_typography"
 @use "_screen"
 
 @layer reset, defaults, general, components, themes
 
-@layer reset
+@layer defaults
+  @import "_colors"
+  @import "_typography"
+
   :root
     color-scheme: light dark
     /* Prevent tap highlight on iOS */
