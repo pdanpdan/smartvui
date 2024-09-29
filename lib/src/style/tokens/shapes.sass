@@ -1,0 +1,11 @@
+@use "sass:map"
+$corner-sizes: ("none": 0px, "extra-small": 4px, "small": 8px, "medium": 12px, "large": 16px, "extra-large": 28px, "full": 9999px) !default
+
+@layer defaults
+  :root
+    @each $name, $size in $corner-sizes
+      --md-sys-shape-corner-#{$name}: $size
+      --md-sys-shape-corner-#{$name}-top: $size $size 0 0
+      --md-sys-shape-corner-#{$name}-bottom: 0 0 $size $size
+      --md-sys-shape-corner-#{$name}-start: $size 0 0 $size
+      --md-sys-shape-corner-#{$name}-end: 0 $size $size 0
