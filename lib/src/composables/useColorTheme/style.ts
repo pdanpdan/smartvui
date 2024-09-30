@@ -68,7 +68,7 @@ export function getColorThemeStyles(colorTheme: ColorTheme, options?: ColorTheme
     for (const [ key, palette ] of Object.entries(colorTheme.palettes)) {
       const paletteKey = key.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
       for (const tone of tones) {
-        const token: CSSPropertyKey = `--md-ref-palette-${ paletteKey }${ tone }`;
+        const token: CSSPropertyKey = `--sv-ref-palette-${ paletteKey }${ tone }`;
         const color = options?.format === 'rgb'
           ? Object.values(rgbaFromArgb(palette.tone(tone))).slice(0, -1).join(' ')
           : hexFromArgb(palette.tone(tone));
@@ -79,7 +79,7 @@ export function getColorThemeStyles(colorTheme: ColorTheme, options?: ColorTheme
     colorTheme.customColors.forEach(({ color: { name }, palette }) => {
       const paletteKey = name.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase().replaceAll(/[^a-z0-9]/g, '');
       for (const tone of tones) {
-        const token: CSSPropertyKey = `--md-ref-palette-${ paletteKey }${ tone }`;
+        const token: CSSPropertyKey = `--sv-ref-palette-${ paletteKey }${ tone }`;
         const color = options?.format === 'rgb'
           ? Object.values(rgbaFromArgb(palette.tone(tone))).slice(0, -1).join(' ')
           : hexFromArgb(palette.tone(tone));
@@ -107,7 +107,7 @@ function setColorThemeStyleValues(
   format: 'hex' | 'rgb' = 'hex',
 ) {
   for (const [ key, value ] of Object.entries(scheme)) {
-    const token: CSSPropertyKey = `--md-sys-color-${ key.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase() }${ suffix }`;
+    const token: CSSPropertyKey = `--sv-sys-color-${ key.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase() }${ suffix }`;
     const color = format === 'rgb'
       ? Object.values(rgbaFromArgb(value)).slice(0, -1).join(' ')
       : hexFromArgb(value);
@@ -124,7 +124,7 @@ function setColorThemeStyleCustomColorValues(
 ) {
   name = name.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase().replaceAll(/[^a-z0-9]/g, '');
   for (const [ key, value ] of Object.entries(scheme)) {
-    const token: CSSPropertyKey = `--md-sys-color-${ key.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase().replace('color', name) }${ suffix }`;
+    const token: CSSPropertyKey = `--sv-sys-color-${ key.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase().replace('color', name) }${ suffix }`;
     const color = format === 'rgb'
       ? Object.values(rgbaFromArgb(value)).slice(0, -1).join(' ')
       : hexFromArgb(value);
