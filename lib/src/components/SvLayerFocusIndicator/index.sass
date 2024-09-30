@@ -1,0 +1,16 @@
+@layer components
+  .sv-layer-focus-indicator
+    position: absolute
+    inset: 0
+    display: inline-block
+    pointer-events: none
+    z-index: -1
+    border-radius: inherit
+    transition-property: outline
+    transition-duration: var(--sv-layer-focus-indicator-motion-duration, var(--sv-sys-motion-duration-short1))
+    transition-timing-function: var(--sv-layer-focus-indicator-motion-timing-function, var(--sv-sys-motion-easing-emphasized))
+
+    outline-style: solid
+    outline-color: var(--sv-layer-focus-indicator-color, transparent)
+    outline-width: var(--sv-layer-focus-indicator-thickness, 0)
+    outline-offset: var(--sv-layer-focus-indicator-outer-offset, 2px)

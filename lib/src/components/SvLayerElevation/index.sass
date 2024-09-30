@@ -1,0 +1,32 @@
+@layer components
+  .sv-layer-elevation
+    --l: var(--sv-layer-elevation-level, 0)
+    --s: var(--sv-layer-elevation-color-shadow, var(--sv-sys-color-shadow))
+
+    position: absolute
+    inset: 0
+    display: inline-block
+    pointer-events: none
+    z-index: -1
+    border-radius: inherit
+    transition-property: box-shadow, opacity
+    transition-duration: var(--sv-layer-elevation-motion-duration, var(--sv-sys-motion-duration-short1))
+    transition-timing-function: var(--sv-layer-elevation-motion-timing-function, var(--sv-sys-motion-easing-emphasized))
+
+    &:before,
+    &:after
+      content: ""
+      position: absolute
+      inset: 0
+      border-radius: inherit
+      transition-duration: inherit
+      transition-property: inherit
+      transition-timing-function: inherit
+
+    &:before
+      box-shadow: 0px calc(1px * (clamp(0, var(--l), 1) + clamp(0, var(--l) - 3, 1) + 2 * clamp(0, var(--l) - 4, 1))) calc(1px * (2 * clamp(0, var(--l), 1) + clamp(0, var(--l) - 2, 1) + clamp(0, var(--l) - 4, 1))) 0px var(--s)
+      opacity: .3
+
+    &:after
+      box-shadow: 0px calc(1px * (clamp(0, var(--l), 1) + clamp(0, var(--l) - 1, 1) + 2 * clamp(0, var(--l) - 2, 3))) calc(1px * (3 * clamp(0, var(--l), 2) + 2 * clamp(0, var(--l) - 2, 3))) calc(1px * (clamp(0, var(--l), 4) + 2 * clamp(0, var(--l) - 4, 1))) var(--s)
+      opacity: .15

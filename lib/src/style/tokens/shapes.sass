@@ -4,8 +4,8 @@ $corner-sizes: ("none": 0px, "extra-small": 4px, "small": 8px, "medium": 12px, "
 @layer defaults
   :root
     @each $name, $size in $corner-sizes
-      --sv-sys-shape-corner-#{$name}: $size
-      --sv-sys-shape-corner-#{$name}-top: $size $size 0 0
-      --sv-sys-shape-corner-#{$name}-bottom: 0 0 $size $size
-      --sv-sys-shape-corner-#{$name}-start: $size 0 0 $size
-      --sv-sys-shape-corner-#{$name}-end: 0 $size $size 0
+      --sv-sys-shape-corner-#{$name}: #{$size}
+      --sv-sys-shape-corner-#{$name}-top: #{$size} #{$size} 0 0
+      --sv-sys-shape-corner-#{$name}-bottom: 0 0 #{$size} #{$size}
+      --sv-sys-shape-corner-#{$name}-start: #{$size} 0 0 #{$size}
+      --sv-sys-shape-corner-#{$name}-end: 0 #{$size} #{$size} 0

@@ -2,11 +2,18 @@
 @use "_dark-mixin"
 
 @layer general
+  [data-sv-color-scheme="light"],
   [data-sv-color-scheme="auto"]
     color-scheme: light
     @include light-mixin.color-scheme
+
+  [data-sv-color-scheme="dark"]
+    color-scheme: dark
+    @include dark-mixin.color-scheme
 
   @media screen and (prefers-color-scheme: dark)
     [data-sv-color-scheme="auto"]
       color-scheme: dark
       @include dark-mixin.color-scheme
+
+

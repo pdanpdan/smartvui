@@ -2,10 +2,10 @@
 import './index.sass';
 
 defineOptions({
-  name: 'SvElevation',
+  name: 'SvLayerOutline',
 });
 </script>
 
 <template>
-  <span class="sv-elevation" />
+  <span class="sv-layer-outline" />
 </template>

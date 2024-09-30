@@ -1,0 +1,148 @@
+@layer components
+  .sv-card
+    --default-container-color-surface: transparent
+    --default-layer-elevation-level: 0
+    --default-layer-state-color-surface: transparent
+    --default-layer-outline-color: transparent
+    --default-layer-outline-thickness: 0
+    --default-layer-outline-opacity: 0
+
+    --sv-layer-elevation-color-shadow: var(--sv-layer-elevation-color-shadow, var(--sv-comp-card-layer-elevation-color-shadow, var(--sv-sys-color-shadow)))
+
+    padding-inline: 16px
+    text-align: start
+    border-radius: var(--sv-shape-corner, var(--sv-comp-card-shape-corner, var(--sv-sys-shape-corner-medium)))
+    z-index: 0
+    border: none
+    outline: none
+    appearance: none
+    font: inherit
+    color: inherit
+
+    &:where(.sv-card--interactive)
+      cursor: pointer
+
+    > :where(.sv-ripple)
+      --sv-ripple-color: var(--sv-state-pressed-ripple-color, var(--sv-comp-card-state-pressed-ripple-color, var(--sv-sys-color-on-surface)))
+
+    &:where(.sv-card--enabled)
+      --sv-layer-elevation-level: var(--sv-state-enabled-layer-elevation-level, var(--sv-comp-card-state-enabled-layer-elevation-level, var(--default-layer-elevation-level)))
+      background-color: var(--sv-state-enabled-container-color-surface, var(--sv-comp-card-state-enabled-container-color-surface, var(--default-container-color-surface)))
+
+      > :where(.sv-layer-outline)
+        --sv-layer-outline-color: var(--sv-state-enabled-layer-outline-color, var(--sv-comp-card-state-enabled-layer-outline-color, var(--default-layer-outline-color)))
+        --sv-layer-outline-thickness: var(--sv-state-enabled-layer-outline-thickness, var(--sv-comp-card-state-enabled-layer-outline-thickness, var(--default-layer-outline-thickness)))
+        --sv-layer-outline-opacity: var(--sv-state-enabled-layer-outline-opacity, var(--sv-comp-card-state-enabled-layer-outline-opacity, var(--default-layer-outline-opacity)))
+
+    &:where(.sv-card--disabled)
+      --sv-layer-elevation-level: var(--sv-state-disabled-layer-elevation-level, var(--sv-comp-card-state-disabled-layer-elevation-level, var(--default-layer-elevation-level)))
+      background-color: var(--sv-state-disabled-container-color-surface, var(--sv-comp-card-state-disabled-container-color-surface, var(--default-container-color-surface)))
+      opacity: var(--sv-state-disabled-container-opacity, var(--sv-comp-card-state-disabled-container-opacity, var(--sv-sys-state-disabled-container-opacity)))
+      cursor: not-allowed
+
+      > :where(.sv-layer-outline)
+        --sv-layer-outline-color: var(--sv-state-disabled-layer-outline-color, var(--sv-comp-card-state-disabled-layer-outline-color, var(--default-layer-outline-color)))
+        --sv-layer-outline-thickness: var(--sv-state-disabled-layer-outline-thickness, var(--sv-comp-card-state-disabled-layer-outline-thickness, var(--default-layer-outline-thickness)))
+        --sv-layer-outline-opacity: var(--sv-state-disabled-layer-outline-opacity, var(--sv-comp-card-state-disabled-layer-outline-opacity, var(--default-layer-outline-opacity)))
+
+    &:where(.sv-card--interactive:hover)
+      --sv-layer-elevation-level: var(--sv-state-hovered-layer-elevation-level, var(--sv-comp-card-state-hovered-layer-elevation-level, calc(1 + var(--default-layer-elevation-level))))
+
+      > :where(.sv-layer-outline)
+        --sv-layer-outline-color: var(--sv-state-hovered-layer-outline-color, var(--sv-comp-card-state-hovered-layer-outline-color, var(--default-layer-outline-color)))
+        --sv-layer-outline-thickness: var(--sv-state-hovered-layer-outline-thickness, var(--sv-comp-card-state-hovered-layer-outline-thickness, var(--default-layer-outline-thickness)))
+        --sv-layer-outline-opacity: var(--sv-state-hovered-layer-outline-opacity, var(--sv-comp-card-state-hovered-layer-outline-opacity, var(--default-layer-outline-opacity)))
+
+      > :where(.sv-layer-state)
+        --sv-layer-state-color-surface: var(--sv-state-hovered-layer-state-color-surface, var(--sv-comp-card-state-hovered-layer-state-color-surface, var(--sv-sys-color-on-surface)))
+        --sv-layer-state-opacity: var(--sv-state-hovered-layer-state-opacity, var(--sv-comp-card-state-hovered-layer-state-opacity, var(--sv-sys-state-hovered-layer-state-opacity)))
+
+    &:where(.sv-card--interactive:focus-visible)
+      --sv-layer-elevation-level: var(--sv-state-focused-layer-elevation-level, var(--sv-comp-card-state-focused-layer-elevation-level, var(--default-layer-elevation-level)))
+
+      > :where(.sv-layer-focus-indicator)
+        --sv-layer-focus-indicator-color: var(--sv-state-focused-layer-focus-indicator-color, var(--sv-comp-card-state-focused-layer-focus-indicator-color, var(--sv-sys-color-secondary)))
+        --sv-layer-focus-indicator-thickness: var(--sv-state-focused-layer-focus-indicator-thickness, var(--sv-comp-card-state-focused-layer-focus-indicator-thickness, var(--sv-sys-state-focused-layer-focus-indicator-thickness)))
+        --sv-layer-focus-indicator-outer-offset: var(--sv-state-focused-layer-focus-indicator-outer-offset, var(--sv-comp-card-state-focused-layer-focus-indicator-outer-offset, var(--sv-sys-state-focused-layer-focus-indicator-outer-offset)))
+
+    &:where(.sv-card--interactive:focus-within)
+      --sv-layer-elevation-level: var(--sv-state-focused-layer-elevation-level, var(--sv-comp-card-state-focused-layer-elevation-level, var(--default-layer-elevation-level)))
+
+      > :where(.sv-layer-outline)
+        --sv-layer-outline-color: var(--sv-state-focused-layer-outline-color, var(--sv-comp-card-state-focused-layer-outline-color, var(--default-layer-outline-color)))
+        --sv-layer-outline-thickness: var(--sv-state-focused-layer-outline-thickness, var(--sv-comp-card-state-focused-layer-outline-thickness, var(--default-layer-outline-thickness)))
+        --sv-layer-outline-opacity: var(--sv-state-focused-layer-outline-opacity, var(--sv-comp-card-state-focused-layer-outline-opacity, var(--default-layer-outline-opacity)))
+
+      > :where(.sv-layer-state)
+        --sv-layer-state-color-surface: var(--sv-state-focused-layer-state-color-surface, var(--sv-comp-card-state-focused-layer-state-color-surface, var(--sv-sys-color-on-surface)))
+        --sv-layer-state-opacity: var(--sv-state-focused-layer-state-opacity, var(--sv-comp-card-state-focused-layer-state-opacity, var(--sv-sys-state-focused-layer-state-opacity)))
+
+    &:where(.sv-card--interactive:active)
+      --sv-layer-elevation-level: var(--sv-state-pressed-layer-elevation-level, var(--sv-comp-card-state-pressed-layer-elevation-level, var(--default-layer-elevation-level)))
+
+      > :where(.sv-layer-outline)
+        --sv-layer-outline-color: var(--sv-state-pressed-layer-outline-color, var(--sv-comp-card-state-pressed-layer-outline-color, var(--default-layer-outline-color)))
+        --sv-layer-outline-thickness: var(--sv-state-pressed-layer-outline-thickness, var(--sv-comp-card-state-pressed-layer-outline-thickness, var(--default-layer-outline-thickness)))
+        --sv-layer-outline-opacity: var(--sv-state-pressed-layer-outline-opacity, var(--sv-comp-card-state-pressed-layer-outline-opacity, var(--default-layer-outline-opacity)))
+
+      > :where(.sv-layer-state)
+        --sv-layer-state-color-surface: var(--sv-state-pressed-layer-state-color-surface, var(--sv-comp-card-state-pressed-layer-state-color-surface, var(--sv-sys-color-on-surface)))
+        --sv-layer-state-opacity: var(--sv-state-pressed-layer-state-opacity, var(--sv-comp-card-state-pressed-layer-state-opacity, var(--sv-sys-state-pressed-layer-state-opacity)))
+
+    &:where(.sv-card--interactive.sv-card--dragged)
+      --sv-layer-elevation-level: var(--sv-state-dragged-layer-elevation-level, var(--sv-comp-card-state-dragged-layer-elevation-level, clamp(0, calc(3 + var(--default-layer-elevation-level)), 5)))
+
+      > :where(.sv-layer-outline)
+        --sv-layer-outline-color: var(--sv-state-dragged-layer-outline-color, var(--sv-comp-card-state-dragged-layer-outline-color, var(--default-layer-outline-color)))
+        --sv-layer-outline-thickness: var(--sv-state-dragged-layer-outline-thickness, var(--sv-comp-card-state-dragged-layer-outline-thickness, var(--default-layer-outline-thickness)))
+        --sv-layer-outline-opacity: var(--sv-state-dragged-layer-outline-opacity, var(--sv-comp-card-state-dragged-layer-outline-opacity, var(--default-layer-outline-opacity)))
+
+      > :where(.sv-layer-state)
+        --sv-layer-state-color-surface: var(--sv-state-dragged-layer-state-color-surface, var(--sv-comp-card-state-dragged-layer-state-color-surface, var(--sv-sys-color-on-surface)))
+        --sv-layer-state-opacity: var(--sv-state-dragged-layer-state-opacity, var(--sv-comp-card-state-dragged-layer-state-opacity, var(--sv-sys-state-dragged-layer-state-opacity)))
+
+    &--elevated
+      --default-layer-elevation-level: 1
+
+      > :where(.sv-layer-outline)
+        display: none
+
+      &:where(.sv-card--enabled)
+        --default-container-color-surface: var(--sv-sys-color-surface-container-low)
+
+      &:where(.sv-card--disabled)
+        --default-container-color-surface: var(--sv-sys-color-surface)
+
+
+    &--filled
+      > :where(.sv-layer-outline)
+        display: none
+
+      &:where(.sv-card--enabled)
+        --default-container-color-surface: var(--sv-sys-color-surface-container-highest)
+
+      &:where(.sv-card--disabled)
+        --default-container-color-surface: var(--sv-sys-color-surface-variant)
+
+    &--outlined
+      --default-layer-outline-thickness: 1px
+      --default-layer-outline-opacity: 1
+
+      &:where(.sv-card--enabled)
+        --default-container-color-surface: var(--sv-sys-color-surface)
+        --default-layer-outline-color: var(--sv-sys-color-outline-variant)
+
+      &:where(.sv-card--disabled)
+        --default-layer-outline-color: var(--sv-sys-color-outline)
+
+      &:where(.sv-card--interactive:hover)
+        --default-layer-outline-color: var(--sv-sys-color-outline-variant)
+
+      &:where(.sv-card--interactive:focus-within)
+        --default-layer-outline-color: var(--sv-sys-color-on-surface)
+
+      &:where(.sv-card--interactive:active)
+        --default-layer-outline-color: var(--sv-sys-color-outline-variant)
+
+      &:where(.sv-card--interactive.sv-card--dragged)
+        --default-layer-outline-color: var(--sv-sys-color-outline-variant)
