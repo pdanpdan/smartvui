@@ -1,5 +1,10 @@
 {
   "components": [
+    "SvCard",
+    "SvLayerElevation",
+    "SvLayerFocusIndicator",
+    "SvLayerOutline",
+    "SvLayerState",
     "SvRipple",
     "SvSurfaceModal",
     "SvSurfacePopover"
