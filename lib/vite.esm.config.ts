@@ -37,6 +37,10 @@ function scanEntries(entryDirs: string | string[]) {
 const entries = {
   tokens: resolve(__dirname, './src/style/tokens/index.sass'),
   'tokens-colors': resolve(__dirname, './src/style/tokens/colors.sass'),
+  'tokens-elevations': resolve(__dirname, './src/style/tokens/elevations.sass'),
+  'tokens-motion': resolve(__dirname, './src/style/tokens/motion.sass'),
+  'tokens-shapes': resolve(__dirname, './src/style/tokens/shapes.sass'),
+  'tokens-state': resolve(__dirname, './src/style/tokens/state.sass'),
   'tokens-typography': resolve(__dirname, './src/style/tokens/typography.sass'),
 
   base: resolve(__dirname, './src/style/base/index.sass'),
@@ -118,7 +122,9 @@ export default defineConfig({
         chunkFileNames: 'mjs/chunks/[name].[hash].mjs',
         entryFileNames: (chunkInfo) => `mjs/${ chunkInfo.name!.split('---').join('/') }.mjs`,
         assetFileNames: (chunkInfo) => {
-          const componentNameMatch = /_([^.]+)\..*!~/.exec(chunkInfo.originalFileName ?? '');
+          const componentNameMatch = typeof chunkInfo.source === 'string'
+            ? /\/\*!\s+@component:\s+(\S+)\s+\*\//.exec(chunkInfo.source ?? '')
+            : /_([^.]+)\..*!~/.exec(chunkInfo.originalFileName ?? '');
           return componentNameMatch
             ? `styles/components/${ componentNameMatch[ 1 ] }.css`
             : `styles/${ chunkInfo.name!.split('---').join('/') }`;

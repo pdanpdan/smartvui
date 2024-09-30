@@ -98,7 +98,9 @@ export default defineConfig({
         chunkFileNames: 'cjs/chunks/[name].[hash].cjs',
         entryFileNames: (chunkInfo) => `cjs/${ chunkInfo.name!.split('---').join('/') }.cjs`,
         assetFileNames: (chunkInfo) => {
-          const componentNameMatch = /_([^.]+)\..*!~/.exec(chunkInfo.originalFileName ?? '');
+          const componentNameMatch = typeof chunkInfo.source === 'string'
+            ? /\/\*!\s+@component:\s+(\S+)\s+\*\//.exec(chunkInfo.source ?? '')
+            : /_([^.]+)\..*!~/.exec(chunkInfo.originalFileName ?? '');
           return componentNameMatch
             ? `styles/components/${ componentNameMatch[ 1 ] }.css`
             : `styles/${ chunkInfo.name!.split('---').join('/') }`;
