@@ -128,16 +128,16 @@ const {
       grid-column-end: aa-end
 
   &[data-sv-color-scheme="auto"]
-    --md-sys-color-smartvui: var(--md-sys-color-smartvui-light)
-    --md-sys-color-on-smartvui: var(--md-sys-color-on-smartvui-light)
-    --md-sys-color-smartvui-container: var(--md-sys-color-smartvui-container-light)
-    --md-sys-color-on-smartvui-container: var(--md-sys-color-on-smartvui-container-light)
+    --sv-sys-color-smartvui: var(--sv-sys-color-smartvui-light)
+    --sv-sys-color-on-smartvui: var(--sv-sys-color-on-smartvui-light)
+    --sv-sys-color-smartvui-container: var(--sv-sys-color-smartvui-container-light)
+    --sv-sys-color-on-smartvui-container: var(--sv-sys-color-on-smartvui-container-light)
 
     @media screen and (prefers-color-scheme: dark)
-      --md-sys-color-smartvui: var(--md-sys-color-smartvui-dark)
-      --md-sys-color-on-smartvui: var(--md-sys-color-on-smartvui-dark)
-      --md-sys-color-smartvui-container: var(--md-sys-color-smartvui-container-dark)
-      --md-sys-color-on-smartvui-container: var(--md-sys-color-on-smartvui-container-dark)
+      --sv-sys-color-smartvui: var(--sv-sys-color-smartvui-dark)
+      --sv-sys-color-on-smartvui: var(--sv-sys-color-on-smartvui-dark)
+      --sv-sys-color-smartvui-container: var(--sv-sys-color-smartvui-container-dark)
+      --sv-sys-color-on-smartvui-container: var(--sv-sys-color-on-smartvui-container-dark)
 
   &__header,
   &__footer,
@@ -191,8 +191,8 @@ const {
 
 .sv-theme__config,
 .sv-panels__config
-  background-color: var(--md-sys-color-smartvui-container)
-  color: var(--md-sys-color-on-smartvui-container)
+  background-color: var(--sv-sys-color-smartvui-container)
+  color: var(--sv-sys-color-on-smartvui-container)
   display: flex
   flex-wrap: wrap
   gap: .2rem .4rem
@@ -204,7 +204,7 @@ const {
     display: flex
     gap: .2rem .3rem
     align-items: center
-    border: 1px solid color-mix(in srgb, var(--md-sys-color-on-smartvui-container) 30%, transparent)
+    border: 1px solid color-mix(in srgb, var(--sv-sys-color-on-smartvui-container) 30%, transparent)
     border-radius: .5rem
     margin: 0
     padding: .2rem .6rem .5rem
@@ -218,8 +218,8 @@ const {
     flex-grow: 0
     flex-shrink: 0
     font-size: 16px
-    background-color: color-mix(in srgb, var(--md-sys-color-on-smartvui-container) 8%, transparent)
-    color: var(--md-sys-color-on-smartvui-container)
+    background-color: color-mix(in srgb, var(--sv-sys-color-on-smartvui-container) 8%, transparent)
+    color: var(--sv-sys-color-on-smartvui-container)
 
     &:focus-visible
       outline: 2px solid
@@ -243,13 +243,13 @@ const {
         block-size: 1.2rem
         padding: .2rem
         background-clip: content-box
-        border: 2px solid var(--md-sys-color-on-smartvui-container)
+        border: 2px solid var(--sv-sys-color-on-smartvui-container)
         border-radius: .2rem
         background-color: transparent
         transition: background-color .3s ease-in-out
 
       &:checked:before
-        background-color: var(--md-sys-color-on-smartvui-container)
+        background-color: var(--sv-sys-color-on-smartvui-container)
 
       &:after
         content: attr(data-label)

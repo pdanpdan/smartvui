@@ -3,8 +3,8 @@ import { usePrefersDark } from '$lib/composables/usePrefersDark';
 
 function genStyle(bg: string, fg: string) {
   return {
-    backgroundColor: `var(--md-sys-color-${ bg })`,
-    color: `var(--md-sys-color-${ fg })`,
+    backgroundColor: `var(--sv-sys-color-${ bg })`,
+    color: `var(--sv-sys-color-${ fg })`,
   };
 }
 
@@ -191,7 +191,7 @@ const { isDark } = usePrefersDark();
     position: relative
 
     &:not(:empty)
-      box-shadow: 0 0 1px 0 var(--md-sys-color-inverse-surface)
+      box-shadow: 0 0 1px 0 var(--sv-sys-color-inverse-surface)
 
     > i
       position: absolute

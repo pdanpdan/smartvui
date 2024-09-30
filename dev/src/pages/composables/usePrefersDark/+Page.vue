@@ -36,7 +36,7 @@ const { forceDark: forceDarkInt, isDark: isDarkInt } = usePrefersDark({ group: '
     display: flex
     gap: .2rem .3rem
     align-items: center
-    border: 1px solid color-mix(in srgb, var(--md-sys-color-on-smartvui-container) 30%, transparent)
+    border: 1px solid color-mix(in srgb, var(--sv-sys-color-on-smartvui-container) 30%, transparent)
     border-radius: .5rem
     margin: 0
     padding: .2rem .6rem .5rem
@@ -49,8 +49,8 @@ const { forceDark: forceDarkInt, isDark: isDarkInt } = usePrefersDark({ group: '
     display: inline-flex
     flex-grow: 0
     flex-shrink: 0
-    background-color: color-mix(in srgb, var(--md-sys-color-on-smartvui-container) 8%, transparent)
-    color: var(--md-sys-color-on-smartvui-container)
+    background-color: color-mix(in srgb, var(--sv-sys-color-on-smartvui-container) 8%, transparent)
+    color: var(--sv-sys-color-on-smartvui-container)
 
     &:focus-visible
       outline: 2px solid
@@ -74,13 +74,13 @@ const { forceDark: forceDarkInt, isDark: isDarkInt } = usePrefersDark({ group: '
         block-size: 1.2rem
         padding: .2rem
         background-clip: content-box
-        border: 2px solid var(--md-sys-color-on-smartvui-container)
+        border: 2px solid var(--sv-sys-color-on-smartvui-container)
         border-radius: .2rem
         background-color: transparent
         transition: background-color .3s ease-in-out
 
       &:checked:before
-        background-color: var(--md-sys-color-on-smartvui-container)
+        background-color: var(--sv-sys-color-on-smartvui-container)
 
       &:after
         content: attr(data-label)

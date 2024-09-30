@@ -20,6 +20,6 @@
       transition: transform 1s, opacity 1s
 
       &.sv-ripple--active
-        opacity: .2
+        opacity: var(--sv-state-pressed-state-layer-opacity, var(--sv-sys-state-pressed-state-layer-opacity, .12))
         transform: scale(0, 0)
         transition: 0s
