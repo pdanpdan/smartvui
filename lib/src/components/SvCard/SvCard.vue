@@ -7,7 +7,7 @@ import {
   SvLayerOutline,
   SvLayerState,
   SvRipple,
-} from '$lib/index';
+} from '$lib/components';
 
 import type { SvCardProps } from './props';
 
