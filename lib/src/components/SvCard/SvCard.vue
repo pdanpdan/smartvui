@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 import {
   SvLayerElevation,
@@ -18,46 +18,89 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<SvCardProps>(), {
-  aspect: 'elevated',
-  interactive: false,
+  variant: 'elevated',
+  interactive: null,
   tabindex: null,
   ripple: null,
   disabled: false,
-  tag: 'div',
+  href: null,
+  tag: null,
 });
+
+const isLink = computed(() => typeof props.href === 'string' && props.href.trim().length > 0);
+const isInteractive = computed(() => props.disabled === true ? false : (props.interactive != null ? props.interactive : isLink.value));
+const showRipple = computed(() => props.disabled === true ? false : (props.ripple != null ? props.ripple : isInteractive.value));
+const tabindex = computed(() => props.disabled === true ? undefined : (props.tabindex != null ? props.tabindex : (isInteractive.value === true ? 0 : undefined)));
+const tag = computed(() => props.disabled === true ? 'div' : (props.tag != null ? props.tag : (isLink.value === true ? 'a' : (isInteractive.value === true ? 'button' : 'div'))));
+
+const pointerPressed = ref(false);
 
 const classPrefix = 'sv-card';
 const classList = computed(() => {
   const list = [
     classPrefix,
-    `${ classPrefix }--${ props.aspect }`,
+    `${ classPrefix }--${ props.variant }`,
     `${ classPrefix }--${ props.disabled === true ? 'disabled' : 'enabled' }`,
   ];
 
-  if (props.interactive === true && props.disabled !== true) {
+  if (isInteractive.value === true) {
     list.push(`${ classPrefix }--interactive`);
+
+    if (pointerPressed.value === true) {
+      list.push(`${ classPrefix }--pointer-pressed`);
+    }
+  }
+
+  if (props.dragged === true) {
+    list.push(`${ classPrefix }--dragged`);
   }
 
   return list;
 });
 
-const showRipple = computed(() => props.disabled !== true && (props.ripple == null ? props.interactive : props.ripple));
-const tabindex = computed(() => props.disabled !== true ? (props.tabindex == null ? (props.interactive === true ? 0 : undefined) : props.tabindex) : undefined);
+function setPointerPressed(evt: PointerEvent) {
+  const target = evt.target as Element | null;
+  const card = target == null ? null : target.closest('.sv-card');
+  pointerPressed.value = card == null || card.matches(':focus-visible') === false;
+}
+
+function clearPointerPressed() {
+  pointerPressed.value = false;
+}
+
+const pointerPressedEvents = computed(() =>
+  isInteractive.value === true
+    ? {
+      onPointerdownPassive: setPointerPressed,
+      onKeydown: clearPointerPressed,
+      onKeyup: clearPointerPressed,
+      onBlur: clearPointerPressed,
+    }
+    : undefined,
+);
 </script>
 
 <template>
   <component
-    :is="props.tag"
+    :is="tag"
     :class="classList"
     :tabindex
+    :href
+    v-bind="pointerPressedEvents"
   >
+    <div class="sv-card__layer-bottom">
+      <slot name="layer-bottom" />
+    </div>
+
     <SvLayerElevation />
     <SvLayerOutline />
     <SvLayerFocusIndicator />
     <SvLayerState />
 
-    <slot name="ripple"><SvRipple v-if="showRipple" /></slot>
+    <slot name="ripple" :disabled><SvRipple v-if="showRipple" /></slot>
 
-    <slot />
+    <div class="sv-card__layer-content">
+      <slot :disabled />
+    </div>
   </component>
 </template>

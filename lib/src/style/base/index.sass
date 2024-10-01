@@ -1,11 +1,6 @@
 @use "_screen"
 
-@layer reset, defaults, general, components, themes
-
-@layer defaults
-  @import "_colors"
-  @import "_typography"
-
+@layer reset
   :root
     color-scheme: light dark
     /* Prevent tap highlight on iOS */
@@ -17,6 +12,12 @@
   :before,
   :after
     box-sizing: border-box
+
+@layer defaults, general, components, themes
+
+@layer defaults
+  @import "_colors"
+  @import "_typography"
 
 @layer general
   @include screen.size
