@@ -11,6 +11,7 @@ import {
 } from '$lib/components';
 
 import type { SvCardProps } from './props';
+import type { SvCardSlots } from './slots';
 
 import './index.sass';
 
@@ -27,6 +28,9 @@ const props = withDefaults(defineProps<SvCardProps>(), {
   href: null,
   tag: null,
 });
+
+defineSlots<SvCardSlots>();
+
 const attrs = useAttrs();
 
 const isLink = computed(() => typeof props.href === 'string' && props.href.trim().length > 0);
@@ -95,8 +99,9 @@ const pointerPressedEvents = computed(() =>
       <slot
         name="layer-bottom"
         :disabled
-        :dragged
+        :dragged="dragged === true"
         :interactive="isInteractive"
+        :ripple="showRipple"
         :pointer-pressed="pointerPressed"
       />
     </div>
@@ -104,8 +109,9 @@ const pointerPressedEvents = computed(() =>
     <slot
       name="layer-state"
       :disabled
-      :dragged
+      :dragged="dragged === true"
       :interactive="isInteractive"
+      :ripple="showRipple"
       :pointer-pressed="pointerPressed"
     >
       <SvLayerContainer />
@@ -119,8 +125,9 @@ const pointerPressedEvents = computed(() =>
     <div class="sv-card__layer-content">
       <slot
         :disabled
-        :dragged
+        :dragged="dragged === true"
         :interactive="isInteractive"
+        :ripple="showRipple"
         :pointer-pressed="pointerPressed"
       />
     </div>
