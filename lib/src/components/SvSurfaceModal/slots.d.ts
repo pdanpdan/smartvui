@@ -9,18 +9,25 @@ import type {
 export interface SvSurfaceModalSlotProps {
   /** Stable `id` for the instance. */
   id: string;
+
   /** Show the surface. */
   show: SvSurfaceToggleFnType;
+
   /** Hide the surface. */
   hide: SvSurfaceToggleFnType;
+
   /** Toggle the surface visibility. */
   toggle: SvSurfaceToggleFnType;
+
   /** Surface is visible (open) */
   isOpen: boolean;
+
   /** Surface can fill the whole screen. */
   isMaximized: boolean;
+
   /** Surface is `absolute` or `fixed` positioned. */
   isAbsolute: boolean;
+
   /** Surface is animating (`show` or `hide`) or not. */
   isAnimating: SvSurfaceAnimationType;
 }
@@ -31,6 +38,7 @@ export interface SvSurfaceModalSlotProps {
 export interface SvSurfaceModalSlots {
   /** Default slot that holds the surface content. */
   default: (props: SvSurfaceModalSlotProps) => unknown;
+
   /** Slot for activator controls for the surface. */
   activator: (props: SvSurfaceModalSlotProps) => unknown;
 }
