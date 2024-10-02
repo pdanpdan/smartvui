@@ -185,13 +185,4 @@ const colors = [
     aspect-ratio: 1/1
     inline-size: 8rem
     border-radius: 50%
-
-[data-sv-full-width]
-  grid-column: full-width
-  background-color: rgba(128, 128, 128, .2)
-  text-align: center
-  border-start-start-radius: inherit
-  border-start-end-radius: inherit
-  padding-block: 8px
-  margin-block-end: 8px
 </style>
