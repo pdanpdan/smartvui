@@ -2,6 +2,7 @@
 import { computed, ref, useAttrs } from 'vue';
 
 import {
+  SvLayerContainer,
   SvLayerElevation,
   SvLayerFocusIndicator,
   SvLayerOutline,
@@ -107,6 +108,7 @@ const pointerPressedEvents = computed(() =>
       :interactive="isInteractive"
       :pointer-pressed="pointerPressed"
     >
+      <SvLayerContainer />
       <SvLayerElevation />
       <SvLayerOutline />
       <SvLayerFocusIndicator />

@@ -1,7 +1,7 @@
 /*! @component: SvCard */
 @layer components
   .sv-card
-    --default-container-color-surface: transparent
+    --default-layer-container-color-surface: transparent
     --default-layer-elevation-level: 0
     --default-layer-state-color-surface: transparent
     --default-layer-outline-color: transparent
@@ -10,10 +10,13 @@
 
     --sv-layer-elevation-color-shadow: var(--sv-layer-elevation-color-shadow, var(--sv-comp-card-layer-elevation-color-shadow, var(--sv-sys-color-shadow)))
 
+    // reset for `button`
     border: none
     outline: none
     appearance: none
     font: inherit
+    background-color: transparent
+    // reset for `a`
     text-decoration: none
 
     position: relative
@@ -21,6 +24,7 @@
     text-align: start
     border-radius: var(--sv-shape-corner, var(--sv-comp-card-shape-corner, var(--sv-sys-shape-corner-medium)))
     z-index: 0
+    transform-style: preserve-3d
 
     &__layer-bottom
       position: absolute
@@ -45,7 +49,8 @@
 
     &:where(.sv-card--enabled)
       --sv-layer-elevation-level: var(--sv-state-enabled-layer-elevation-level, var(--sv-comp-card-state-enabled-layer-elevation-level, var(--default-layer-elevation-level)))
-      background-color: var(--sv-state-enabled-container-color-surface, var(--sv-comp-card-state-enabled-container-color-surface, var(--default-container-color-surface)))
+      > :where(.sv-layer-container)
+        --sv-layer-container-color-surface: var(--sv-state-enabled-layer-container-color-surface, var(--sv-comp-card-state-enabled-layer-container-color-surface, var(--default-layer-container-color-surface)))
 
       > :where(.sv-layer-outline)
         --sv-layer-outline-color: var(--sv-state-enabled-layer-outline-color, var(--sv-comp-card-state-enabled-layer-outline-color, var(--default-layer-outline-color)))
@@ -54,9 +59,11 @@
 
     &:where(.sv-card--disabled)
       --sv-layer-elevation-level: var(--sv-state-disabled-layer-elevation-level, var(--sv-comp-card-state-disabled-layer-elevation-level, var(--default-layer-elevation-level)))
-      background-color: var(--sv-state-disabled-container-color-surface, var(--sv-comp-card-state-disabled-container-color-surface, var(--default-container-color-surface)))
       opacity: var(--sv-state-disabled-container-opacity, var(--sv-comp-card-state-disabled-container-opacity, var(--sv-sys-state-disabled-container-opacity)))
       cursor: not-allowed
+
+      > :where(.sv-layer-container)
+        --sv-layer-container-color-surface: var(--sv-state-disabled-layer-container-color-surface, var(--sv-comp-card-state-disabled-layer-container-color-surface, var(--default-layer-container-color-surface)))
 
       > :where(.sv-layer-outline)
         --sv-layer-outline-color: var(--sv-state-disabled-layer-outline-color, var(--sv-comp-card-state-disabled-layer-outline-color, var(--default-layer-outline-color)))
@@ -127,27 +134,27 @@
         display: none
 
       &:where(.sv-card--enabled)
-        --default-container-color-surface: var(--sv-sys-color-surface-container-low)
+        --default-layer-container-color-surface: var(--sv-sys-color-surface-container-low)
 
       &:where(.sv-card--disabled)
-        --default-container-color-surface: var(--sv-sys-color-surface)
+        --default-layer-container-color-surface: var(--sv-sys-color-surface)
 
     &--filled
       > :where(.sv-layer-outline)
         display: none
 
       &:where(.sv-card--enabled)
-        --default-container-color-surface: var(--sv-sys-color-surface-container-highest)
+        --default-layer-container-color-surface: var(--sv-sys-color-surface-container-highest)
 
       &:where(.sv-card--disabled)
-        --default-container-color-surface: var(--sv-sys-color-surface-variant)
+        --default-layer-container-color-surface: var(--sv-sys-color-surface-variant)
 
     &--outlined
       --default-layer-outline-thickness: 1px
       --default-layer-outline-opacity: 1
 
       &:where(.sv-card--enabled)
-        --default-container-color-surface: var(--sv-sys-color-surface)
+        --default-layer-container-color-surface: var(--sv-sys-color-surface)
         --default-layer-outline-color: var(--sv-sys-color-outline-variant)
 
       &:where(.sv-card--disabled)
