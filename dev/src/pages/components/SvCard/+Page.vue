@@ -52,6 +52,10 @@ const colors = [
           :class="color"
           disabled
         >
+          <template #layer-bottom>
+            <div class="sv-c--on-tertiary-container" style="position: absolute; inset: auto 8px 8px auto">disabled</div>
+          </template>
+
           <div data-sv-full-width>Elevated card</div>
           <div>Disabled</div>
         </SvCard>
@@ -95,6 +99,10 @@ const colors = [
           variant="filled"
           disabled
         >
+          <template #layer-bottom>
+            <div class="sv-c--on-tertiary-container" style="position: absolute; inset: auto 8px 8px auto">disabled</div>
+          </template>
+
           <div data-sv-full-width>Filled card</div>
           <div>Disabled</div>
         </SvCard>
@@ -138,6 +146,10 @@ const colors = [
           variant="outlined"
           disabled
         >
+          <template #layer-bottom>
+            <div class="sv-c--on-tertiary-container" style="position: absolute; inset: auto 8px 8px auto">disabled</div>
+          </template>
+
           <div data-sv-full-width>Outlined card</div>
           <div>Disabled</div>
         </SvCard>
