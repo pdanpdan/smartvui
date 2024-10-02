@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, useAttrs } from 'vue';
 
 import {
   SvLayerElevation,
@@ -26,9 +26,11 @@ const props = withDefaults(defineProps<SvCardProps>(), {
   href: null,
   tag: null,
 });
+const attrs = useAttrs();
 
 const isLink = computed(() => typeof props.href === 'string' && props.href.trim().length > 0);
-const isInteractive = computed(() => props.disabled === true ? false : (props.interactive != null ? props.interactive : isLink.value));
+const hasOnClick = computed(() => Object.keys(attrs).some((k) => k.startsWith('onClick')));
+const isInteractive = computed(() => props.disabled === true ? false : (props.interactive != null ? props.interactive : isLink.value || hasOnClick.value));
 const showRipple = computed(() => props.disabled === true ? false : (props.ripple != null ? props.ripple : isInteractive.value));
 const tabindex = computed(() => props.disabled === true ? undefined : (props.tabindex != null ? props.tabindex : (isInteractive.value === true ? 0 : undefined)));
 const tag = computed(() => props.disabled === true ? 'div' : (props.tag != null ? props.tag : (isLink.value === true ? 'a' : (isInteractive.value === true ? 'button' : 'div'))));
@@ -89,18 +91,36 @@ const pointerPressedEvents = computed(() =>
     v-bind="pointerPressedEvents"
   >
     <div class="sv-card__layer-bottom">
-      <slot name="layer-bottom" />
+      <slot
+        name="layer-bottom"
+        :disabled
+        :dragged
+        :interactive="isInteractive"
+        :pointer-pressed="pointerPressed"
+      />
     </div>
 
-    <SvLayerElevation />
-    <SvLayerOutline />
-    <SvLayerFocusIndicator />
-    <SvLayerState />
-
-    <slot name="ripple" :disabled><SvRipple v-if="showRipple" /></slot>
+    <slot
+      name="layer-state"
+      :disabled
+      :dragged
+      :interactive="isInteractive"
+      :pointer-pressed="pointerPressed"
+    >
+      <SvLayerElevation />
+      <SvLayerOutline />
+      <SvLayerFocusIndicator />
+      <SvLayerState />
+      <SvRipple v-if="showRipple" />
+    </slot>
 
     <div class="sv-card__layer-content">
-      <slot :disabled />
+      <slot
+        :disabled
+        :dragged
+        :interactive="isInteractive"
+        :pointer-pressed="pointerPressed"
+      />
     </div>
   </component>
 </template>

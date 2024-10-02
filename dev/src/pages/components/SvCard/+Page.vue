@@ -170,6 +170,7 @@ const colors = [
   max-inline-size: 50%
   block-size: auto
   aspect-ratio: 2/1
+  font-size: 18px
 
   &--square
     aspect-ratio: 1/1
