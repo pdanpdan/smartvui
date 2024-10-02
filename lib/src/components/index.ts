@@ -1,4 +1,5 @@
 export * from './SvCard';
+export * from './SvLayerContainer';
 export * from './SvLayerElevation';
 export * from './SvLayerFocusIndicator';
 export * from './SvLayerOutline';
