@@ -11,46 +11,46 @@ function getErrorTarget() {
     <h1>SvRipple</h1>
 
     <div class="container">
-      <div class="test sv-primary sv-on-primary" tabindex="0">
+      <div class="test sv-bg--primary-container sv-c--on-primary-container" tabindex="0">
         <SvRipple />
-        <strong>sv-primary</strong>
+        <strong>primary cont</strong>
       </div>
 
-      <div class="test sv-secondary sv-on-secondary" tabindex="0">
+      <div class="test sv-bg--secondary-container sv-c--on-secondary-container" tabindex="0">
         <SvRipple />
-        <strong>sv-secondary</strong>
+        <strong>secondary cont</strong>
       </div>
 
-      <div class="test sv-tertiary sv-on-tertiary" tabindex="0">
+      <div class="test sv-bg--tertiary-container sv-c--on-tertiary-container" tabindex="0">
         <SvRipple style="color: orangered" :target="getErrorTarget" />
-        <strong>sv-tertiary, trigger from sv-error</strong>
+        <strong>tertiary cont<br />trigger from error cont</strong>
       </div>
 
-      <div id="ripple-error" class="test test--round sv-error sv-on-error" tabindex="0">
+      <div id="ripple-error" class="test test--round sv-bg--error-container sv-c--on-error-container" tabindex="0">
         <SvRipple :pointer-down="false" pointer-up :key-down="false" :key-up="['Enter', ' ']" />
-        <strong>sv-error, lazy</strong>
+        <strong>error cont<br />lazy</strong>
       </div>
     </div>
 
     <div class="container">
-      <div class="test test--thin sv-primary-container sv-on-primary-container" tabindex="0">
+      <div class="test test--thin sv-bg--surface-container-highest sv-c--on-surface" tabindex="0">
         <SvRipple />
-        <strong>sv-primary-container</strong>
+        <strong>surface cont highest</strong>
       </div>
 
-      <div class="test sv-secondary-container sv-on-secondary-container" tabindex="0">
+      <div class="test sv-bg--surface-container-low sv-c--on-surface--variant" tabindex="0">
         <SvRipple />
-        <strong>sv-secondary-container</strong>
+        <strong>surface cont low</strong>
       </div>
 
-      <div class="test test--square sv-tertiary-container sv-on-tertiary-container" tabindex="0">
+      <div class="test test--square sv-bg--surface-container sv-c--on-surface" tabindex="0">
         <SvRipple />
-        <strong>sv-tertiary-container</strong>
+        <strong>surface cont</strong>
       </div>
 
-      <div class="test sv-error-container sv-on-error-container" tabindex="0">
+      <div class="test sv-bg--surface-container-high sv-c--on-surface" tabindex="0">
         <SvRipple pointer-up :key-up="['Enter', ' ']" />
-        <strong>sv-error-container, eager and lazy</strong>
+        <strong>surface cont high<br />eager and lazy</strong>
       </div>
     </div>
   </div>

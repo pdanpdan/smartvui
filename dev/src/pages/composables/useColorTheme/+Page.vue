@@ -14,32 +14,32 @@ const { isDark } = usePrefersDark();
 <template>
   <div class="sv-page--padded">
     <h1>useTheme</h1>
-    <div class="sv-color-theme sv-title-medium">
+    <div class="sv-color-theme sv-t--title-medium">
       <div
         v-for="(color, i) in ['primary', 'secondary', 'tertiary', 'error']"
         :key="i"
         :class="`sv-color-theme__r1 sv-color-theme__c${ i + 1 }`"
       >
-        <div :class="`sv-${ color } sv-on-${ color }`">
+        <div :class="`sv-bg--${ color } sv-c--on-${ color }`">
           {{ color[0].toUpperCase() }}{{ color.slice(1) }}
-          <i class="sv-body-small">{{ color[0].toUpperCase() }}-{{ isDark ? '80' : '40' }}</i>
+          <i class="sv-t--body-small">{{ color[0].toUpperCase() }}-{{ isDark ? '80' : '40' }}</i>
         </div>
 
         <div :style="genStyle(`on-${ color }`, color)">
           On {{ color[0].toUpperCase() }}{{ color.slice(1) }}
-          <i class="sv-body-small">{{ color[0].toUpperCase() }}-{{ isDark ? '20' : '100' }}</i>
+          <i class="sv-t--body-small">{{ color[0].toUpperCase() }}-{{ isDark ? '20' : '100' }}</i>
         </div>
 
         <div />
 
-        <div :class="`sv-${ color }-container sv-on-${ color }-container`">
+        <div :class="`sv-bg--${ color }-container sv-c--on-${ color }-container`">
           {{ color[0].toUpperCase() }}{{ color.slice(1) }} Container
-          <i class="sv-body-small">{{ color[0].toUpperCase() }}-{{ isDark ? '30' : '90' }}</i>
+          <i class="sv-t--body-small">{{ color[0].toUpperCase() }}-{{ isDark ? '30' : '90' }}</i>
         </div>
 
         <div :style="genStyle(`on-${ color }-container`, `${ color }-container`)">
           On {{ color[0].toUpperCase() }}{{ color.slice(1) }} Container
-          <i class="sv-body-small">{{ color[0].toUpperCase() }}-{{ isDark ? '90' : '10' }}</i>
+          <i class="sv-t--body-small">{{ color[0].toUpperCase() }}-{{ isDark ? '90' : '10' }}</i>
         </div>
       </div>
 
@@ -48,120 +48,120 @@ const { isDark } = usePrefersDark();
         :key="i"
         :class="`sv-color-theme__r2 sv-color-theme__c${ i + 1 }`"
       >
-        <div :class="`sv-${ color }-fixed sv-on-${ color }-fixed`">
+        <div :class="`sv-bg--${ color }-fixed sv-c--on-${ color }-fixed`">
           {{ color[0].toUpperCase() }}{{ color.slice(1) }} Fixed
-          <i class="sv-body-small">{{ color[0].toUpperCase() }}-90</i>
+          <i class="sv-t--body-small">{{ color[0].toUpperCase() }}-90</i>
         </div>
 
-        <div :class="`sv-${ color }-fixed-dim sv-on-${ color }-fixed`">
+        <div :class="`sv-bg--${ color }-fixed-dim sv-c--on-${ color }-fixed`">
           {{ color[0].toUpperCase() }}{{ color.slice(1) }} Fixed Dim
-          <i class="sv-body-small">{{ color[0].toUpperCase() }}-80</i>
+          <i class="sv-t--body-small">{{ color[0].toUpperCase() }}-80</i>
         </div>
 
         <div :style="genStyle(`on-${ color }-fixed`, `${ color }-fixed`)">
           On {{ color[0].toUpperCase() }}{{ color.slice(1) }} Fixed
-          <i class="sv-body-small">{{ color[0].toUpperCase() }}-10</i>
+          <i class="sv-t--body-small">{{ color[0].toUpperCase() }}-10</i>
         </div>
 
         <div :style="genStyle(`on-${ color }-fixed-variant`, `${ color }-fixed`)">
           On {{ color[0].toUpperCase() }}{{ color.slice(1) }} Fixed Variant
-          <i class="sv-body-small">{{ color[0].toUpperCase() }}-30</i>
+          <i class="sv-t--body-small">{{ color[0].toUpperCase() }}-30</i>
         </div>
       </div>
 
       <div class="sv-color-theme__r3 sv-color-theme__c1-3">
         <div>
-          <div class="sv-surface-dim sv-on-surface">
+          <div class="sv-bg--surface-dim sv-c--on-surface">
             Surface Dim
-            <i class="sv-body-small">N-{{ isDark ? '6' : '87' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '6' : '87' }}</i>
           </div>
 
-          <div class="sv-surface sv-on-surface">
+          <div class="sv-bg--surface sv-c--on-surface">
             Surface
-            <i class="sv-body-small">N-{{ isDark ? '6' : '98' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '6' : '98' }}</i>
           </div>
 
-          <div class="sv-surface-bright sv-on-surface">
+          <div class="sv-bg--surface-bright sv-c--on-surface">
             Surface Bright
-            <i class="sv-body-small">N-{{ isDark ? '24' : '98' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '24' : '98' }}</i>
           </div>
         </div>
 
         <div>
-          <div class="sv-surface-container-lowest sv-on-surface">
+          <div class="sv-bg--surface-container-lowest sv-c--on-surface">
             Surface Container Lowest
-            <i class="sv-body-small">N-{{ isDark ? '4' : '100' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '4' : '100' }}</i>
           </div>
 
-          <div class="sv-surface-container-low sv-on-surface">
+          <div class="sv-bg--surface-container-low sv-c--on-surface">
             Surface Container Low
-            <i class="sv-body-small">N-{{ isDark ? '10' : '96' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '10' : '96' }}</i>
           </div>
 
-          <div class="sv-surface-container sv-on-surface">
+          <div class="sv-bg--surface-container sv-c--on-surface">
             Surface Container
-            <i class="sv-body-small">N-{{ isDark ? '12' : '94' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '12' : '94' }}</i>
           </div>
 
-          <div class="sv-surface-container-high sv-on-surface">
+          <div class="sv-bg--surface-container-high sv-c--on-surface">
             Surface Container High
-            <i class="sv-body-small">N-{{ isDark ? '17' : '92' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '17' : '92' }}</i>
           </div>
 
-          <div class="sv-surface-container-highest sv-on-surface">
+          <div class="sv-bg--surface-container-highest sv-c--on-surface">
             Surface Container Highest
-            <i class="sv-body-small">N-{{ isDark ? '22' : '90' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '22' : '90' }}</i>
           </div>
         </div>
 
         <div>
           <div :style="genStyle('on-surface', 'surface')">
             On Surface
-            <i class="sv-body-small">N-{{ isDark ? '90' : '10' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '90' : '10' }}</i>
           </div>
 
           <div :style="genStyle('on-surface-variant', 'surface')">
             On Surface Variant
-            <i class="sv-body-small">NV-{{ isDark ? '80' : '30' }}</i>
+            <i class="sv-t--body-small">NV-{{ isDark ? '80' : '30' }}</i>
           </div>
 
           <div :style="genStyle('outline', 'surface')">
             Outline
-            <i class="sv-body-small">NV-{{ isDark ? '60' : '50' }}</i>
+            <i class="sv-t--body-small">NV-{{ isDark ? '60' : '50' }}</i>
           </div>
 
           <div :style="genStyle('outline-variant', 'on-surface')">
             Outline Variant
-            <i class="sv-body-small">NV-{{ isDark ? '30' : '80' }}</i>
+            <i class="sv-t--body-small">NV-{{ isDark ? '30' : '80' }}</i>
           </div>
         </div>
       </div>
 
       <div class="sv-color-theme__r3 sv-color-theme__c4">
-        <div class="sv-inverse-surface sv-inverse-on-surface">
+        <div class="sv-bg--inverse-surface sv-c--inverse-on-surface">
           Inverse Surface
-          <i class="sv-body-small">N-{{ isDark ? '90' : '20' }}</i>
+          <i class="sv-t--body-small">N-{{ isDark ? '90' : '20' }}</i>
         </div>
 
         <div :style="genStyle('inverse-on-surface', 'inverse-surface')">
           Inverse On Surface
-          <i class="sv-body-small">N-{{ isDark ? '20' : '95' }}</i>
+          <i class="sv-t--body-small">N-{{ isDark ? '20' : '95' }}</i>
         </div>
 
         <div :style="genStyle('inverse-primary', 'inverse-surface')">
           Inverse Primary
-          <i class="sv-body-small">P-{{ isDark ? '40' : '80' }}</i>
+          <i class="sv-t--body-small">P-{{ isDark ? '40' : '80' }}</i>
         </div>
 
         <div>
           <div :style="genStyle('scrim', 'primary-fixed')">
             Scrim
-            <i class="sv-body-small">N-{{ isDark ? '0' : '0' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '0' : '0' }}</i>
           </div>
 
           <div :style="genStyle('shadow', 'primary-fixed')">
             Shadow
-            <i class="sv-body-small">N-{{ isDark ? '0' : '0' }}</i>
+            <i class="sv-t--body-small">N-{{ isDark ? '0' : '0' }}</i>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ const {
 </script>
 
 <template>
-  <div class="sv-layout sv-background sv-on-background" v-bind.attr="attrs" :style="style">
+  <div class="sv-layout sv-bg--background sv-c--on-background" v-bind.attr="attrs" :style="style">
     <header class="sv-layout__header" :class="`sv-layout__header--${ visibility.header ? '' : 'in' }visible`">
       <slot name="header" :visibility="visibility">
         <div class="sv-panels__config">
@@ -44,7 +44,7 @@ const {
             <input
               v-model="sourceColor"
               type="text"
-              class="sv-body-medium"
+              class="sv-t--body-medium"
               autocomplete="off"
               inputmode="text"
             />
@@ -62,7 +62,7 @@ const {
 
     <aside class="sv-layout__aside-before" :class="`sv-layout__aside-before--${ visibility.asideBefore ? '' : 'in' }visible`">
       <slot name="aside-before" :visibility="visibility">
-        <nav class="sv-surface-container-high sv-on-surface" style="padding: 1rem 1.5rem; min-block-size: 100%">
+        <nav class="sv-bg--surface-container-high sv-c--on-surface" style="padding: 1rem 1.5rem; min-block-size: 100%">
           <NavigationList :links="links" />
         </nav>
       </slot>
@@ -70,7 +70,7 @@ const {
 
     <aside class="sv-layout__aside-after" :class="`sv-layout__aside-after--${ visibility.asideAfter ? '' : 'in' }visible`">
       <slot name="aside-after" :visibility="visibility">
-        <div class="sv-surface-container-highest sv-on-surface" style="padding: 1rem">
+        <div class="sv-bg--surface-container-highest sv-c--on-surface" style="padding: 1rem">
           <div v-for="i in 50" :key="i">Aside after #{{ i + 1 }}</div>
         </div>
       </slot>

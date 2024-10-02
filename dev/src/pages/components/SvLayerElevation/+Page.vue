@@ -7,46 +7,46 @@ import { SvLayerElevation } from '$lib/index';
     <h1>SvElevation</h1>
 
     <div class="container">
-      <div class="test sv-primary sv-on-primary test-elevation--5" tabindex="0">
+      <div class="test sv-bg--primary-container sv-c--on-primary-container test-elevation--5" tabindex="0">
         <SvLayerElevation />
-        <strong>sv-primary - el 5</strong>
+        <strong>primary cont<br />el 5</strong>
       </div>
 
-      <div class="test sv-secondary sv-on-secondary test-elevation--4" tabindex="0">
+      <div class="test sv-bg--secondary-container sv-c--on-secondary-container test-elevation--4" tabindex="0">
         <SvLayerElevation />
-        <strong>sv-secondary - el 4</strong>
+        <strong>secondary cont<br />el 4</strong>
       </div>
 
-      <div class="test sv-tertiary sv-on-tertiary test-elevation--3" tabindex="0">
+      <div class="test sv-bg--tertiary-container sv-c--on-tertiary-container test-elevation--3" tabindex="0">
         <SvLayerElevation />
-        <strong>sv-tertiary - el 3</strong>
+        <strong>tertiary cont<br />el 3</strong>
       </div>
 
-      <div id="ripple-error" class="test test--round sv-error sv-on-error test-elevation--2" tabindex="0">
+      <div id="ripple-error" class="test test--round sv-bg--error-container sv-c--on-error-container test-elevation--2" tabindex="0">
         <SvLayerElevation />
-        <strong>sv-error - el 2</strong>
+        <strong>error cont<br />el 2</strong>
       </div>
     </div>
 
     <div class="container">
-      <div class="test test--thin sv-primary-container sv-on-primary-container test-elevation--1" tabindex="0">
+      <div class="test test--thin sv-bg--surface-container-low sv-c--on-surface test-elevation--1" tabindex="0">
         <SvLayerElevation />
-        <strong>sv-primary-container - el 1</strong>
+        <strong>surface cont low<br />el 1</strong>
       </div>
 
-      <div class="test sv-secondary-container sv-on-secondary-container test-elevation--0" tabindex="0">
+      <div class="test sv-bg--surface-container sv-c--on-surface-variant test-elevation--2" tabindex="0">
         <SvLayerElevation />
-        <strong>sv-secondary-container - el 0</strong>
+        <strong>surface cont<br />el 2</strong>
       </div>
 
-      <div class="test test--square sv-tertiary-container sv-on-tertiary-container test-elevation--1" tabindex="0">
+      <div class="test test--square sv-bg--surface-container-high sv-c--on-surface test-elevation--3" tabindex="0">
         <SvLayerElevation />
-        <strong>sv-tertiary-container - el 1</strong>
+        <strong>surface cont high<br />el 3</strong>
       </div>
 
-      <div class="test sv-error-container sv-on-error-container test-elevation--2" tabindex="0">
+      <div class="test sv-bg--surface-container-highest sv-c--on-surface test-elevation--4" tabindex="0">
         <SvLayerElevation />
-        <strong>sv-error-container - el 2</strong>
+        <strong>surface cont highest<br />el 4</strong>
       </div>
     </div>
   </div>

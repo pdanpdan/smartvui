@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { SvCard } from '$lib/index';
 
-const surfaces = [
-  'sv-surface-container-lowest',
-  'sv-surface-container-low',
-  'sv-surface-container',
-  'sv-surface-container-high',
-  'sv-surface-container-highest',
-];
-
 const colors = [
-  'primary',
-  'secondary',
-  'tertiary',
-  'error',
+  'sv-c--on-surface',
+  'sv-bg--surface-container-lowest sv-c--on-surface',
+  'sv-bg--surface-container-lowest sv-c--on-surface-variant',
+  'sv-bg--surface-container-low sv-c--on-surface',
+  'sv-bg--surface-container-low sv-c--on-surface-variant',
+  'sv-bg--surface-container sv-c--on-surface',
+  'sv-bg--surface-container sv-c--on-surface-variant',
+  'sv-bg--surface-container-high sv-c--on-surface',
+  'sv-bg--surface-container-high sv-c--on-surface-variant',
+  'sv-bg--surface-container-highest sv-c--on-surface',
+  'sv-bg--surface-container-highest sv-c--on-surface-variant',
+  'sv-bg--primary-container sv-c--on-primary-container',
+  'sv-bg--secondary-container sv-c--on-secondary-container',
+  'sv-bg--tertiary-container sv-c--on-tertiary-container',
+  'sv-bg--error-container sv-c--on-error-container',
 ];
 </script>
 
@@ -21,136 +24,129 @@ const colors = [
   <div class="sv-page--padded">
     <h1>SvCard</h1>
 
-    <template v-for="surface in surfaces" :key="surface">
-      <template v-for="color in colors" :key="color">
-        <div class="container">
-          <SvCard
-            class="test"
-            :class="`${ surface } sv-${ color }--text`"
-          >
-            <div data-sv-full-width>Elevated card</div>
-          </SvCard>
-
-          <SvCard
-            class="test"
-            :class="`${ surface } sv-${ color }--text`"
-            interactive
-          >
-            <div data-sv-full-width>Elevated card</div>
-            <div>Interactive</div>
-          </SvCard>
-
-          <SvCard
-            class="test"
-            :class="`${ surface } sv-${ color }--text`"
-            disabled
-          >
-            <div data-sv-full-width>Elevated card</div>
-            <div>Disabled</div>
-          </SvCard>
-
-          <SvCard
-            class="test"
-            :class="`${ surface } sv-${ color }--text`"
-            interactive
-            disabled
-          >
-            <div data-sv-full-width>Elevated card</div>
-            <div>Interactive</div>
-            <div>Disabled</div>
-          </SvCard>
-        </div>
-      </template>
-    </template>
-
     <template v-for="color in colors" :key="color">
+      <div class="sv-t--title-large sv-c--on-surface">Color: {{ color }}</div>
       <div class="container">
         <SvCard
           class="test"
-          :class="`sv-${ color }-container sv-on-${ color }-container`"
-          variant="filled"
+          :class="color"
         >
-          <div data-sv-full-width>Filled card</div>
+          <div data-sv-full-width>Elevated card</div>
         </SvCard>
 
         <SvCard
           class="test"
-          :class="`sv-${ color }-container sv-on-${ color }-container`"
-          variant="filled"
+          :class="color"
           interactive
         >
-          <div data-sv-full-width>Filled card</div>
-          <div>Interactive</div>
+          <div data-sv-full-width>Elevated card</div>
+          <div>Button</div>
         </SvCard>
 
         <SvCard
           class="test"
-          :class="`sv-${ color }-container sv-on-${ color }-container`"
-          variant="filled"
-          disabled
+          :class="color"
+          href="#"
         >
-          <div data-sv-full-width>Filled card</div>
-          <div>Disabled</div>
+          <div data-sv-full-width>Elevated card</div>
+          <div>Link</div>
         </SvCard>
 
         <SvCard
           class="test"
-          :class="`sv-${ color }-container sv-on-${ color }-container`"
-          variant="filled"
-          interactive
+          :class="color"
           disabled
         >
-          <div data-sv-full-width>Filled card</div>
-          <div>Interactive</div>
+          <div data-sv-full-width>Elevated card</div>
           <div>Disabled</div>
         </SvCard>
       </div>
     </template>
 
-    <template v-for="surface in surfaces" :key="surface">
-      <template v-for="color in colors" :key="color">
-        <div class="container">
-          <SvCard
-            class="test"
-            :class="`${ surface } sv-${ color }--text`"
-            variant="outlined"
-          >
-            <div data-sv-full-width>Outlined card</div>
-          </SvCard>
+    <template v-for="color in colors" :key="color">
+      <div class="sv-t--title-large sv-c--on-surface">Color: {{ color }}</div>
+      <div class="container">
+        <SvCard
+          class="test"
+          :class="color"
+          variant="filled"
+        >
+          <div data-sv-full-width>Filled card</div>
+        </SvCard>
 
-          <SvCard
-            class="test"
-            :class="`${ surface } sv-${ color }--text`"
-            variant="outlined"
-            interactive
-          >
-            <div data-sv-full-width>Outlined card</div>
-            <div>Interactive</div>
-          </SvCard>
+        <SvCard
+          class="test"
+          :class="color"
+          variant="filled"
+          interactive
+        >
+          <div data-sv-full-width>Filled card</div>
+          <div>Button</div>
+        </SvCard>
 
-          <SvCard
-            class="test"
-            :class="`${ surface } sv-${ color }--text`"
-            variant="outlined"
-            disabled
-          >
-            <div data-sv-full-width>Outlined card</div>
-            <div>Disabled</div>
-          </SvCard>
+        <SvCard
+          class="test"
+          :class="color"
+          variant="filled"
+          href="#"
+        >
+          <div data-sv-full-width>Filled card</div>
+          <div>Link</div>
+        </SvCard>
 
-          <SvCard
-            class="test"
-            :class="`${ surface } sv-${ color }--text`"
-            variant="outlined"
-            interactive
-            disabled
-          >
-            <div data-sv-full-width>Outlined card</div>
-            <div>Interactive</div>
-            <div>Disabled</div>
-          </SvCard>
-        </div>
-      </template>
+        <SvCard
+          class="test"
+          :class="color"
+          variant="filled"
+          disabled
+        >
+          <div data-sv-full-width>Filled card</div>
+          <div>Disabled</div>
+        </SvCard>
+      </div>
+    </template>
+
+    <template v-for="color in colors" :key="color">
+      <div class="sv-t--title-large sv-c--on-surface">Color: {{ color }}</div>
+      <div class="container">
+        <SvCard
+          class="test"
+          :class="color"
+          variant="outlined"
+        >
+          <div data-sv-full-width>Outlined card</div>
+        </SvCard>
+
+        <SvCard
+          class="test"
+          :class="color"
+          variant="outlined"
+          interactive
+        >
+          <div data-sv-full-width>Outlined card</div>
+          <div>Button</div>
+        </SvCard>
+
+        <SvCard
+          class="test"
+          :class="color"
+          variant="outlined"
+          href="#"
+        >
+          <div data-sv-full-width>Outlined card</div>
+          <div>Link</div>
+        </SvCard>
+
+        <SvCard
+          class="test"
+          :class="color"
+          variant="outlined"
+          disabled
+        >
+          <div data-sv-full-width>Outlined card</div>
+          <div>Disabled</div>
+        </SvCard>
+      </div>
     </template>
   </div>
 </template>

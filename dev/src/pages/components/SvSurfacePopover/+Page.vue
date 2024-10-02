@@ -61,9 +61,9 @@ const popover1Styles = useFloating(popover1RefAnchor, computed(() => popover1Ref
     <h1>SvSurfacePopover</h1>
     <div>reqViewport: <samp>{{ viewport }}</samp></div>
 
-    <input type="text" class="sv-body-large" />
+    <input type="text" class="sv-t--body-large" />
 
-    <div class="sv-body-large sv-popover__details">
+    <div class="sv-t--body-large sv-popover__details">
       <div><span>Page:</span> <samp>{{ screen.pageInlineSize }}</samp> <i>x</i> <samp>{{ screen.pageBlockSize }}</samp></div>
       <div><span>Screen:</span> <samp>{{ screen.screenInlineSize }}</samp> <i>x</i> <samp>{{ screen.screenBlockSize }}</samp></div>
       <div><span>Viewport:</span> <samp>{{ screen.viewInlineSize }}</samp> <i>x</i> <samp>{{ screen.viewBlockSize }}</samp></div>
@@ -108,8 +108,8 @@ const popover1Styles = useFloating(popover1RefAnchor, computed(() => popover1Ref
         <div>
           Some text 1
         </div>
-        <textarea class="sv-body-large" rows="2" />
-        <textarea class="sv-body-large" rows="2" autofocus />
+        <textarea class="sv-t--body-large" rows="2" />
+        <textarea class="sv-t--body-large" rows="2" autofocus />
         <button @click="hide">Close (fn)</button> |
         <button @click="model1 = false">Close (model)</button> |
         <button @click="model2 = true">Open 2</button> |
@@ -136,8 +136,8 @@ const popover1Styles = useFloating(popover1RefAnchor, computed(() => popover1Ref
         <div>
           Some text 2
         </div>
-        <textarea class="sv-body-large" rows="4" />
-        <textarea class="sv-body-large" rows="4" autofocus />
+        <textarea class="sv-t--body-large" rows="4" />
+        <textarea class="sv-t--body-large" rows="4" autofocus />
         <button @click="hide">Close (fn)</button> |
         <button @click="model2 = false">Close (model)</button> |
         <button @click="model1 = true">Open 1</button> |
@@ -162,8 +162,8 @@ const popover1Styles = useFloating(popover1RefAnchor, computed(() => popover1Ref
             <div>
               Some text 5
             </div>
-            <textarea class="sv-body-large" rows="4" />
-            <textarea class="sv-body-large" rows="4" autofocus />
+            <textarea class="sv-t--body-large" rows="4" />
+            <textarea class="sv-t--body-large" rows="4" autofocus />
             <button @click="hideInner">Close (fn)</button> |
             <button @click="model5 = false">Close (model)</button> |
           </div>
@@ -200,8 +200,8 @@ const popover1Styles = useFloating(popover1RefAnchor, computed(() => popover1Ref
           <div>
             Some text 3
           </div>
-          <textarea class="sv-body-large" rows="4" />
-          <textarea class="sv-body-large" rows="4" autofocus />
+          <textarea class="sv-t--body-large" rows="4" />
+          <textarea class="sv-t--body-large" rows="4" autofocus />
           <button @click="hide">Close (fn)</button> |
           <button @click="model3 = false">Close (model)</button> |
           <button @click="model1 = true">Open 1</button> |
@@ -245,9 +245,9 @@ const popover1Styles = useFloating(popover1RefAnchor, computed(() => popover1Ref
       </div>
     </SvSurfacePopover>
 
-    <input type="text" class="sv-body-large" />
+    <input type="text" class="sv-t--body-large" />
 
-    <div class="sv-body-large sv-popover__details">
+    <div class="sv-t--body-large sv-popover__details">
       <div><span>Page:</span> <samp>{{ screen.pageInlineSize }}</samp> <i>x</i> <samp>{{ screen.pageBlockSize }}</samp></div>
       <div><span>Screen:</span> <samp>{{ screen.screenInlineSize }}</samp> <i>x</i> <samp>{{ screen.screenBlockSize }}</samp></div>
       <div><span>Viewport:</span> <samp>{{ screen.viewInlineSize }}</samp> <i>x</i> <samp>{{ screen.viewBlockSize }}</samp></div>
@@ -255,7 +255,7 @@ const popover1Styles = useFloating(popover1RefAnchor, computed(() => popover1Ref
       <div><span>Scale:</span> <samp>{{ screen.viewScale }}</samp></div>
     </div>
 
-    <textarea class="sv-body-large" rows="4" />
+    <textarea class="sv-t--body-large" rows="4" />
   </div>
 </template>
 

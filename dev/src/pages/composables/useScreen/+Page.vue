@@ -26,9 +26,9 @@ function onScrollToBottom() {
     <h1>useScreen</h1>
     <div>reqViewport: <samp>{{ viewport }}</samp></div>
 
-    <input type="text" class="sv-body-large" />
+    <input type="text" class="sv-t--body-large" />
 
-    <div class="sv-body-large sv-screen__details">
+    <div class="sv-t--body-large sv-screen__details">
       <div><span>Page:</span> <samp>{{ screen.pageInlineSize }}</samp> <i>x</i> <samp>{{ screen.pageBlockSize }}</samp></div>
       <div><span>Screen:</span> <samp>{{ screen.screenInlineSize }}</samp> <i>x</i> <samp>{{ screen.screenBlockSize }}</samp></div>
       <div><span>Viewport:</span> <samp>{{ screen.viewInlineSize }}</samp> <i>x</i> <samp>{{ screen.viewBlockSize }}</samp></div>

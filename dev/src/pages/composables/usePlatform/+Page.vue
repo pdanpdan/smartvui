@@ -35,30 +35,30 @@ onMounted(() => {
   <div class="sv-page--padded">
     <h1>usePlatform</h1>
     <div>reqUserAgent: <samp>{{ userAgent }}</samp></div>
-    <div class="sv-body-large sv-platform__details">
+    <div class="sv-t--body-large sv-platform__details">
       <div>
-        <div :class="hasPointer ? 'sv-tertiary--text' : 'sv-error--text'">hasPointer: {{ String(hasPointer) }}</div>
-        <div :class="hasTouch ? 'sv-tertiary--text' : 'sv-error--text'">hasTouch: {{ String(hasTouch) }}</div>
-        <div :class="hasHover ? 'sv-tertiary--text' : 'sv-error--text'">hasHover: {{ String(hasHover) }}</div>
+        <div :class="hasPointer ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">hasPointer: {{ String(hasPointer) }}</div>
+        <div :class="hasTouch ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">hasTouch: {{ String(hasTouch) }}</div>
+        <div :class="hasHover ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">hasHover: {{ String(hasHover) }}</div>
         <hr />
-        <div :class="isDesktop ? 'sv-tertiary--text' : 'sv-error--text'">isDesktop: {{ String(isDesktop) }}</div>
-        <div :class="isMobile ? 'sv-tertiary--text' : 'sv-error--text'">isMobile: {{ String(isMobile) }}</div>
+        <div :class="isDesktop ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isDesktop: {{ String(isDesktop) }}</div>
+        <div :class="isMobile ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isMobile: {{ String(isMobile) }}</div>
         <hr />
-        <div :class="isStandalone ? 'sv-tertiary--text' : 'sv-error--text'">isStandalone: {{ String(isStandalone) }}</div>
-        <div :class="isEmulated ? 'sv-tertiary--text' : 'sv-error--text'">isEmulated: {{ String(isEmulated) }}</div>
+        <div :class="isStandalone ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isStandalone: {{ String(isStandalone) }}</div>
+        <div :class="isEmulated ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isEmulated: {{ String(isEmulated) }}</div>
       </div>
       <div>
-        <div :class="isAndroid ? 'sv-tertiary--text' : 'sv-error--text'">isAndroid: {{ String(isAndroid) }}</div>
-        <div :class="isIos ? 'sv-tertiary--text' : 'sv-error--text'">isIos: {{ String(isIos) }}</div>
-        <div :class="isLinux ? 'sv-tertiary--text' : 'sv-error--text'">isLinux: {{ String(isLinux) }}</div>
-        <div :class="isMacos ? 'sv-tertiary--text' : 'sv-error--text'">isMacos: {{ String(isMacos) }}</div>
-        <div :class="isWindows ? 'sv-tertiary--text' : 'sv-error--text'">isWindows: {{ String(isWindows) }}</div>
-        <div :class="isChromeos ? 'sv-tertiary--text' : 'sv-error--text'">isChromeos: {{ String(isChromeos) }}</div>
+        <div :class="isAndroid ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isAndroid: {{ String(isAndroid) }}</div>
+        <div :class="isIos ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isIos: {{ String(isIos) }}</div>
+        <div :class="isLinux ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isLinux: {{ String(isLinux) }}</div>
+        <div :class="isMacos ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isMacos: {{ String(isMacos) }}</div>
+        <div :class="isWindows ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isWindows: {{ String(isWindows) }}</div>
+        <div :class="isChromeos ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isChromeos: {{ String(isChromeos) }}</div>
       </div>
       <div>
-        <div :class="isChrome ? 'sv-tertiary--text' : 'sv-error--text'">isChrome: {{ String(isChrome) }}</div>
-        <div :class="isFirefox ? 'sv-tertiary--text' : 'sv-error--text'">isFirefox: {{ String(isFirefox) }}</div>
-        <div :class="isSafari ? 'sv-tertiary--text' : 'sv-error--text'">isSafari: {{ String(isSafari) }}</div>
+        <div :class="isChrome ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isChrome: {{ String(isChrome) }}</div>
+        <div :class="isFirefox ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isFirefox: {{ String(isFirefox) }}</div>
+        <div :class="isSafari ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isSafari: {{ String(isSafari) }}</div>
       </div>
     </div>
   </div>

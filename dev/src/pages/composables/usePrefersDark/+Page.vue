@@ -8,20 +8,20 @@ const { forceDark: forceDarkInt, isDark: isDarkInt } = usePrefersDark({ group: '
 <template>
   <div class="sv-page--padded">
     <h1>usePrefersDark</h1>
-    <div class="sv-body-large sv-prefers-dark sv-prefers-dark__details">
-      <div :class="forceDark ? 'sv-tertiary--text' : 'sv-error--text'">forceDark: {{ String(forceDark) }}</div>
-      <div :class="isDark ? 'sv-tertiary--text' : 'sv-error--text'">isDark: {{ String(isDark) }}</div>
+    <div class="sv-t--body-large sv-prefers-dark sv-prefers-dark__details">
+      <div :class="forceDark ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">forceDark: {{ String(forceDark) }}</div>
+      <div :class="isDark ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isDark: {{ String(isDark) }}</div>
     </div>
 
-    <div class="sv-body-large sv-prefers-dark sv-prefers-dark__details">
+    <div class="sv-t--body-large sv-prefers-dark sv-prefers-dark__details">
       <fieldset style="margin-top: 24px; display: inline-block">
         <legend>Dark internal</legend>
         <input v-model="forceDarkInt" type="radio" :value="true" data-label="On" />
         <input v-model="forceDarkInt" type="radio" :value="false" data-label="Off" />
         <input v-model="forceDarkInt" type="radio" :value="null" data-label="Auto" />
       </fieldset>
-      <div :class="forceDarkInt ? 'sv-tertiary--text' : 'sv-error--text'">forceDarkInt: {{ String(forceDarkInt) }}</div>
-      <div :class="isDarkInt ? 'sv-tertiary--text' : 'sv-error--text'">isDarkInt: {{ String(isDarkInt) }}</div>
+      <div :class="forceDarkInt ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">forceDarkInt: {{ String(forceDarkInt) }}</div>
+      <div :class="isDarkInt ? 'sv-c--on-tertiary-container' : 'sv-c--on-error-container'">isDarkInt: {{ String(isDarkInt) }}</div>
     </div>
   </div>
 </template>
