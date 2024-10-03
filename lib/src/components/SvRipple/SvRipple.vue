@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, useTemplateRef, watch } from 'vue';
+import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue';
 
 import { waitForAnimations } from '$lib/utils/animation';
 import { noop } from '$lib/utils/noop';
@@ -22,6 +22,7 @@ const props = withDefaults(defineProps<SvRippleProps>(), {
 });
 
 const elRef = useTemplateRef<HTMLSpanElement>('elRef');
+let rippleTarget: HTMLElement | null = null;
 let cleanup = noop;
 let skipUpUntil: number | null = null;
 
@@ -54,13 +55,13 @@ function onPointerdown(evt: PointerEvent & { __svRipplePrevent?: true; }) {
     return;
   }
 
-  skipUpUntil = Date.now() + 300;
-  evt.__svRipplePrevent = true;
-  const target = evt.target as HTMLElement;
-  if (target != null) {
-    activate(`${ evt.offsetX / target.clientWidth * 100 }%`, `${ evt.offsetY / target.clientHeight * 100 }%`);
-  } else {
-    activate(`${ evt.offsetX }px`, `${ evt.offsetY }px`);
+  if (rippleTarget != null) {
+    evt.__svRipplePrevent = true;
+    const { left, top } = rippleTarget.getBoundingClientRect();
+    const offsetX = evt.pageX - left;
+    const offsetY = evt.pageY - top;
+    activate(`${ offsetX / rippleTarget.clientWidth * 100 }%`, `${ offsetY / rippleTarget.clientHeight * 100 }%`);
+    skipUpUntil = Date.now() + 300;
   }
 }
 
@@ -76,12 +77,12 @@ function onPointerup(evt: PointerEvent & { __svRipplePrevent?: true; }) {
     return;
   }
 
-  evt.__svRipplePrevent = true;
-  const target = evt.target as HTMLElement;
-  if (target != null) {
-    activate(`${ evt.offsetX / target.clientWidth * 100 }%`, `${ evt.offsetY / target.clientHeight * 100 }%`);
-  } else {
-    activate(`${ evt.offsetX }px`, `${ evt.offsetY }px`);
+  if (rippleTarget != null) {
+    evt.__svRipplePrevent = true;
+    const { left, top } = rippleTarget.getBoundingClientRect();
+    const offsetX = evt.pageX - left;
+    const offsetY = evt.pageY - top;
+    activate(`${ offsetX / rippleTarget.clientWidth * 100 }%`, `${ offsetY / rippleTarget.clientHeight * 100 }%`);
   }
 }
 
@@ -127,23 +128,24 @@ function setup([ el, disabled, targetFn ]: [ HTMLElement | null | undefined, boo
     return;
   }
 
-  const target = targetFn(el);
+  rippleTarget = targetFn(el) ?? null;
 
-  if (target != null) {
+  if (rippleTarget != null) {
     cleanup = () => {
-      if (target != null) {
-        target.removeEventListener('pointerdown', onPointerdown);
-        target.removeEventListener('pointerup', onPointerup);
-        target.removeEventListener('keydown', onKeydown);
-        target.removeEventListener('keyup', onKeyup);
+      if (rippleTarget != null) {
+        rippleTarget.removeEventListener('pointerdown', onPointerdown);
+        rippleTarget.removeEventListener('pointerup', onPointerup);
+        rippleTarget.removeEventListener('keydown', onKeydown);
+        rippleTarget.removeEventListener('keyup', onKeyup);
       }
       cleanup = noop;
+      rippleTarget = null;
     };
 
-    target.addEventListener('pointerdown', onPointerdown);
-    target.addEventListener('pointerup', onPointerup);
-    target.addEventListener('keydown', onKeydown);
-    target.addEventListener('keyup', onKeyup);
+    rippleTarget.addEventListener('pointerdown', onPointerdown);
+    rippleTarget.addEventListener('pointerup', onPointerup);
+    rippleTarget.addEventListener('keydown', onKeydown);
+    rippleTarget.addEventListener('keyup', onKeyup);
   }
 }
 
@@ -153,7 +155,9 @@ onMounted(() => {
   watch([ elRef, () => props.disabled, () => props.target ], setup);
 });
 
-onUnmounted(cleanup);
+onBeforeUnmount(() => {
+  cleanup();
+});
 </script>
 
 <template>
