@@ -68,7 +68,6 @@ import { SvLayerElevation } from '$lib/index';
   display: flex
   justify-content: center
   align-items: center
-  z-index: 0
 
   &--square
     aspect-ratio: 1/1
@@ -84,33 +83,43 @@ import { SvLayerElevation } from '$lib/index';
   &-elevation
     &--0
       --sv-layer-elevation-level: 0
+      --sv-layer-elevation-active-level: 1
 
       &:hover
-        --sv-layer-elevation-level: 1
+        --sv-layer-elevation-opacity: 0
+        --sv-layer-elevation-active-opacity: 1
 
     &--1
       --sv-layer-elevation-level: 1
+      --sv-layer-elevation-active-level: 2
 
       &:hover
-        --sv-layer-elevation-level: 2
+        --sv-layer-elevation-opacity: 0
+        --sv-layer-elevation-active-opacity: 1
 
     &--2
       --sv-layer-elevation-level: 2
+      --sv-layer-elevation-active-level: 3
 
       &:hover
-        --sv-layer-elevation-level: 3
+        --sv-layer-elevation-opacity: 0
+        --sv-layer-elevation-active-opacity: 1
 
     &--3
       --sv-layer-elevation-level: 3
+      --sv-layer-elevation-active-level: 4
 
       &:hover
-        --sv-layer-elevation-level: 3
+        --sv-layer-elevation-opacity: 0
+        --sv-layer-elevation-active-opacity: 1
 
     &--4
       --sv-layer-elevation-level: 4
+      --sv-layer-elevation-active-level: 5
 
       &:hover
-        --sv-layer-elevation-level: 5
+        --sv-layer-elevation-opacity: 0
+        --sv-layer-elevation-active-opacity: 1
 
     &--5
       --sv-layer-elevation-level: 5

@@ -2,21 +2,20 @@
 @layer components
   .sv-layer-elevation
     --l: var(--sv-layer-elevation-level, 0)
+    --la: var(--sv-layer-elevation-active-level, 0)
     --s: var(--sv-layer-elevation-color-shadow, var(--sv-sys-color-shadow))
 
     position: absolute
     inset: 0
     display: inline-block
     pointer-events: none
-    z-index: -1
     border-radius: inherit
-    transition-property: box-shadow, opacity
-    transition-duration: var(--sv-layer-elevation-motion-duration, var(--sv-sys-motion-duration-long4))
+    transition-property: opacity
+    transition-duration: var(--sv-layer-elevation-motion-duration, var(--sv-sys-motion-duration-medium1))
     transition-timing-function: var(--sv-layer-elevation-motion-timing-function, var(--sv-sys-motion-easing-emphasized))
 
-    &:before,
-    &:after
-      content: ""
+    &__base,
+    &__active
       position: absolute
       inset: 0
       border-radius: inherit
@@ -24,10 +23,34 @@
       transition-property: inherit
       transition-timing-function: inherit
 
-    &:before
-      box-shadow: 0px calc(1px * (clamp(0, var(--l), 1) + clamp(0, var(--l) - 3, 1) + 2 * clamp(0, var(--l) - 4, 1))) calc(1px * (2 * clamp(0, var(--l), 1) + clamp(0, var(--l) - 2, 1) + clamp(0, var(--l) - 4, 1))) 0px var(--s)
-      opacity: .3
+      &:before,
+      &:after
+        content: ""
+        position: absolute
+        inset: 0
+        border-radius: inherit
+        transition-duration: inherit
+        transition-property: inherit
+        transition-timing-function: inherit
 
-    &:after
-      box-shadow: 0px calc(1px * (clamp(0, var(--l), 1) + clamp(0, var(--l) - 1, 1) + 2 * clamp(0, var(--l) - 2, 3))) calc(1px * (3 * clamp(0, var(--l), 2) + 2 * clamp(0, var(--l) - 2, 3))) calc(1px * (clamp(0, var(--l), 4) + 2 * clamp(0, var(--l) - 4, 1))) var(--s)
-      opacity: .15
+    &__base
+      opacity: var(--sv-layer-elevation-opacity, 1)
+
+      &:before
+        box-shadow: 0px calc(1px * (clamp(0, var(--l), 1) + clamp(0, var(--l) - 3, 1) + 2 * clamp(0, var(--l) - 4, 1))) calc(1px * (2 * clamp(0, var(--l), 1) + clamp(0, var(--l) - 2, 1) + clamp(0, var(--l) - 4, 1))) 0px var(--s)
+        opacity: .3
+
+      &:after
+        box-shadow: 0px calc(1px * (clamp(0, var(--l), 1) + clamp(0, var(--l) - 1, 1) + 2 * clamp(0, var(--l) - 2, 3))) calc(1px * (3 * clamp(0, var(--l), 2) + 2 * clamp(0, var(--l) - 2, 3))) calc(1px * (clamp(0, var(--l), 4) + 2 * clamp(0, var(--l) - 4, 1))) var(--s)
+        opacity: .15
+
+    &__active
+      opacity: var(--sv-layer-elevation-active-opacity, 0)
+
+      &:before
+        box-shadow: 0px calc(1px * (clamp(0, var(--la), 1) + clamp(0, var(--la) - 3, 1) + 2 * clamp(0, var(--la) - 4, 1))) calc(1px * (2 * clamp(0, var(--la), 1) + clamp(0, var(--la) - 2, 1) + clamp(0, var(--la) - 4, 1))) 0px var(--s)
+        opacity: .3
+
+      &:after
+        box-shadow: 0px calc(1px * (clamp(0, var(--la), 1) + clamp(0, var(--la) - 1, 1) + 2 * clamp(0, var(--la) - 2, 3))) calc(1px * (3 * clamp(0, var(--la), 2) + 2 * clamp(0, var(--la) - 2, 3))) calc(1px * (clamp(0, var(--la), 4) + 2 * clamp(0, var(--la) - 4, 1))) var(--s)
+        opacity: .15
