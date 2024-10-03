@@ -58,8 +58,8 @@ function onPointerdown(evt: PointerEvent & { __svRipplePrevent?: true; }) {
   if (rippleTarget != null) {
     evt.__svRipplePrevent = true;
     const { left, top } = rippleTarget.getBoundingClientRect();
-    const offsetX = evt.pageX - left;
-    const offsetY = evt.pageY - top;
+    const offsetX = (evt.x ?? evt.pageX) - left;
+    const offsetY = (evt.y ?? evt.pageY) - top;
     activate(`${ offsetX / rippleTarget.clientWidth * 100 }%`, `${ offsetY / rippleTarget.clientHeight * 100 }%`);
     skipUpUntil = Date.now() + 300;
   }
