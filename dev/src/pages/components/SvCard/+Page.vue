@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SvCard } from '$lib/index';
+import { SvCard, SvCardContent, SvCardHeader } from '$lib/index';
 
 const colors = [
   'sv-c--on-surface',
@@ -26,7 +26,7 @@ const colors = [
           class="test"
           :class="color"
         >
-          <div data-sv-full-width>Elevated card</div>
+          <SvCardHeader class="sv-t--title-large">Elevated card</SvCardHeader>
         </SvCard>
 
         <SvCard
@@ -34,8 +34,8 @@ const colors = [
           :class="color"
           interactive
         >
-          <div data-sv-full-width>Elevated card</div>
-          <div>Button</div>
+          <SvCardHeader class="sv-t--title-large">Elevated card</SvCardHeader>
+          <SvCardContent class="sv-t--body-large">Button</SvCardContent>
         </SvCard>
 
         <SvCard
@@ -43,8 +43,8 @@ const colors = [
           :class="color"
           href="#"
         >
-          <div data-sv-full-width>Elevated card</div>
-          <div>Link</div>
+          <SvCardHeader class="sv-t--title-large">Elevated card</SvCardHeader>
+          <SvCardContent class="sv-t--body-large">Link</SvCardContent>
         </SvCard>
 
         <SvCard
@@ -56,8 +56,8 @@ const colors = [
             <div class="sv-c--on-tertiary-container" style="position: absolute; inset: auto 8px 8px auto">disabled</div>
           </template>
 
-          <div data-sv-full-width>Elevated card</div>
-          <div>Disabled</div>
+          <SvCardHeader class="sv-t--title-large">Elevated card</SvCardHeader>
+          <SvCardContent class="sv-t--body-large">Disabled</SvCardContent>
         </SvCard>
       </div>
     </template>
@@ -70,7 +70,7 @@ const colors = [
           :class="color"
           variant="filled"
         >
-          <div data-sv-full-width>Filled card</div>
+          <SvCardHeader class="sv-t--title-large">Filled card</SvCardHeader>
         </SvCard>
 
         <SvCard
@@ -79,8 +79,8 @@ const colors = [
           variant="filled"
           interactive
         >
-          <div data-sv-full-width>Filled card</div>
-          <div>Button</div>
+          <SvCardHeader class="sv-t--title-large">Filled card</SvCardHeader>
+          <SvCardContent class="sv-t--body-large">Button</SvCardContent>
         </SvCard>
 
         <SvCard
@@ -89,8 +89,8 @@ const colors = [
           variant="filled"
           href="#"
         >
-          <div data-sv-full-width>Filled card</div>
-          <div>Link</div>
+          <SvCardHeader class="sv-t--title-large">Filled card</SvCardHeader>
+          <SvCardContent class="sv-t--body-large">Link</SvCardContent>
         </SvCard>
 
         <SvCard
@@ -103,8 +103,8 @@ const colors = [
             <div class="sv-c--on-tertiary-container" style="position: absolute; inset: auto 8px 8px auto">disabled</div>
           </template>
 
-          <div data-sv-full-width>Filled card</div>
-          <div>Disabled</div>
+          <SvCardHeader class="sv-t--title-large">Filled card</SvCardHeader>
+          <SvCardContent class="sv-t--body-large">Disabled</SvCardContent>
         </SvCard>
       </div>
     </template>
@@ -117,7 +117,7 @@ const colors = [
           :class="color"
           variant="outlined"
         >
-          <div data-sv-full-width>Outlined card</div>
+          <SvCardHeader class="sv-t--title-large">Outlined card</SvCardHeader>
         </SvCard>
 
         <SvCard
@@ -126,8 +126,8 @@ const colors = [
           variant="outlined"
           interactive
         >
-          <div data-sv-full-width>Outlined card</div>
-          <div>Button</div>
+          <SvCardHeader class="sv-t--title-large">Outlined card</SvCardHeader>
+          <SvCardContent class="sv-t--body-large">Button</SvCardContent>
         </SvCard>
 
         <SvCard
@@ -136,8 +136,8 @@ const colors = [
           variant="outlined"
           href="#"
         >
-          <div data-sv-full-width>Outlined card</div>
-          <div>Link</div>
+          <SvCardHeader class="sv-t--title-large">Outlined card</SvCardHeader>
+          <SvCardContent class="sv-t--body-large">Link</SvCardContent>
         </SvCard>
 
         <SvCard
@@ -150,8 +150,8 @@ const colors = [
             <div class="sv-c--on-tertiary-container" style="position: absolute; inset: auto 8px 8px auto">disabled</div>
           </template>
 
-          <div data-sv-full-width>Outlined card</div>
-          <div>Disabled</div>
+          <SvCardHeader class="sv-t--title-large">Outlined card</SvCardHeader>
+          <SvCardContent class="sv-t--body-large">Disabled</SvCardContent>
         </SvCard>
       </div>
     </template>

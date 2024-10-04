@@ -1,0 +1,40 @@
+/*! @component: SvCardActions */
+@layer components
+  .sv-card-actions
+    display: flex
+    gap: .5rem // TODO
+    padding: 8px
+    margin-inline: 0
+
+    &--align-start
+      justify-content: start
+
+    &--align-center
+      justify-content: center
+
+    &--align-end
+      justify-content: end
+
+    &--vertical
+      flex-direction: row
+      grid-column: full
+      grid-row: actions-end
+
+      &:where(.sv-card-actions--position-start)
+        grid-row: actions-start
+
+    &--horizontal-vertical
+      flex-direction: column
+      grid-column: actions-end
+      grid-row: full
+
+      &:where(.sv-card-actions--position-start)
+        grid-column: actions-start
+
+    &--horizontal-horizontal
+      flex-direction: row
+      grid-column: content
+      grid-row: actions-end
+
+      &:where(.sv-card-actions--position-start)
+        grid-row: actions-start

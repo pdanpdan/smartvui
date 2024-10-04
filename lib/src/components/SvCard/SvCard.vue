@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, useAttrs } from 'vue';
+import { computed, provide, reactive, ref, useAttrs, watchEffect } from 'vue';
 
 import {
   SvLayerContainer,
@@ -12,8 +12,10 @@ import {
 
 import type { SvCardProps } from './props';
 import type { SvCardSlots } from './slots';
+import type { SvCardContent } from './symbols';
 
 import './index.sass';
+import { SvCardContentInjectionSymbol } from './symbols';
 
 defineOptions({
   name: 'SvCard',
@@ -21,6 +23,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<SvCardProps>(), {
   variant: 'elevated',
+  layout: 'vertical',
   interactive: null,
   tabindex: null,
   ripple: null,
@@ -32,6 +35,30 @@ const props = withDefaults(defineProps<SvCardProps>(), {
 defineSlots<SvCardSlots>();
 
 const attrs = useAttrs();
+
+const cardContent = reactive<SvCardContent>({
+  layout: props.layout,
+  header: false,
+  content: false,
+  footer: false,
+  actions: {
+    start: false,
+    end: false,
+    startH: false,
+    endH: false,
+  },
+  media: {
+    start: false,
+    end: false,
+    cover: false,
+  },
+});
+
+provide(SvCardContentInjectionSymbol, cardContent);
+
+watchEffect(() => {
+  cardContent.layout = props.layout;
+});
 
 const isLink = computed(() => typeof props.href === 'string' && props.href.trim().length > 0);
 const hasOnClick = computed(() => Object.keys(attrs).some((k) => k.startsWith('onClick')));
@@ -122,7 +149,7 @@ const pointerPressedEvents = computed(() =>
       <SvRipple v-if="showRipple" />
     </slot>
 
-    <div class="sv-card__layer-content">
+    <div class="sv-card__layer-content" :class="`sv-card__layer-content--${ layout }`">
       <slot
         :disabled
         :dragged="dragged === true"

@@ -1,4 +1,12 @@
 /**
+ * Layout direction.
+ *
+ * @public
+ * @defaultValue 'vertical'
+ */
+export type SvCardLayoutProp = 'horizontal' | 'vertical';
+
+/**
  * @public
  */
 export interface SvCardProps {
@@ -8,6 +16,13 @@ export interface SvCardProps {
    * @defaultValue 'elevated'
    */
   variant?: 'elevated' | 'filled' | 'outlined';
+
+  /**
+   * Layout direction.
+   *
+   * @defaultValue 'vertical'
+   */
+  layout?: SvCardLayoutProp;
 
   /**
    * Make card react to interactions.

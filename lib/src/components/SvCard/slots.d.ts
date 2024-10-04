@@ -27,9 +27,8 @@ export interface SvCardSlotProps {
 export interface SvCardSlots {
   /**
    * Default slot that holds the card content.
-   * It is implemented as a `grid` with 2 template columns:
-   * - `full-width` (full card width)
-   * - `padded` (padded area of the card)
+   * It provides automatic placement for SvCardHeader, SvCardContent, SvCardFooter, SvCardActions and SvCardMedia.
+   * The placement is based on SvCard `layout` and subcomponent options.
    */
   default: (props: SvCardSlotProps) => unknown;
 

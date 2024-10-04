@@ -1,6 +1,11 @@
 {
   "components": [
     "SvCard",
+    "SvCardActions",
+    "SvCardContent",
+    "SvCardFooter",
+    "SvCardHeader",
+    "SvCardMedia",
     "SvLayerContainer",
     "SvLayerElevation",
     "SvLayerFocusIndicator",

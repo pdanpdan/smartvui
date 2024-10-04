@@ -1,0 +1,54 @@
+/*! @component: SvCardMedia */
+@layer components
+  .sv-card-media
+    display: flex
+    margin-inline: 0
+
+    &--vertical
+      &:where(.sv-card-media--start)
+        grid-column: full
+        grid-row: media-start
+
+      &:where(.sv-card-media--end)
+        grid-column: full
+        grid-row: media-end
+
+      &:where(.sv-card-media--content)
+        grid-column: full
+        grid-row: auto
+
+      > :where(*)
+        border-radius: inherit
+        inline-size: 100%
+        max-inline-size: 100%
+
+    &--horizontal
+      grid-column: content
+      grid-row: content
+
+      &:where(.sv-card-media--start)
+        grid-column: media-start
+        grid-row: full
+
+      &:where(.sv-card-media--end)
+        grid-column: media-end
+        grid-row: full
+
+      &:where(.sv-card-media--content)
+        grid-column: content
+
+      > :where(*)
+        border-radius: inherit
+        block-size: 100%
+        max-block-size: 100%
+
+    &--cover
+      grid-column: full
+      grid-row: full
+
+      > :where(*)
+        border-radius: inherit
+        block-size: 100%
+        max-block-size: 100%
+        inline-size: 100%
+        max-inline-size: 100%

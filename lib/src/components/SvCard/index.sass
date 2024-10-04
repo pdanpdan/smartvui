@@ -18,6 +18,7 @@
     text-decoration: none
 
     position: relative
+    display: inline-flex
     padding: 0
     text-align: start
     border-radius: var(--sv-shape-corner, var(--sv-comp-card-shape-corner, var(--sv-sys-shape-corner-medium)))
@@ -31,13 +32,38 @@
 
     &__layer-content
       display: grid
-      grid-template-columns: [full-width-start] 16px [padded-start] 1fr [padded-end] 16px [full-width-end]
-      grid-auto-rows: max-content
+      gap: 0
+      min-block-size: 100%
+      min-inline-size: 100%
       border-radius: inherit
-      height: 100%
 
-      > :where(*)
-        grid-column: padded
+      &:where(.sv-card__layer-content--vertical)
+        grid-template-columns: [full-start] 16px [padded-start] 1fr [padded-end] 16px [full-end]
+        grid-template-rows: [full-start media-start-start] min-content [media-start-end header-start] min-content [header-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end footer-start] min-content [footer-end media-end-start] min-content [media-end-end full-end]
+
+        > :where(*)
+          grid-column: padded
+          grid-row: content
+
+      &:where(.sv-card__layer-content--horizontal)
+        grid-template-columns: [full-start media-start-start] min-content [media-start-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end media-end-start] min-content [media-end-end full-end]
+        grid-template-rows: [full-start header-start] min-content [header-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end footer-start] min-content [footer-end full-end]
+
+        > :where(*)
+          grid-column: content
+          margin-inline: 16px
+
+      > :where(.sv-card--border-radius-inherit-ss)
+        border-start-start-radius: inherit
+
+      > :where(.sv-card--border-radius-inherit-se)
+        border-start-end-radius: inherit
+
+      > :where(.sv-card--border-radius-inherit-es)
+        border-end-start-radius: inherit
+
+      > :where(.sv-card--border-radius-inherit-ee)
+        border-end-end-radius: inherit
 
     &:where(.sv-card--interactive)
       cursor: pointer
