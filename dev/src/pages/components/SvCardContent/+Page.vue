@@ -13,15 +13,18 @@ import {
 const showHeader = ref<boolean>(true);
 const showContent = ref<boolean>(true);
 const showActions = ref<boolean>(true);
-const showFooter = ref<boolean>(true);
+const showFooter = ref<boolean>(false);
 const showMedia = ref<boolean>(true);
-const showImage = ref<boolean>(true);
+const showImage = ref<boolean>(false);
 
 const actionsPosition = ref<'start' | 'end'>('end');
 const actionsAlign = ref<'start' | 'center' | 'end'>('start');
 const actionsHorizontal = ref<boolean>(false);
 
 const mediaPosition = ref<'start' | 'end' | 'cover'>('start');
+
+const contentLong = ref<boolean>(false);
+const contentScroll = ref<boolean>(false);
 </script>
 
 <template>
@@ -91,11 +94,22 @@ const mediaPosition = ref<'start' | 'end' | 'cover'>('start');
           <option>cover</option>
         </select>
       </label>
+
+      <label>
+        <span>Long content</span>
+        <input v-model="contentLong" type="checkbox" />
+      </label>
+
+      <label>
+        <span>Scroll content</span>
+        <input v-model="contentScroll" type="checkbox" />
+      </label>
     </div>
 
     <div class="container">
       <SvCard
         class="test test--tall sv-bg--surface-container-high sv-c--on-surface"
+        :style="contentScroll ? 'max-height: 30rem' : undefined"
       >
         <SvCardHeader
           v-if="showHeader"
@@ -113,23 +127,23 @@ const mediaPosition = ref<'start' | 'end' | 'cover'>('start');
 
         <SvCardContent
           v-if="showContent"
-          class="sv-bg--surface-container-highest"
+          class="sv-bg--surface-container-highest sv-t--body-large"
         >
-          <div class="sv-t--body-large">Content 1</div>
+          <div>Content 1</div>
+          <div>Content 2</div>
           <img v-if="showImage" src="https://picsum.photos/500/200" />
-          <div class="sv-t--body-large">Content 2</div>
-          <div class="sv-t--body-large">Content 3</div>
+          <div v-for="i in (contentLong ? 30 : 2)" :key="i">Content {{ 2 + i }}</div>
         </SvCardContent>
 
         <SvCardActions
           v-if="showActions"
-          class="sv-bg--surface-container-highest"
+          class="sv-bg--surface-container-highest sv-t--body-large"
           :position="actionsPosition"
           :align="actionsAlign"
           :horizontal="actionsHorizontal"
         >
-          <div class="sv-t--body-large sv-bg--primary sv-c--on-primary">Actions 1</div>
-          <div class="sv-t--body-large sv-bg--primary sv-c--on-primary">Actions 2</div>
+          <div class="sv-bg--primary sv-c--on-primary">Actions 1</div>
+          <div class="sv-bg--primary sv-c--on-primary">Actions 2</div>
         </SvCardActions>
 
         <SvCardMedia v-if="showMedia" :position="mediaPosition">
@@ -140,6 +154,7 @@ const mediaPosition = ref<'start' | 'end' | 'cover'>('start');
       <SvCard
         class="test sv-bg--surface-container-high sv-c--on-surface"
         layout="horizontal"
+        :style="contentScroll ? 'max-height: 10rem' : undefined"
       >
         <SvCardHeader
           v-if="showHeader"
@@ -157,23 +172,23 @@ const mediaPosition = ref<'start' | 'end' | 'cover'>('start');
 
         <SvCardContent
           v-if="showContent"
-          class="sv-bg--surface-container-highest"
+          class="sv-bg--surface-container-highest sv-t--body-large"
         >
-          <div class="sv-t--body-large">Content 1</div>
+          <div>Content 1</div>
+          <div>Content 2</div>
           <img v-if="showImage" src="https://picsum.photos/500/200" />
-          <div class="sv-t--body-large">Content 2</div>
-          <div class="sv-t--body-large">Content 3</div>
+          <div v-for="i in (contentLong ? 30 : 2)" :key="i">Content {{ 2 + i }}</div>
         </SvCardContent>
 
         <SvCardActions
           v-if="showActions"
-          class="sv-bg--surface-container-highest"
+          class="sv-bg--surface-container-highest sv-t--body-large"
           :position="actionsPosition"
           :align="actionsAlign"
           :horizontal="actionsHorizontal"
         >
-          <div class="sv-t--body-large sv-bg--primary sv-c--on-primary">Actions 1</div>
-          <div class="sv-t--body-large sv-bg--primary sv-c--on-primary">Actions 2</div>
+          <div class="sv-bg--primary sv-c--on-primary">Actions 1</div>
+          <div class="sv-bg--primary sv-c--on-primary">Actions 2</div>
         </SvCardActions>
 
         <SvCardMedia v-if="showMedia" :position="mediaPosition">
@@ -193,9 +208,9 @@ const mediaPosition = ref<'start' | 'end' | 'cover'>('start');
   margin-block-end: 1.5rem
 
 .test
-  flex: 0 1 36rem
+  inline-size: 26rem
   font-size: 18px
 
   &--tall
-    flex: 0 1 18rem
+    inline-size: 18rem
 </style>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, inject, onBeforeUnmount, watch } from 'vue';
 
-import type { SvCardComponentBorderRadiusInheritProp } from '../SvCard/borderRadiusInherit';
+import type { SvCardComponentBorderRadiusInheritProp } from '../SvCard/layout';
 import type { SvCardActionsProps } from './props';
 
-import { getSvCardComponentBorderRadiusInheritClasses } from '../SvCard/borderRadiusInherit';
+import { getSvCardComponentLayoutClasses } from '../SvCard/layout';
 import { SvCardContentInjectionSymbol } from '../SvCard/symbols';
 import './index.sass';
 
@@ -32,7 +32,7 @@ const classList = computed(() => {
       : `${ classPrefix }--${ layout }`,
     `${ classPrefix }--position-${ props.position }`,
     `${ classPrefix }--align-${ props.align }`,
-    ...getSvCardComponentBorderRadiusInheritClasses(props.borderRadiusInherit, cardContent, `actions_${ props.position }${ cardContent?.layout === 'horizontal' && props.horizontal === true ? 'H' : '' }`),
+    ...getSvCardComponentLayoutClasses(props.borderRadiusInherit, cardContent, `actions_${ props.position }${ cardContent?.layout === 'horizontal' && props.horizontal === true ? 'H' : '' }`),
   ];
 });
 

@@ -8,6 +8,8 @@
     --default-layer-outline-thickness: 0
     --default-layer-outline-opacity: 0
 
+    --sv-content-padding: var(--sv-comp-card-content-padding, 16px)
+
     // reset for `button`
     border: none
     outline: none
@@ -35,10 +37,12 @@
       gap: 0
       min-block-size: 100%
       min-inline-size: 100%
+      max-block-size: 100%
+      max-inline-size: 100%
       border-radius: inherit
 
       &:where(.sv-card__layer-content--vertical)
-        grid-template-columns: [full-start] 16px [padded-start] 1fr [padded-end] 16px [full-end]
+        grid-template-columns: [full-start] var(--sv-content-padding) [padded-start] 1fr [padded-end] var(--sv-content-padding) [full-end]
         grid-template-rows: [full-start media-start-start] min-content [media-start-end header-start] min-content [header-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end footer-start] min-content [footer-end media-end-start] min-content [media-end-end full-end]
 
         > :where(*)
@@ -49,9 +53,9 @@
         grid-template-columns: [full-start media-start-start] min-content [media-start-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end media-end-start] min-content [media-end-end full-end]
         grid-template-rows: [full-start header-start] min-content [header-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end footer-start] min-content [footer-end full-end]
 
-        > :where(*)
+        > :where(:not(.sv-card-header):not(.sv-card-content):not(.sv-card-footer):not(.sv-card-actions):not(.sv-card-media))
           grid-column: content
-          margin-inline: 16px
+          margin-inline: var(--sv-content-padding)
 
       > :where(.sv-card--border-radius-inherit-ss)
         border-start-start-radius: inherit
@@ -64,6 +68,12 @@
 
       > :where(.sv-card--border-radius-inherit-ee)
         border-end-end-radius: inherit
+
+      > :where(.sv-card--pad-block-start)
+        padding-block-start: var(--sv-content-padding)
+
+      > :where(.sv-card--pad-block-end)
+        padding-block-end: var(--sv-content-padding)
 
     &:where(.sv-card--interactive)
       cursor: pointer

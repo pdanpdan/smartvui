@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, inject, onBeforeUnmount, watch } from 'vue';
 
-import type { SvCardComponentBorderRadiusInheritProp } from '../SvCard/borderRadiusInherit';
+import type { SvCardComponentBorderRadiusInheritProp } from '../SvCard/layout';
 import type { SvCardMediaProps } from './props';
 
-import { getSvCardComponentBorderRadiusInheritClasses } from '../SvCard/borderRadiusInherit';
+import { getSvCardComponentLayoutClasses } from '../SvCard/layout';
 import { SvCardContentInjectionSymbol } from '../SvCard/symbols';
 import './index.sass';
 
@@ -24,7 +24,7 @@ const classList = computed(() => [
   classPrefix,
   `${ classPrefix }--${ cardContent == null ? 'vertical' : cardContent.layout }`,
   `${ classPrefix }--${ props.position }`,
-  ...getSvCardComponentBorderRadiusInheritClasses(props.borderRadiusInherit, cardContent, `media_${ props.position }`),
+  ...getSvCardComponentLayoutClasses(props.borderRadiusInherit, cardContent, `media_${ props.position }`),
 ]);
 
 watch(() => props.position, (newVal, oldVal) => {
@@ -40,7 +40,7 @@ watch(() => props.position, (newVal, oldVal) => {
   } else {
     console.warn('[ SmartVui ] SvCardMedia component should be used as a child of SvCard.');
   }
-});
+}, { immediate: true });
 
 onBeforeUnmount(() => {
   if (cardContent) {

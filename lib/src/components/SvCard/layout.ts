@@ -18,16 +18,17 @@ import type { SvCardContent } from './symbols';
 export type SvCardComponentBorderRadiusInheritProp = 'all' | 'none' | string | null;
 
 const classPrefixBorder = 'sv-card--border-radius-inherit-';
-export function getSvCardComponentBorderRadiusInheritClasses(borderRadiusInheritProp?: string | null, config: SvCardContent | null = null, component?: 'header' | 'content' | 'footer' | 'actions_start' | 'actions_end' | 'actions_startH' | 'actions_endH' | 'media_start' | 'media_end' | 'media_cover') {
+export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string | null, config: SvCardContent | null = null, component?: 'header' | 'content' | 'footer' | 'actions_start' | 'actions_end' | 'actions_startH' | 'actions_endH' | 'media_start' | 'media_end' | 'media_cover') {
   let borderRadiusInherit = String(borderRadiusInheritProp ?? '');
+
+  const hasActionsV = config?.actions.start === true || config?.actions.end === true;
+  const hasActionsH = config?.actions.startH === true || config?.actions.endH === true;
+  const hasActions = hasActionsV === true || hasActionsH === true;
 
   if (borderRadiusInherit === 'all') {
     borderRadiusInherit = 'ss_se_es_ee';
   } else if (borderRadiusInherit.trim() === '' && config != null && component != null) {
     borderRadiusInherit = '';
-    const hasActionsV = config.actions.start === true || config.actions.end === true;
-    const hasActionsH = config.actions.startH === true || config.actions.endH === true;
-    const hasActions = hasActionsV === true || hasActionsH === true;
 
     if (component === 'header') {
       if (config.layout === 'vertical') {
@@ -233,9 +234,44 @@ export function getSvCardComponentBorderRadiusInheritClasses(borderRadiusInherit
     }
   }
 
+  const padding: string[] = [];
+
+  if (config != null) {
+    if (component === 'header') {
+      if (config.layout === 'vertical') {
+        if (hasActions === false && config.content === false && config.footer === false && config.media.end === false) {
+          padding.push('sv-card--pad-block-end');
+        }
+      } else if (config.layout === 'horizontal') {
+        if (hasActionsH === false && config.content === false && config.footer === false) {
+          padding.push('sv-card--pad-block-end');
+        }
+      }
+    } else if (component === 'content') {
+      if (config.layout === 'vertical') {
+        if (config.media.start === false && config.header === false && config.actions.start === false) {
+          padding.push('sv-card--pad-block-start');
+        }
+
+        if (config.actions.end === false && config.footer === false && config.media.end === false) {
+          padding.push('sv-card--pad-block-end');
+        }
+      } else if (config.layout === 'horizontal') {
+        if (config.header === false && config.actions.startH === false) {
+          padding.push('sv-card--pad-block-start');
+        }
+
+        if (config.actions.endH === false && config.footer === false) {
+          padding.push('sv-card--pad-block-end');
+        }
+      }
+    }
+  }
+
   return borderRadiusInherit
     .split(/[^es]/)
     .map((s) => s.trim())
     .filter((s) => s.length === 2)
-    .map((s) => `${ classPrefixBorder }${ s }`);
+    .map((s) => `${ classPrefixBorder }${ s }`)
+    .concat(padding);
 }

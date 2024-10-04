@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, inject, onBeforeUnmount } from 'vue';
 
-import type { SvCardComponentBorderRadiusInheritProp } from '../SvCard/borderRadiusInherit';
+import type { SvCardComponentBorderRadiusInheritProp } from '../SvCard/layout';
 
-import { getSvCardComponentBorderRadiusInheritClasses } from '../SvCard/borderRadiusInherit';
+import { getSvCardComponentLayoutClasses } from '../SvCard/layout';
 import { SvCardContentInjectionSymbol } from '../SvCard/symbols';
 import './index.sass';
 
@@ -21,7 +21,7 @@ const classPrefix = 'sv-card-footer';
 const classList = computed(() => [
   classPrefix,
   `${ classPrefix }--${ cardContent == null ? 'vertical' : cardContent.layout }`,
-  ...getSvCardComponentBorderRadiusInheritClasses(props.borderRadiusInherit, cardContent, 'footer'),
+  ...getSvCardComponentLayoutClasses(props.borderRadiusInherit, cardContent, 'footer'),
 ]);
 
 if (cardContent) {
