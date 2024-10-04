@@ -29,6 +29,8 @@ if (cardContent) {
     console.warn('[ SmartVui ] Only one SvCardFooter component can be used.');
   }
   cardContent.footer = true;
+} else {
+  console.warn('[ SmartVui ] SvCardContent component should be used as a child of SvCard.');
 }
 
 onBeforeUnmount(() => {

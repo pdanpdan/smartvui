@@ -46,12 +46,14 @@ watch(() => `${ props.position }${ cardContent?.layout === 'horizontal' && props
       console.warn(`[ SmartVui ] Only one SvCardActions component can be used in position \`${ newVal }\`.`);
     }
     cardContent.actions[ newVal as 'start' | 'end' | 'startH' | 'endH' ] = true;
+  } else {
+    console.warn('[ SmartVui ] SvCardActions component should be used as a child of SvCard.');
   }
 }, { immediate: true });
 
 onBeforeUnmount(() => {
   if (cardContent) {
-    cardContent.actions[`${ props.position }${ cardContent.layout === 'horizontal' && props.horizontal === true ? 'H' : '' }`] = false;
+    cardContent.actions[ `${ props.position }${ cardContent.layout === 'horizontal' && props.horizontal === true ? 'H' : '' }` ] = false;
   }
 });
 </script>

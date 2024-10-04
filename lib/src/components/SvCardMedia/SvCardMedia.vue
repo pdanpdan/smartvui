@@ -37,6 +37,8 @@ watch(() => props.position, (newVal, oldVal) => {
       console.warn(`[ SmartVui ] Only one SvCardMedia component can be used in position \`${ newVal }\`.`);
     }
     cardContent.media[ newVal ] = true;
+  } else {
+    console.warn('[ SmartVui ] SvCardMedia component should be used as a child of SvCard.');
   }
 });
 
