@@ -29,7 +29,7 @@ export function throttle<A extends unknown[]>(
   }: ThrottleOptions = {},
 ) {
   let isWait = false;
-  let callArgs: A | null = null;
+  let callArgs: A | undefined;
   if (delay == null && !('requestAnimationFrame' in globalThis)) {
     delay = 20;
   }
@@ -42,7 +42,7 @@ export function throttle<A extends unknown[]>(
       isWait = true;
 
       if (leading) {
-        callArgs = null;
+        callArgs = undefined;
         fn.call(this, ...args);
       } else {
         callArgs = args;
@@ -51,11 +51,11 @@ export function throttle<A extends unknown[]>(
       throttleFn(() => {
         isWait = false;
 
-        if (callArgs !== null) {
+        if (callArgs != null) {
           if (trailing) {
             fn.call(this, ...callArgs);
           }
-          callArgs = null;
+          callArgs = undefined;
         }
       });
     } else {

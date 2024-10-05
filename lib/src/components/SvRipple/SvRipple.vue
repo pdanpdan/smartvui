@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { WatchHandle } from 'vue';
+
 import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue';
 
 import { waitForAnimations } from '$lib/utils/animation';
@@ -22,9 +24,9 @@ const props = withDefaults(defineProps<SvRippleProps>(), {
 });
 
 const elRef = useTemplateRef<HTMLSpanElement>('elRef');
-let rippleTarget: HTMLElement | null = null;
+let rippleTarget: HTMLElement | undefined;
 let cleanup = noop;
-let skipUpUntil: number | null = null;
+let skipUpUntil: number | undefined;
 
 function activate(x: string, y: string) {
   if (elRef.value) {
@@ -128,7 +130,7 @@ function setup([ el, disabled, targetFn ]: [ HTMLElement | null | undefined, boo
     return;
   }
 
-  rippleTarget = targetFn(el) ?? null;
+  rippleTarget = targetFn(el) ?? undefined;
 
   if (rippleTarget != null) {
     cleanup = () => {
@@ -139,7 +141,7 @@ function setup([ el, disabled, targetFn ]: [ HTMLElement | null | undefined, boo
         rippleTarget.removeEventListener('keyup', onKeyup);
       }
       cleanup = noop;
-      rippleTarget = null;
+      rippleTarget = undefined;
     };
 
     rippleTarget.addEventListener('pointerdown', onPointerdown);
@@ -149,14 +151,16 @@ function setup([ el, disabled, targetFn ]: [ HTMLElement | null | undefined, boo
   }
 }
 
-let stopWatching;
+let stopWatching: WatchHandle | undefined;
 onMounted(() => {
   stopWatching = watch([ elRef, () => props.disabled, () => props.target ], setup, { flush: 'post', immediate: true });
 });
 
 onBeforeUnmount(() => {
-  stopWatching();
-  stopWatching = undefined;
+  if (stopWatching != null) {
+    stopWatching();
+    stopWatching = undefined;
+  }
   cleanup();
 });
 </script>

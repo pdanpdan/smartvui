@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { WatchHandle } from 'vue';
+
 import { onMounted, onUnmounted, ref, useId, watch } from 'vue';
 
 import type {
@@ -43,7 +45,7 @@ const internalModel = ref<boolean>(false);
 const id = useId();
 const surfaceRef = ref<SvSurfaceEl<SvSurfaceType>>(null);
 const isAnimating = ref<'show' | 'hide' | false>(false);
-let abortController: AbortController | null = null;
+let abortController: AbortController | undefined;
 let showTrigger: SvSurfaceShowTriggerType = 'model';
 let hideTrigger: SvSurfaceHideTriggerType<SvSurfaceType> = 'model';
 let renderedOnSSR = props.ssr && modelValue.value ? { open: true } : undefined;
@@ -137,12 +139,12 @@ function createEventPayload<T extends SvSurfaceEventNameType>(
   } as SvSurfaceEventPayloadType<SvSurfaceType, T>;
 }
 
-let stopWatching;
+let stopWatching: WatchHandle | undefined;
 onMounted(() => {
   stopWatching = watch(() => [ !surfaceRef.value, modelValue.value ], () => {
     if (abortController) {
       abortController.abort('modelValue changed');
-      abortController = null;
+      abortController = undefined;
     }
 
     if (modelValue.value) {
@@ -177,7 +179,7 @@ onMounted(() => {
           emit('showEnd', createEventPayload('show-end', showTrigger));
           delete surfaceRef.value?.dataset.svSurfaceAnimating;
           isAnimating.value = false;
-          abortController = null;
+          abortController = undefined;
           showTrigger = 'model';
         })
         .catch((error) => {
@@ -203,7 +205,7 @@ onMounted(() => {
           delete surfaceRef.value?.dataset.svSurfaceAnimating;
           isAnimating.value = false;
           renderedOnSSR = undefined;
-          abortController = null;
+          abortController = undefined;
           hideTrigger = 'model';
         })
         .catch((error) => {
@@ -214,12 +216,14 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
-  stopWatching();
-  stopWatching = undefined;
+  if (stopWatching != null) {
+    stopWatching();
+    stopWatching = undefined;
+  }
 
-  if (abortController) {
+  if (abortController != null) {
     abortController.abort();
-    abortController = null;
+    abortController = undefined;
   }
 
   scrollLockRequested.value = false;

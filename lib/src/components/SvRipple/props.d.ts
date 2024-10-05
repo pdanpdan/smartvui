@@ -26,7 +26,7 @@ export interface SvRippleProps {
    *
    * @defaultValue false
    */
-  pointerUp?: boolean | ((evt: PointerEvent, skipUntil: number | null) => boolean);
+  pointerUp?: boolean | ((evt: PointerEvent, skipUntil?: number | null) => boolean);
 
   /**
    * Trigger on keydoard down.
@@ -42,5 +42,5 @@ export interface SvRippleProps {
    *
    * @defaultValue false
    */
-  keyUp?: boolean | string[] | ((evt: KeyboardEvent, skipUntil: number | null) => boolean);
+  keyUp?: boolean | string[] | ((evt: KeyboardEvent, skipUntil?: number | null) => boolean);
 }

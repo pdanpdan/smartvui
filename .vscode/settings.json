@@ -15,6 +15,6 @@
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
   "testing.automaticallyOpenPeekView": "never",
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "lib/node_modules/typescript/lib",
   "versionlens.npm.onSaveChanges": "versionlens pnpm install"
 }
