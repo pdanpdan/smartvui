@@ -137,8 +137,9 @@ function createEventPayload<T extends SvSurfaceEventNameType>(
   } as SvSurfaceEventPayloadType<SvSurfaceType, T>;
 }
 
+let stopWatching;
 onMounted(() => {
-  watch(() => [ !surfaceRef.value, modelValue.value ], () => {
+  stopWatching = watch(() => [ !surfaceRef.value, modelValue.value ], () => {
     if (abortController) {
       abortController.abort('modelValue changed');
       abortController = null;
@@ -213,6 +214,9 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  stopWatching();
+  stopWatching = undefined;
+
   if (abortController) {
     abortController.abort();
     abortController = null;

@@ -149,13 +149,14 @@ function setup([ el, disabled, targetFn ]: [ HTMLElement | null | undefined, boo
   }
 }
 
+let stopWatching;
 onMounted(() => {
-  setup([ elRef.value, props.disabled, props.target ]);
-
-  watch([ elRef, () => props.disabled, () => props.target ], setup);
+  stopWatching = watch([ elRef, () => props.disabled, () => props.target ], setup, { flush: 'post', immediate: true });
 });
 
 onBeforeUnmount(() => {
+  stopWatching();
+  stopWatching = undefined;
   cleanup();
 });
 </script>
