@@ -49,7 +49,7 @@ watch(() => `${ props.position }${ cardContent?.layout === 'horizontal' && props
   } else {
     console.warn('[ SmartVui ] SvCardActions component should be used as a child of SvCard.');
   }
-}, { immediate: true });
+}, { flush: 'sync', immediate: true });
 
 onBeforeUnmount(() => {
   if (cardContent) {

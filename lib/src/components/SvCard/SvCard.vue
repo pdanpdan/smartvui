@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, provide, reactive, ref, useAttrs, watchEffect } from 'vue';
+import { computed, provide, reactive, ref, useAttrs, watchSyncEffect } from 'vue';
 
 import {
   SvLayerContainer,
@@ -56,7 +56,7 @@ const cardContent = reactive<SvCardContent>({
 
 provide(SvCardContentInjectionSymbol, cardContent);
 
-watchEffect(() => {
+watchSyncEffect(() => {
   cardContent.layout = props.layout;
 });
 
