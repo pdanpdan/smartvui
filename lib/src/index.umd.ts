@@ -5,6 +5,7 @@ import * as composables from '$lib/composables';
 import { install } from '$lib/install';
 import { libVersion } from '$lib/libraryInfo';
 import '$lib/style/base/index.sass';
+import { isClient } from '$lib/utils/is';
 
 declare global {
   interface Window {
@@ -13,7 +14,7 @@ declare global {
   }
 }
 
-if (typeof window === 'undefined' || window.Vue == null) {
+if (!isClient || window.Vue == null) {
   throw new Error('[ SmartVui ] Vue is required to run. Please add a script tag for it before loading SmartVui.');
 }
 

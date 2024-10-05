@@ -8,6 +8,12 @@ describe('utils [browser]', () => {
     vi.restoreAllMocks();
   });
 
+  describe('is', () => {
+    it('isClient should be true on client side', async () => {
+      expect.soft(await import('$lib/utils/is').then(({ isClient }) => isClient)).toEqual(true);
+    });
+  });
+
   describe('throttle', () => {
     const spy = vi.fn((_: number) => {});
 

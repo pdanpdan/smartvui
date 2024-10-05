@@ -18,6 +18,8 @@ import {
 
 import type { ComponentExposed, ComponentProps, ComponentSlots, VNodeChildren } from '$lib/utils/types';
 
+import { isClient } from '$lib/utils/is';
+
 /**
  * Returned object from `useRender`.
  *
@@ -76,8 +78,7 @@ export function useRender(currentInstance?: (ComponentInternalInstance & { provi
     component,
     { parentElement, props, children } = {},
   ) => {
-    if (typeof window === 'undefined') {
-      // eslint-disable-next-line unicorn/prefer-type-error
+    if (!isClient) {
       throw new Error('useRender\'s `render` can only be used on client side.');
     }
 

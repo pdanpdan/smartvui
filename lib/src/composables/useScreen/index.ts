@@ -22,6 +22,7 @@ import type { UsePlatformReturn } from '$lib/composables';
 import { usePlatform } from '$lib/composables';
 import { isEditableElement } from '$lib/utils/editable';
 import { createInjectedOptions, useInjectedOptions } from '$lib/utils/injectedOptions';
+import { isClient } from '$lib/utils/is';
 import { throttle } from '$lib/utils/throttle';
 
 const SCREEN_DEFAULT_WIDTH = 1280;
@@ -55,10 +56,8 @@ const virtualKeyboardOpen = ref<boolean>(false);
 const scrollLockRequests = ref<number>(0);
 const onScrollUnlockedQueue: (() => void)[] = [];
 
-const inBrowser = typeof window !== 'undefined';
-
 watchSyncEffect(() => {
-  if (!inBrowser) {
+  if (!isClient) {
     return;
   }
 
@@ -493,7 +492,7 @@ export const useScreen = (options?: UseScreenOptions): UseScreenReturn => {
     pageInlineStart: computed(() => screenState.pageInlineStart ?? 0),
     pageBlockStart: computed(() => screenState.pageBlockStart ?? 0),
     virtualKeyboardOpen: computed(() => virtualKeyboardOpen.value),
-    scrollLocked: computed(() => (inBrowser ? scrollLockRequests.value > 0 : false)),
+    scrollLocked: computed(() => (isClient ? scrollLockRequests.value > 0 : false)),
 
     scrollLockRequested: computed({
       get() {
@@ -501,7 +500,7 @@ export const useScreen = (options?: UseScreenOptions): UseScreenReturn => {
       },
 
       set(value: boolean) {
-        if (!inBrowser) {
+        if (!isClient) {
           scrollLockRequested.value = value;
           return;
         }
@@ -517,7 +516,7 @@ export const useScreen = (options?: UseScreenOptions): UseScreenReturn => {
     }),
 
     onScrollUnlocked(fn) {
-      if (!inBrowser) {
+      if (!isClient) {
         return;
       }
 

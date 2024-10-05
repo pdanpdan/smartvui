@@ -1,5 +1,5 @@
 /**
- * NOOP
+ * NOOP.
  *
  * @public
  */

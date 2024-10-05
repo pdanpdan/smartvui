@@ -185,6 +185,12 @@ describe('utils [node]', () => {
     });
   });
 
+  describe('is', () => {
+    it('isClient should be false on server side', async () => {
+      expect.soft(await import('$lib/utils/is').then(({ isClient }) => isClient)).toEqual(false);
+    });
+  });
+
   describe('throttle', () => {
     const spy = vi.fn((_: number) => {});
 
