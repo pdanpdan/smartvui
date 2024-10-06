@@ -22,6 +22,8 @@
     position: relative
     display: inline-flex
     padding: 0
+    max-inline-size: 100%
+    max-block-size: 100%
     text-align: start
     border-radius: var(--sv-shape-corner, var(--sv-comp-card-shape-corner, var(--sv-sys-shape-corner-medium)))
     transform-style: preserve-3d
@@ -35,8 +37,8 @@
     &__layer-content
       display: grid
       gap: 0
-      min-block-size: 100%
-      min-inline-size: 100%
+      block-size: 100%
+      inline-size: 100%
       max-block-size: 100%
       max-inline-size: 100%
       border-radius: inherit

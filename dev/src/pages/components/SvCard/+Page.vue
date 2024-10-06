@@ -42,6 +42,7 @@ const colors = [
           class="test"
           :class="color"
           href="#"
+          @click.prevent
         >
           <SvCardHeader class="sv-t--title-large">Elevated card</SvCardHeader>
           <SvCardContent class="sv-t--body-large">Link</SvCardContent>
@@ -88,6 +89,7 @@ const colors = [
           :class="color"
           variant="filled"
           href="#"
+          @click.prevent
         >
           <SvCardHeader class="sv-t--title-large">Filled card</SvCardHeader>
           <SvCardContent class="sv-t--body-large">Link</SvCardContent>
@@ -135,6 +137,7 @@ const colors = [
           :class="color"
           variant="outlined"
           href="#"
+          @click.prevent
         >
           <SvCardHeader class="sv-t--title-large">Outlined card</SvCardHeader>
           <SvCardContent class="sv-t--body-large">Link</SvCardContent>

@@ -8,9 +8,6 @@ export interface SvCardSlotProps {
   /** Card is dragged. */
   dragged: boolean;
 
-  /** Card is dragged. */
-  dragged: boolean;
-
   /** Card is interactive. */
   interactive: boolean;
 

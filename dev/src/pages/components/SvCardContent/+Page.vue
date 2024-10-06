@@ -147,7 +147,7 @@ const contentScroll = ref<boolean>(false);
         </SvCardActions>
 
         <SvCardMedia v-if="showMedia" :position="mediaPosition">
-          <img src="https://picsum.photos/500/250" />
+          <img src="https://picsum.photos/400/200" />
         </SvCardMedia>
       </SvCard>
 
@@ -192,7 +192,7 @@ const contentScroll = ref<boolean>(false);
         </SvCardActions>
 
         <SvCardMedia v-if="showMedia" :position="mediaPosition">
-          <img src="https://picsum.photos/200/300" />
+          <img src="https://picsum.photos/150/250" />
         </SvCardMedia>
       </SvCard>
     </div>
