@@ -94,6 +94,7 @@
   },
   "peerDependencies": {
     "@material/material-color-utilities": ">=0.3.0",
+    "@vueuse/gesture": ">=2.0.0",
     "vue": ">=3.0.0"
   },
   "devDependencies": {
@@ -106,6 +107,7 @@
     "@vue/server-renderer": "^3.5.11",
     "@vue/shared": "^3.5.11",
     "@vue/test-utils": "^2.4.6",
+    "@vueuse/gesture": "^2.0.0",
     "autoprefixer": "^10.4.20",
     "bumpp": "^9.6.1",
     "happy-dom": "^15.7.4",

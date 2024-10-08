@@ -1,0 +1,70 @@
+/*! @component: SvSwipeable */
+@layer components
+  .sv-swipeable
+    display: inline-grid
+    border-radius: inherit
+    grid-template-columns: [full-start inline-start-start] minmax(min-content, auto) [inline-start-end content-start] 1fr [content-end inline-end-start] minmax(min-content, auto) [inline-end-end full-end]
+    grid-template-rows: [full-start block-start-start] minmax(min-content, auto) [block-start-end content-start] 1fr [content-end block-end-start] minmax(min-content, auto) [block-end-end full-end]
+
+    &--enabled
+      cursor: grab
+
+    &--dragging
+      cursor: grabbing
+
+    &__content
+      border-radius: inherit
+      z-index: 0
+
+    &__slot
+      display: flex
+      opacity: 0
+      pointer-events: none
+
+      &--visible
+        opacity: 1
+        pointer-events: all
+
+      &--inline
+        grid-row: full
+        align-items: stretch
+
+        > :where(*)
+          min-inline-size: max-content
+          block-size: 100%
+
+      &--block
+        grid-column: full
+        justify-content: stretch
+
+        > :where(*)
+          inline-size: 100%
+          min-block-size: max-content
+
+      &--inline-start
+        grid-column: inline-start
+        justify-content: flex-start
+        border-start-start-radius: inherit
+        border-end-start-radius: inherit
+        inline-size: var(--sv-swipeable-inline-start, 0)
+
+      &--inline-end
+        grid-column: inline-end
+        justify-content: flex-end
+        border-start-end-radius: inherit
+        border-end-end-radius: inherit
+        inline-size: var(--sv-swipeable-inline-end, 0)
+
+      &--block-start
+        grid-row: block-start
+        align-items: flex-start
+        border-start-start-radius: inherit
+        border-start-end-radius: inherit
+        block-size: var(--sv-swipeable-block-start, 0)
+
+      &--block-end
+        grid-row: block-end
+        align-items: flex-end
+        border-end-start-radius: inherit
+        border-end-end-radius: inherit
+        block-size: var(--sv-swipeable-block-end, 0)

@@ -13,7 +13,8 @@
     "SvLayerState",
     "SvRipple",
     "SvSurfaceModal",
-    "SvSurfacePopover"
+    "SvSurfacePopover",
+    "SvSwipeable"
   ],
   "composables": [
     "useColorTheme",

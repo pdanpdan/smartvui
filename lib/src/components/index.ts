@@ -12,3 +12,4 @@ export * from './SvLayerState';
 export * from './SvRipple';
 export * from './SvSurfaceModal';
 export * from './SvSurfacePopover';
+export * from './SvSwipeable';
