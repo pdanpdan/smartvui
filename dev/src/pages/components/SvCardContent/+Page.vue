@@ -109,7 +109,7 @@ const contentScroll = ref<boolean>(false);
     <div class="container">
       <SvCard
         class="test test--tall sv-bg--surface-container-high sv-c--on-surface"
-        :style="contentScroll ? 'max-height: 30rem' : undefined"
+        :style="contentScroll ? 'max-block-size: 30rem' : undefined"
       >
         <SvCardHeader
           v-if="showHeader"
@@ -154,7 +154,7 @@ const contentScroll = ref<boolean>(false);
       <SvCard
         class="test sv-bg--surface-container-high sv-c--on-surface"
         layout="horizontal"
-        :style="contentScroll ? 'max-height: 10rem' : undefined"
+        :style="contentScroll ? 'max-block-size: 10rem' : undefined"
       >
         <SvCardHeader
           v-if="showHeader"
