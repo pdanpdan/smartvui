@@ -7,6 +7,8 @@ import { NodePackageImporter } from 'sass-embedded';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
+import packageJson from './package.json' with { type: 'json'};
+
 function scanEntries(entryDirs: string | string[]) {
   const entries: Record<string, string> = {};
   const counter: Record<string, number> = {};
@@ -106,11 +108,7 @@ export default defineConfig({
     },
 
     rollupOptions: {
-      external: [
-        'vue',
-        '@vueuse/core',
-        '@material/material-color-utilities',
-      ],
+      external: Object.keys(packageJson.peerDependencies),
 
       input: entries,
 

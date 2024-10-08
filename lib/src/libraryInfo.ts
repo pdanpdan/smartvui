@@ -1,12 +1,12 @@
 import * as paths from '$lib/paths.json';
 
-import * as pkg from '../package.json';
+import packageJson from '../package.json' with { type: 'json'};
 
 /** Library name. */
-export const libName: string = pkg.name;
+export const libName: string = packageJson.name;
 
 /** Library version. */
-export const libVersion: string = pkg.version;
+export const libVersion: string = packageJson.version;
 
 /** Component names */
 export const libComponentNames: string[] = paths.components;
