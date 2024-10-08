@@ -14,7 +14,7 @@ import {
     <div class="container">
       <SvCard
         variant="outlined"
-        class="sv-bg--tertiary-container sv-c--on-tertiary-container"
+        class="sv-bg--primary sv-c--on-primary"
       >
         <SvSwipeable class="test">
           <template #default="{ size, swiped, side }">

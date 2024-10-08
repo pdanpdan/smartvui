@@ -30,7 +30,6 @@ const drag = useDrag(onSwipe, {
 
   filterTaps: true,
   lockDirection: true,
-  preventWindowScrollY: false,
 });
 
 const swipeStatus = reactive({
@@ -116,17 +115,34 @@ function updateSize() {
 }
 
 function reset() {
-  if (swipeActive.value == null) {
-    return;
+  if (swipeActive.value != null) {
+    Object.assign(swipeActive.value.ref, { size: 0, swiped: false });
   }
 
-  Object.assign(swipeActive.value.ref, { size: 0, swiped: false });
   updateSize();
 }
 
+function preventDefault(evt?: UIEvent) {
+  if (evt == null) {
+    return;
+  }
+
+  if (slots[ 'block-start' ] == null && slots[ 'block-end' ] == null) {
+    return;
+  }
+
+  evt.preventDefault();
+}
+
 let onSwipeUnlockTime = 0;
-function onSwipe({ movement, tap, last }: FullGestureState<'drag'>) {
-  if (tap === true || onSwipeUnlockTime > Date.now()) {
+function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
+  if (tap === true) {
+    return;
+  }
+
+  preventDefault(event);
+
+  if (onSwipeUnlockTime > Date.now()) {
     return;
   }
 
@@ -194,10 +210,10 @@ onMounted(() => {
 
       drag.config.enabled = true;
       drag.config.domTarget = el;
+      drag.config.eventOptions = { capture: false, passive: hasSlotBlock === false };
       drag.config.drag!.axis = hasSlotInline === true && hasSlotBlock === true
         ? undefined
         : (hasSlotInline === true ? 'x' : 'y');
-      drag.config.drag!.preventWindowScrollY = hasSlotBlock === true;
       drag.bind();
     },
     { flush: 'pre', immediate: true },
