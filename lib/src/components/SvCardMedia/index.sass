@@ -21,6 +21,8 @@
         border-radius: inherit
         inline-size: 100%
         max-inline-size: 100%
+        max-block-size: 100%
+        object-fit: cover
 
     &--horizontal
       grid-column: content
@@ -39,8 +41,10 @@
 
       > :where(*)
         border-radius: inherit
+        max-inline-size: 100%
         block-size: 100%
         max-block-size: 100%
+        object-fit: cover
 
     &--cover
       grid-column: full
@@ -48,7 +52,8 @@
 
       > :where(*)
         border-radius: inherit
-        block-size: 100%
-        max-block-size: 100%
         inline-size: 100%
         max-inline-size: 100%
+        block-size: 100%
+        max-block-size: 100%
+        object-fit: cover

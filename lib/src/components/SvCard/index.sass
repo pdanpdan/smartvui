@@ -42,14 +42,14 @@
 
       &:where(.sv-card__layer-content--vertical)
         grid-template-columns: [full-start] var(--sv-content-padding) [padded-start] 1fr [padded-end] var(--sv-content-padding) [full-end]
-        grid-template-rows: [full-start media-start-start] min-content [media-start-end header-start] min-content [header-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end footer-start] min-content [footer-end media-end-start] min-content [media-end-end full-end]
+        grid-template-rows: [full-start media-start-start] minmax(min-content, auto) [media-start-end header-start] min-content [header-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end footer-start] min-content [footer-end media-end-start] minmax(min-content, auto) [media-end-end full-end]
 
         > :where(*)
           grid-column: padded
           grid-row: content
 
       &:where(.sv-card__layer-content--horizontal)
-        grid-template-columns: [full-start media-start-start] min-content [media-start-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end media-end-start] min-content [media-end-end full-end]
+        grid-template-columns: [full-start media-start-start] minmax(min-content, auto) [media-start-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end media-end-start] minmax(min-content, auto) [media-end-end full-end]
         grid-template-rows: [full-start header-start] min-content [header-end actions-start-start] min-content [actions-start-end content-start] 1fr [content-end actions-end-start] min-content [actions-end-end footer-start] min-content [footer-end full-end]
 
         > :where(:not(.sv-card-header):not(.sv-card-content):not(.sv-card-footer):not(.sv-card-actions):not(.sv-card-media))
