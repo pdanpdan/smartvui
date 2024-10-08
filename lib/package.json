@@ -99,7 +99,7 @@
   "devDependencies": {
     "@material/material-color-utilities": "^0.3.0",
     "@microsoft/api-extractor": "^7.47.9",
-    "@types/node": "^22.7.4",
+    "@types/node": "^22.7.5",
     "@vitejs/plugin-vue": "^5.1.4",
     "@vitest/coverage-v8": "^2.1.2",
     "@vitest/ui": "^2.1.2",

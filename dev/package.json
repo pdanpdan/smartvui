@@ -12,7 +12,7 @@
     "@mdit/plugin-alert": "^0.13.1",
     "@mdit/plugin-snippet": "^0.13.1",
     "@pdanpdan/vue-keyboard-trap": "^1.2.0",
-    "@shikijs/markdown-it": "^1.21.1",
+    "@shikijs/markdown-it": "^1.22.0",
     "@types/markdown-it-link-attributes": "^3.0.5",
     "@universal-middleware/core": "^0.2.11",
     "@universal-middleware/hattip": "^0.2.7",
