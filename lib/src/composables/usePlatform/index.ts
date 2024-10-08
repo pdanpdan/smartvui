@@ -7,8 +7,8 @@ import type {
 import {
   computed,
   getCurrentInstance,
+  onBeforeUnmount,
   onMounted,
-  onUnmounted,
   reactive,
   toValue,
 } from 'vue';
@@ -237,8 +237,6 @@ function executeWhenMounted() {
       (navigator as unknown as Record<string, unknown>).userAgentData,
     ));
   }
-
-  onUnmounted(executeWhenUnmounted);
 }
 
 function executeWhenUnmounted() {
@@ -268,6 +266,7 @@ export const usePlatform = (options?: UsePlatformOptions): UsePlatformReturn => 
 
   if (getCurrentInstance()) {
     onMounted(executeWhenMounted);
+    onBeforeUnmount(executeWhenUnmounted);
   }
 
   const forcePlatform = computed(() => {

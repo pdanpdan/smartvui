@@ -9,8 +9,8 @@ import type {
 import {
   computed,
   getCurrentInstance,
+  onBeforeUnmount,
   onMounted,
-  onUnmounted,
   reactive,
   ref,
   toValue,
@@ -389,10 +389,7 @@ export interface UseScreenReturn {
 
 const { injectionKey, getInjectedOptionsRef } = createInjectedOptions<UseScreenOptions>('useScreen');
 
-function executeWhenMounted(
-  scrollLockRequested: Ref<boolean>,
-  { isIos, isAndroid }: UsePlatformReturn,
-) {
+function executeWhenMounted({ isIos, isAndroid }: UsePlatformReturn) {
   mountedCount += 1;
 
   if (mountedCount === 1) {
@@ -422,8 +419,6 @@ function executeWhenMounted(
 
     updateValues();
   }
-
-  onUnmounted(() => executeWhenUnmounted(scrollLockRequested));
 }
 
 function executeWhenUnmounted(scrollLockRequested: Ref<boolean>) {
@@ -476,7 +471,8 @@ export const useScreen = (options?: UseScreenOptions): UseScreenReturn => {
   const platform = usePlatform();
 
   if (getCurrentInstance()) {
-    onMounted(() => executeWhenMounted(scrollLockRequested, platform));
+    onMounted(() => executeWhenMounted(platform));
+    onBeforeUnmount(() => executeWhenUnmounted(scrollLockRequested));
   }
 
   return {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { WatchHandle } from 'vue';
 
-import { onMounted, onUnmounted, ref, useId, watch } from 'vue';
+import { onBeforeUnmount, onMounted, ref, useId, watch } from 'vue';
 
 import type {
   SvSurfaceEl,
@@ -213,7 +213,7 @@ onMounted(() => {
   }, { flush: 'post', immediate: true });
 });
 
-onUnmounted(() => {
+onBeforeUnmount(() => {
   if (stopWatching != null) {
     stopWatching();
     stopWatching = undefined;

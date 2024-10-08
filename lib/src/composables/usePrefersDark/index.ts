@@ -10,8 +10,8 @@ import {
   computed,
   getCurrentInstance,
   markRaw,
+  onBeforeUnmount,
   onMounted,
-  onUnmounted,
   ref,
   toValue,
 } from 'vue';
@@ -66,8 +66,6 @@ function executeWhenMounted() {
 
     prefersDark.value = media.matches;
   }
-
-  onUnmounted(executeWhenUnmounted);
 }
 
 function executeWhenUnmounted() {
@@ -98,6 +96,7 @@ export const usePrefersDark = (options?: UsePrefersDarkOptions) => {
 
   if (getCurrentInstance()) {
     onMounted(executeWhenMounted);
+    onBeforeUnmount(executeWhenUnmounted);
   }
 
   return {
