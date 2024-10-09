@@ -18,30 +18,30 @@ import type { SvCardContent } from './symbols';
 export type SvCardComponentBorderRadiusInheritProp = 'all' | 'none' | string | null;
 
 const classPrefixBorder = 'sv-card--border-radius-inherit-';
-export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string | null, config: SvCardContent | null = null, component?: 'header' | 'content' | 'footer' | 'actions_start' | 'actions_end' | 'actions_startH' | 'actions_endH' | 'media_start' | 'media_end' | 'media_cover') {
+export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string | null, cardContent: SvCardContent | null = null, component?: 'header' | 'content' | 'footer' | 'actions_start' | 'actions_end' | 'actions_startH' | 'actions_endH' | 'media_start' | 'media_end' | 'media_cover') {
   let borderRadiusInherit = String(borderRadiusInheritProp ?? '');
 
-  const hasActionsV = config?.actions.start === true || config?.actions.end === true;
-  const hasActionsH = config?.actions.startH === true || config?.actions.endH === true;
+  const hasActionsV = cardContent?.actions.start === true || cardContent?.actions.end === true;
+  const hasActionsH = cardContent?.actions.startH === true || cardContent?.actions.endH === true;
   const hasActions = hasActionsV === true || hasActionsH === true;
 
   if (borderRadiusInherit === 'all') {
     borderRadiusInherit = 'ss_se_es_ee';
-  } else if (borderRadiusInherit.trim() === '' && config != null && component != null) {
+  } else if (borderRadiusInherit.trim() === '' && cardContent != null && component != null) {
     borderRadiusInherit = '';
 
     if (component === 'header') {
-      if (config.layout === 'vertical') {
-        if (config.media.start === false) {
+      if (cardContent.layout === 'vertical') {
+        if (cardContent.media.start === false) {
           borderRadiusInherit += '_ss_se';
         }
 
-        if (config.content === false && hasActions === false && config.footer === false && config.media.end === false) {
+        if (cardContent.content === false && hasActions === false && cardContent.footer === false && cardContent.media.end === false) {
           borderRadiusInherit += '_es_ee';
         }
-      } else if (config.layout === 'horizontal') {
-        const noContentBelow = config.content === false && config.footer === false && hasActionsH === false;
-        if (config.media.start === false && config.actions.start === false) {
+      } else if (cardContent.layout === 'horizontal') {
+        const noContentBelow = cardContent.content === false && cardContent.footer === false && hasActionsH === false;
+        if (cardContent.media.start === false && cardContent.actions.start === false) {
           borderRadiusInherit += '_ss';
 
           if (noContentBelow) {
@@ -49,7 +49,7 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
           }
         }
 
-        if (config.media.end === false && config.actions.end === false) {
+        if (cardContent.media.end === false && cardContent.actions.end === false) {
           borderRadiusInherit += '_se';
 
           if (noContentBelow) {
@@ -58,18 +58,18 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
         }
       }
     } else if (component === 'content') {
-      if (config.layout === 'vertical') {
-        if (config.media.start === false && config.header === false && config.actions.start === false) {
+      if (cardContent.layout === 'vertical') {
+        if (cardContent.media.start === false && cardContent.header === false && cardContent.actions.start === false) {
           borderRadiusInherit += '_ss_se';
         }
 
-        if (config.actions.end === false && config.footer === false && config.media.end === false) {
+        if (cardContent.actions.end === false && cardContent.footer === false && cardContent.media.end === false) {
           borderRadiusInherit += '_es_ee';
         }
-      } else if (config.layout === 'horizontal') {
-        const noContentBelow = config.footer === false && config.actions.endH === false;
-        if (config.media.start === false && config.actions.start === false) {
-          if (config.header === false && config.actions.startH === false) {
+      } else if (cardContent.layout === 'horizontal') {
+        const noContentBelow = cardContent.footer === false && cardContent.actions.endH === false;
+        if (cardContent.media.start === false && cardContent.actions.start === false) {
+          if (cardContent.header === false && cardContent.actions.startH === false) {
             borderRadiusInherit += '_ss';
           }
 
@@ -78,8 +78,8 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
           }
         }
 
-        if (config.media.end === false && config.actions.end === false) {
-          if (config.header === false && config.actions.startH === false) {
+        if (cardContent.media.end === false && cardContent.actions.end === false) {
+          if (cardContent.header === false && cardContent.actions.startH === false) {
             borderRadiusInherit += '_se';
           }
 
@@ -89,17 +89,17 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
         }
       }
     } else if (component === 'footer') {
-      if (config.layout === 'vertical') {
-        if (config.media.end === false) {
+      if (cardContent.layout === 'vertical') {
+        if (cardContent.media.end === false) {
           borderRadiusInherit += '_es_ee';
         }
 
-        if (config.header === false && config.content === false && hasActions === false && config.media.start === false) {
+        if (cardContent.header === false && cardContent.content === false && hasActions === false && cardContent.media.start === false) {
           borderRadiusInherit += '_ss_se';
         }
-      } else if (config.layout === 'horizontal') {
-        const noContentAbove = config.header === false && config.content === false && hasActionsH === false;
-        if (config.media.start === false && config.actions.start === false) {
+      } else if (cardContent.layout === 'horizontal') {
+        const noContentAbove = cardContent.header === false && cardContent.content === false && hasActionsH === false;
+        if (cardContent.media.start === false && cardContent.actions.start === false) {
           borderRadiusInherit += '_es';
 
           if (noContentAbove) {
@@ -107,7 +107,7 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
           }
         }
 
-        if (config.media.end === false && config.actions.end === false) {
+        if (cardContent.media.end === false && cardContent.actions.end === false) {
           borderRadiusInherit += '_ee';
 
           if (noContentAbove) {
@@ -116,45 +116,45 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
         }
       }
     } else if (component.startsWith('actions')) {
-      if (config.layout === 'vertical') {
-        if (config.actions.start === true) {
-          if (config.media.start === false && config.header === false) {
+      if (cardContent.layout === 'vertical') {
+        if (cardContent.actions.start === true) {
+          if (cardContent.media.start === false && cardContent.header === false) {
             borderRadiusInherit += '_ss_se';
           }
 
-          if (config.content === false && config.footer === false && config.media.end === false) {
+          if (cardContent.content === false && cardContent.footer === false && cardContent.media.end === false) {
             borderRadiusInherit += '_es_ee';
           }
-        } else if (config.actions.end === true) {
-          if (config.media.start === false && config.header === false && config.content === false) {
+        } else if (cardContent.actions.end === true) {
+          if (cardContent.media.start === false && cardContent.header === false && cardContent.content === false) {
             borderRadiusInherit += '_ss_se';
           }
 
-          if (config.footer === false && config.media.end === false) {
+          if (cardContent.footer === false && cardContent.media.end === false) {
             borderRadiusInherit += '_es_ee';
           }
         }
       } else {
-        if (config.actions.start === true) {
-          if (config.media.start === false) {
+        if (cardContent.actions.start === true) {
+          if (cardContent.media.start === false) {
             borderRadiusInherit += '_ss_es';
           }
 
-          if (config.header === false && config.content === false && config.footer === false && config.media.end === false) {
+          if (cardContent.header === false && cardContent.content === false && cardContent.footer === false && cardContent.media.end === false) {
             borderRadiusInherit += '_se_ee';
           }
-        } else if (config.actions.end === true) {
-          if (config.media.end === false) {
+        } else if (cardContent.actions.end === true) {
+          if (cardContent.media.end === false) {
             borderRadiusInherit += '_se_ee';
           }
 
-          if (config.header === false && config.content === false && config.footer === false && config.media.start === false) {
+          if (cardContent.header === false && cardContent.content === false && cardContent.footer === false && cardContent.media.start === false) {
             borderRadiusInherit += '_ss_es';
           }
-        } else if (config.actions.startH === true) {
-          const noContentBelow = config.content === false && config.footer === false;
-          if (config.media.start === false) {
-            if (config.header === false) {
+        } else if (cardContent.actions.startH === true) {
+          const noContentBelow = cardContent.content === false && cardContent.footer === false;
+          if (cardContent.media.start === false) {
+            if (cardContent.header === false) {
               borderRadiusInherit += '_ss';
             }
 
@@ -163,8 +163,8 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
             }
           }
 
-          if (config.media.end === false) {
-            if (config.header === false) {
+          if (cardContent.media.end === false) {
+            if (cardContent.header === false) {
               borderRadiusInherit += '_se';
             }
 
@@ -172,10 +172,10 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
               borderRadiusInherit += '_ee';
             }
           }
-        } else if (config.actions.endH === true) {
-          const noContentAbove = config.header === false && config.content === false;
-          if (config.media.start === false) {
-            if (config.footer === false) {
+        } else if (cardContent.actions.endH === true) {
+          const noContentAbove = cardContent.header === false && cardContent.content === false;
+          if (cardContent.media.start === false) {
+            if (cardContent.footer === false) {
               borderRadiusInherit += '_es';
             }
 
@@ -184,8 +184,8 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
             }
           }
 
-          if (config.media.end === false) {
-            if (config.footer === false) {
+          if (cardContent.media.end === false) {
+            if (cardContent.footer === false) {
               borderRadiusInherit += '_ee';
             }
 
@@ -198,11 +198,11 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
     } else if (component.startsWith('media')) {
       if (component === 'media_cover') {
         borderRadiusInherit = 'ss_se_es_ee';
-      } else if (config.layout === 'vertical') {
+      } else if (cardContent.layout === 'vertical') {
         if (component === 'media_start') {
           borderRadiusInherit += '_ss_se';
 
-          if (config.header === false && config.content === false && hasActions && config.footer === false) {
+          if (cardContent.header === false && cardContent.content === false && hasActions && cardContent.footer === false) {
             borderRadiusInherit += '_es_ee';
           }
         }
@@ -210,7 +210,7 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
         if (component === 'media_end') {
           borderRadiusInherit += '_es_ee';
 
-          if (config.header === false && config.content === false && hasActions && config.footer === false) {
+          if (cardContent.header === false && cardContent.content === false && hasActions && cardContent.footer === false) {
             borderRadiusInherit += '_ss_se';
           }
         }
@@ -218,7 +218,7 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
         if (component === 'media_start') {
           borderRadiusInherit += '_ss_es';
 
-          if (config.header === false && config.content === false && hasActions && config.footer === false) {
+          if (cardContent.header === false && cardContent.content === false && hasActions && cardContent.footer === false) {
             borderRadiusInherit += '_se_ee';
           }
         }
@@ -226,7 +226,7 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
         if (component === 'media_end') {
           borderRadiusInherit += '_se_ee';
 
-          if (config.header === false && config.content === false && hasActions && config.footer === false) {
+          if (cardContent.header === false && cardContent.content === false && hasActions && cardContent.footer === false) {
             borderRadiusInherit += '_ss_es';
           }
         }
@@ -236,32 +236,32 @@ export function getSvCardComponentLayoutClasses(borderRadiusInheritProp?: string
 
   const padding: string[] = [];
 
-  if (config != null) {
+  if (cardContent != null) {
     if (component === 'header') {
-      if (config.layout === 'vertical') {
-        if (hasActions === false && config.content === false && config.footer === false && config.media.end === false) {
+      if (cardContent.layout === 'vertical') {
+        if (hasActions === false && cardContent.content === false && cardContent.footer === false && cardContent.media.end === false) {
           padding.push('sv-card--pad-block-end');
         }
-      } else if (config.layout === 'horizontal') {
-        if (hasActionsH === false && config.content === false && config.footer === false) {
+      } else if (cardContent.layout === 'horizontal') {
+        if (hasActionsH === false && cardContent.content === false && cardContent.footer === false) {
           padding.push('sv-card--pad-block-end');
         }
       }
     } else if (component === 'content') {
-      if (config.layout === 'vertical') {
-        if (config.media.start === false && config.header === false && config.actions.start === false) {
+      if (cardContent.layout === 'vertical') {
+        if (cardContent.media.start === false && cardContent.header === false && cardContent.actions.start === false) {
           padding.push('sv-card--pad-block-start');
         }
 
-        if (config.actions.end === false && config.footer === false && config.media.end === false) {
+        if (cardContent.actions.end === false && cardContent.footer === false && cardContent.media.end === false) {
           padding.push('sv-card--pad-block-end');
         }
-      } else if (config.layout === 'horizontal') {
-        if (config.header === false && config.actions.startH === false) {
+      } else if (cardContent.layout === 'horizontal') {
+        if (cardContent.header === false && cardContent.actions.startH === false) {
           padding.push('sv-card--pad-block-start');
         }
 
-        if (config.actions.endH === false && config.footer === false) {
+        if (cardContent.actions.endH === false && cardContent.footer === false) {
           padding.push('sv-card--pad-block-end');
         }
       }
