@@ -37,7 +37,7 @@ const classList = computed(() => {
 });
 
 watch(() => `${ props.position }${ cardContent?.layout === 'horizontal' && props.horizontal === true ? 'H' : '' }`, (newVal, oldVal) => {
-  if (cardContent) {
+  if (cardContent != null) {
     if (oldVal) {
       cardContent.actions[ oldVal as 'start' | 'end' | 'startH' | 'endH' ] = false;
     }
@@ -52,7 +52,7 @@ watch(() => `${ props.position }${ cardContent?.layout === 'horizontal' && props
 }, { flush: 'sync', immediate: true });
 
 onBeforeUnmount(() => {
-  if (cardContent) {
+  if (cardContent != null) {
     cardContent.actions[ `${ props.position }${ cardContent.layout === 'horizontal' && props.horizontal === true ? 'H' : '' }` ] = false;
   }
 });

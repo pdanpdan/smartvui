@@ -28,7 +28,7 @@ const classList = computed(() => [
 ]);
 
 watch(() => props.position, (newVal, oldVal) => {
-  if (cardContent) {
+  if (cardContent != null) {
     if (oldVal) {
       cardContent.media[ oldVal ] = false;
     }
@@ -43,7 +43,7 @@ watch(() => props.position, (newVal, oldVal) => {
 }, { flush: 'sync', immediate: true });
 
 onBeforeUnmount(() => {
-  if (cardContent) {
+  if (cardContent != null) {
     cardContent.media[ props.position ] = false;
   }
 });

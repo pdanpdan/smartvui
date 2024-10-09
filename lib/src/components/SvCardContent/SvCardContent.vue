@@ -24,7 +24,7 @@ const classList = computed(() => [
   ...getSvCardComponentLayoutClasses(props.borderRadiusInherit, cardContent, 'content'),
 ]);
 
-if (cardContent) {
+if (cardContent != null) {
   if (cardContent.content === true) {
     console.warn('[ SmartVui ] Only one SvCardContent component can be used.');
   }
@@ -34,7 +34,7 @@ if (cardContent) {
 }
 
 onBeforeUnmount(() => {
-  if (cardContent) {
+  if (cardContent != null) {
     cardContent.content = false;
   }
 });
