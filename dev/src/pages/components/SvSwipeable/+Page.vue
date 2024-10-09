@@ -31,6 +31,10 @@ import {
                 <div>Some content for the card 2</div>
                 <div>Some content for the card 3</div>
                 <div>Some content for the card 4</div>
+
+                <div style="height: 100px; overflow: auto">
+                  <div v-for="i in 20" :key="i">Some content for the card {{ 4 + i }}</div>
+                </div>
               </SvCardContent>
             </SvCard>
           </template>

@@ -134,15 +134,25 @@ function preventDefault(evt?: UIEvent) {
   evt.preventDefault();
 }
 
+function hasScrollableParentInline(el?: HTMLElement | null): boolean {
+  if (el == null || el.matches('.sv-swipeable__content')) {
+    return false;
+  }
+  return (el.scrollWidth > el.clientWidth && window.getComputedStyle(el).overflowX !== 'hidden')
+    || hasScrollableParentInline(el.parentElement);
+}
+
+function hasScrollableParentBlock(el?: HTMLElement | null): boolean {
+  if (el == null || el.matches('.sv-swipeable__content')) {
+    return false;
+  }
+  return (el.scrollHeight > el.clientHeight && window.getComputedStyle(el).overflowY !== 'hidden')
+    || hasScrollableParentBlock(el.parentElement);
+}
+
 let onSwipeUnlockTime = 0;
 function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
   if (tap === true) {
-    return;
-  }
-
-  preventDefault(event);
-
-  if (onSwipeUnlockTime > Date.now()) {
     return;
   }
 
@@ -156,17 +166,28 @@ function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
           ? 'blockEnd'
           : null;
 
-  if (slotName == null) {
+  if (
+    slotName == null
+    || (slotName.includes('inline') && hasScrollableParentInline(event?.target as HTMLElement | null | undefined))
+    || (slotName.includes('block') && hasScrollableParentBlock(event?.target as HTMLElement | null | undefined))
+  ) {
     return;
   }
 
   if (swipeActive.value != null && swipeStatus[ slotName ] !== swipeActive.value.ref) {
-    onSwipeUnlockTime = Date.now() + 500;
+    onSwipeUnlockTime = Date.now() + 300;
     reset();
+    preventDefault(event);
     return;
   }
 
-  if (swipeStatus[ slotName ].enabled === false || swipeStatus[ slotName ].swiped === true) {
+  if (swipeStatus[ slotName ].enabled === false) {
+    return;
+  }
+
+  preventDefault(event);
+
+  if (swipeStatus[ slotName ].swiped === true || onSwipeUnlockTime > Date.now()) {
     return;
   }
 
