@@ -3,7 +3,7 @@ import type {
   SvSurfaceBackdropPropType,
   SvSurfaceEscapePropType,
   SvSurfaceTypeModal,
-} from '$lib/components/svSurface';
+} from '$lib/components/SvSurfaceModal/svSurface';
 
 /**
  * @public

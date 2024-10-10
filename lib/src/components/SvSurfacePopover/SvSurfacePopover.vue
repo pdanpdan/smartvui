@@ -10,7 +10,7 @@ import type {
   SvSurfaceHideTriggerType,
   SvSurfaceShowTriggerType,
   SvSurfaceTypePopover as SvSurfaceType,
-} from '$lib/components/svSurface';
+} from '$lib/components/SvSurfaceModal/svSurface';
 
 import { waitForAnimations } from '$lib/utils/animation';
 import { noop } from '$lib/utils/noop';

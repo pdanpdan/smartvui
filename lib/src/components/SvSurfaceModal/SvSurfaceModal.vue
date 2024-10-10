@@ -10,7 +10,7 @@ import type {
   SvSurfaceHideTriggerType,
   SvSurfaceShowTriggerType,
   SvSurfaceTypeModal as SvSurfaceType,
-} from '$lib/components/svSurface';
+} from '$lib/components/SvSurfaceModal/svSurface';
 
 import { useScreen } from '$lib/composables';
 import { waitForAnimations } from '$lib/utils/animation';

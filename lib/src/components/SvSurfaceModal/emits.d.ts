@@ -1,7 +1,7 @@
 import type {
   SvSurfaceEventPayloadType,
   SvSurfaceTypeModal,
-} from '$lib/components/svSurface';
+} from '$lib/components/SvSurfaceModal/svSurface';
 
 /**
  * @public

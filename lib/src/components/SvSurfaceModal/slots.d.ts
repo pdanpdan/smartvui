@@ -1,7 +1,7 @@
 import type {
   SvSurfaceAnimationType,
   SvSurfaceToggleFnType,
-} from '$lib/components/svSurface';
+} from '$lib/components/SvSurfaceModal/svSurface';
 
 /**
  * @public

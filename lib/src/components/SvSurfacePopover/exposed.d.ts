@@ -1,6 +1,6 @@
 import type { ModelRef, Ref } from 'vue';
 
-import type { SvSurfaceEl, SvSurfaceTypePopover } from '$lib/components/svSurface';
+import type { SvSurfaceEl, SvSurfaceTypePopover } from '$lib/components/SvSurfaceModal/svSurface';
 
 /**
  * @public
