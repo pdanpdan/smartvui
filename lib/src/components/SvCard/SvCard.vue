@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, provide, reactive, ref, useAttrs, watchSyncEffect } from 'vue';
+import { computed, provide, reactive, ref, Suspense, useAttrs, watchSyncEffect } from 'vue';
 
 import {
   SvLayerContainer,
@@ -149,14 +149,16 @@ const pointerPressedEvents = computed(() =>
       <SvRipple v-if="showRipple" />
     </slot>
 
-    <div class="sv-card__layer-content" :class="`sv-card__layer-content--${ layout }`">
-      <slot
-        :disabled
-        :dragged="dragged === true"
-        :interactive="isInteractive"
-        :ripple="showRipple"
-        :pointer-pressed="pointerPressed"
-      />
-    </div>
+    <Suspense>
+      <div class="sv-card__layer-content" :class="`sv-card__layer-content--${ layout }`">
+        <slot
+          :disabled
+          :dragged="dragged === true"
+          :interactive="isInteractive"
+          :ripple="showRipple"
+          :pointer-pressed="pointerPressed"
+        />
+      </div>
+    </Suspense>
   </component>
 </template>

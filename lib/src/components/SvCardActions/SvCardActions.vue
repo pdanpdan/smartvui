@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, onBeforeUnmount, watch } from 'vue';
+import { computed, inject, nextTick, onBeforeUnmount, watch } from 'vue';
 
 import type { SvCardComponentBorderRadiusInheritProp } from '../SvCard/layout';
 import type { SvCardActionsProps } from './props';
@@ -20,6 +20,8 @@ const props = withDefaults(defineProps<SvCardActionsProps & { borderRadiusInheri
 });
 
 const cardContent = inject(SvCardContentInjectionSymbol, null);
+
+await nextTick();
 
 const classPrefix = 'sv-card-actions';
 const classList = computed(() => {

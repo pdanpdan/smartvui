@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, onBeforeUnmount } from 'vue';
+import { computed, inject, nextTick, onBeforeUnmount } from 'vue';
 
 import type { SvCardComponentBorderRadiusInheritProp } from '../SvCard/layout';
 
@@ -16,6 +16,8 @@ const props = withDefaults(defineProps<{ borderRadiusInherit?: SvCardComponentBo
 });
 
 const cardContent = inject(SvCardContentInjectionSymbol, null);
+
+await nextTick();
 
 const classPrefix = 'sv-card-header';
 const classList = computed(() => [

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, onBeforeUnmount, watch } from 'vue';
+import { computed, inject, nextTick, onBeforeUnmount, watch } from 'vue';
 
 import type { SvCardComponentBorderRadiusInheritProp } from '../SvCard/layout';
 import type { SvCardMediaProps } from './props';
@@ -18,6 +18,8 @@ const props = withDefaults(defineProps<SvCardMediaProps & { borderRadiusInherit?
 });
 
 const cardContent = inject(SvCardContentInjectionSymbol, null);
+
+await nextTick();
 
 const classPrefix = 'sv-card-media';
 const classList = computed(() => [
