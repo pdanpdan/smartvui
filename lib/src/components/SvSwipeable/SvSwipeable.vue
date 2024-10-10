@@ -156,13 +156,17 @@ function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
     return;
   }
 
-  const slotName = movement[ 0 ] > 0
+  const el = toElementValue(elRef);
+  const movementInline = el?.matches(':dir(rtl)') === true ? -movement[ 0 ] : movement[ 0 ];
+  const movementBlock = movement[ 1 ];
+
+  const slotName = movementInline > 0
     ? 'inlineStart'
-    : movement[ 0 ] < 0
+    : movementInline < 0
       ? 'inlineEnd'
-      : movement[ 1 ] > 0
+      : movementBlock > 0
         ? 'blockStart'
-        : movement[ 1 ] < 0
+        : movementBlock < 0
           ? 'blockEnd'
           : null;
 
@@ -191,12 +195,12 @@ function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
     return;
   }
 
-  swipeStatus[ slotName ].size = Math.abs(movement[ 0 ] !== 0 ? movement[ 0 ] : movement[ 1 ]);
+  swipeStatus[ slotName ].size = Math.abs(movementInline !== 0 ? movementInline : movementBlock);
 
-  const el = toElementValue(elRef)?.querySelector(`:scope > .sv-swipeable__slot--${ toKebabCase(slotName) } > *`);
+  const elSlot = el?.querySelector(`:scope > .sv-swipeable__slot--${ toKebabCase(slotName) } > *`);
   const swipeLimit = slotName.includes('inline')
-    ? (el?.clientWidth ?? 50) * 0.7
-    : (el?.clientHeight ?? 50) * 0.7;
+    ? (elSlot?.clientWidth ?? 50) * 0.7
+    : (elSlot?.clientHeight ?? 50) * 0.7;
   swipeStatus[ slotName ].swiped = swipeStatus[ slotName ].size >= swipeLimit;
 
   if (last === true && swipeStatus[ slotName ].swiped === false) {
