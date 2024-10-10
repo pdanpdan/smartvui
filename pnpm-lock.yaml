@@ -51,11 +51,11 @@ importers:
         specifier: ^3.0.5
         version: 3.0.5
       '@universal-middleware/core':
-        specifier: ^0.2.12
-        version: 0.2.12
+        specifier: ^0.2.13
+        version: 0.2.13
       '@universal-middleware/hattip':
-        specifier: ^0.2.8
-        version: 0.2.8
+        specifier: ^0.2.9
+        version: 0.2.9
       '@vitejs/plugin-vue':
         specifier: ^5.1.4
         version: 5.1.4(vite@5.4.8(@types/node@22.7.5)(lightningcss@1.27.0)(sass-embedded@1.79.4))(vue@3.5.11(typescript@5.6.3))
@@ -166,8 +166,8 @@ importers:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.47)
       bumpp:
-        specifier: ^9.6.1
-        version: 9.6.1(magicast@0.3.5)
+        specifier: ^9.7.1
+        version: 9.7.1(magicast@0.3.5)
       happy-dom:
         specifier: ^15.7.4
         version: 15.7.4
@@ -1150,11 +1150,11 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
-  '@universal-middleware/core@0.2.12':
-    resolution: {integrity: sha512-MEb++tGtNO3IASdcTghE6N4p4gOmtQ8H+Zob84IRyqF7/VackoM3/BleswmBgZ3ICnoTx8X3SZbWTsyI8fQK/g==}
+  '@universal-middleware/core@0.2.13':
+    resolution: {integrity: sha512-FkWz+UQuaqRPzK8xc2GIyJEbetuUzDiJKqs7uJYDcepkHtZUVon+5FrwzxGr2XJnXtWE/vK58wrwETz4WkEmCA==}
 
-  '@universal-middleware/hattip@0.2.8':
-    resolution: {integrity: sha512-ILIX8ubFWOCoMP8JvzPDe+SUO8Ns4/pSV1kOgJypIW8Qx4sGGQ1ftNcVUEyxmvGZOtcFp+IFbtzWk94YoW3Udw==}
+  '@universal-middleware/hattip@0.2.9':
+    resolution: {integrity: sha512-NRdDqcNDZyQybMjfFt+Lw3tP/Jp3AhPv4DZewq1j7a+D0MaI8aH8F2LvwlHIfT8no3jxdKoz+4Ek7Xsc31vodw==}
 
   '@unocss/astro@0.63.4':
     resolution: {integrity: sha512-qu1uMDUT8lXU3mm5EjZpnizvjSYtfY0TTDivR5QNm1i3Xd+ErHfdfOpXdJ2mYvxv+X7C570//KUugkTI3Mb3kQ==}
@@ -1533,8 +1533,8 @@ packages:
     resolution: {integrity: sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==}
     engines: {node: '>=6'}
 
-  bumpp@9.6.1:
-    resolution: {integrity: sha512-lQlPfyS0GrO5FaOODK+OHQxfCT+6/xWfd3Zt8dzsmzm69RWQfh5fAU9igmeZWOzK/s+4vL+gQLo3yw474ntBZw==}
+  bumpp@9.7.1:
+    resolution: {integrity: sha512-Z6fhD5B8POcSkP+LIHeFQ0+vF0p/C3U+aYp3Yui748VCmsHrhJ/ZshP2970FqE93ymHrJVXTTF8/HDKrRNEYvw==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -4636,14 +4636,14 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@universal-middleware/core@0.2.12':
+  '@universal-middleware/core@0.2.13':
     dependencies:
       regexparam: 3.0.0
       tough-cookie: 5.0.0
 
-  '@universal-middleware/hattip@0.2.8':
+  '@universal-middleware/hattip@0.2.9':
     dependencies:
-      '@universal-middleware/core': 0.2.12
+      '@universal-middleware/core': 0.2.13
 
   '@unocss/astro@0.63.4(rollup@4.22.5)(vite@5.4.8(@types/node@22.7.5)(lightningcss@1.27.0)(sass-embedded@1.79.4))':
     dependencies:
@@ -5152,7 +5152,7 @@ snapshots:
 
   builtin-modules@3.3.0: {}
 
-  bumpp@9.6.1(magicast@0.3.5):
+  bumpp@9.7.1(magicast@0.3.5):
     dependencies:
       '@jsdevtools/ez-spawn': 3.0.4
       c12: 1.11.2(magicast@0.3.5)
