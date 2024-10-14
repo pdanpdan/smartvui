@@ -131,7 +131,7 @@ const contentScroll = ref<boolean>(false);
         >
           <div>Content 1</div>
           <div>Content 2</div>
-          <img v-if="showImage" src="https://picsum.photos/500/200" />
+          <img v-if="showImage" src="https://picsum.photos/500/200" style="inline-size: 500px; block-size: 200px" loading="lazy" />
           <div v-for="i in (contentLong ? 30 : 2)" :key="i">Content {{ 2 + i }}</div>
         </SvCardContent>
 
@@ -147,7 +147,7 @@ const contentScroll = ref<boolean>(false);
         </SvCardActions>
 
         <SvCardMedia v-if="showMedia" :position="mediaPosition">
-          <img src="https://picsum.photos/400/200" />
+          <img src="https://picsum.photos/400/200" style="inline-size: 400px; block-size: 200px" loading="lazy" />
         </SvCardMedia>
       </SvCard>
 
@@ -176,7 +176,7 @@ const contentScroll = ref<boolean>(false);
         >
           <div>Content 1</div>
           <div>Content 2</div>
-          <img v-if="showImage" src="https://picsum.photos/500/200" />
+          <img v-if="showImage" src="https://picsum.photos/300/80" style="inline-size: 300px; block-size: 80px" loading="lazy" />
           <div v-for="i in (contentLong ? 30 : 2)" :key="i">Content {{ 2 + i }}</div>
         </SvCardContent>
 
@@ -192,7 +192,7 @@ const contentScroll = ref<boolean>(false);
         </SvCardActions>
 
         <SvCardMedia v-if="showMedia" :position="mediaPosition">
-          <img src="https://picsum.photos/150/250" />
+          <img src="https://picsum.photos/150/250" style="inline-size: 150px; block-size: 250px" loading="lazy" />
         </SvCardMedia>
       </SvCard>
     </div>
