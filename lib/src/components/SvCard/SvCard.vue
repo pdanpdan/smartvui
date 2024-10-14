@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, provide, reactive, ref, Suspense, useAttrs, watchSyncEffect } from 'vue';
+import { computed, provide, reactive, ref, useAttrs, watchSyncEffect } from 'vue';
 
 import {
   SvLayerContainer,
