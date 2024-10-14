@@ -1,0 +1,11 @@
+diff --git a/dist/esm/client/client-routing-runtime/setScrollPosition.js b/dist/esm/client/client-routing-runtime/setScrollPosition.js
+index 4ae93783051249e046397576de99b871f1da19cc..1e9a39eafb6bef0def574d6916090937602130f2 100644
+--- a/dist/esm/client/client-routing-runtime/setScrollPosition.js
++++ b/dist/esm/client/client-routing-runtime/setScrollPosition.js
+@@ -73,5 +73,5 @@ function getUrlHash() {
+ function autoSaveScrollPosition() {
+     // Safari cannot handle more than 100 `history.replaceState()` calls within 30 seconds (https://github.com/vikejs/vike/issues/46)
+     window.addEventListener('scroll', throttle(saveScrollPosition, Math.ceil(1000 / 3)), { passive: true });
+-    onPageHide(saveScrollPosition);
++    onPageHide(() => requestAnimationFrame(saveScrollPosition));
+ }
