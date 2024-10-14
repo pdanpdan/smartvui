@@ -213,13 +213,13 @@ function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
 let stopWatching: WatchStopHandle | undefined;
 onMounted(() => {
   stopWatching = watch(
-    () => ({
-      el: toElementValue(elRef)?.querySelector(':scope > .sv-swipeable__content') as HTMLDivElement,
-      disabled: props.disabled,
-      hasSlotInline: slots[ 'inline-start' ] != null || slots[ 'inline-end' ] != null,
-      hasSlotBlock: slots[ 'block-start' ] != null || slots[ 'block-end' ] != null,
-    }),
-    ({ el, disabled, hasSlotInline, hasSlotBlock }) => {
+    () => [
+      toElementValue(elRef)?.querySelector(':scope > .sv-swipeable__content') as HTMLDivElement | null,
+      props.disabled,
+      slots[ 'inline-start' ] != null || slots[ 'inline-end' ] != null,
+      slots[ 'block-start' ] != null || slots[ 'block-end' ] != null,
+    ] as [HTMLDivElement | null, boolean, boolean, boolean],
+    ([ el, disabled, hasSlotInline, hasSlotBlock ]) => {
       drag.reset();
       drag.clean();
 
