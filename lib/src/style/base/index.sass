@@ -1,4 +1,6 @@
+@use "_colors"
 @use "_screen"
+@use "_typography"
 
 @layer reset
   :root
@@ -16,8 +18,8 @@
 @layer defaults, general, components, utilities, themes
 
 @layer utilities
-  @import "_colors"
-  @import "_typography"
+  @include colors.colors
+  @include typography.typography
 
 @layer general
   @include screen.size
