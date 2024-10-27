@@ -107,12 +107,13 @@
         --sv-layer-elevation-level: var(--sv-state-disabled-layer-elevation-level, var(--sv-comp-card-state-disabled-layer-elevation-level, var(--default-layer-elevation-level)))
 
       > :where(.sv-layer-container)
+        --sv-layer-container-opacity: var(--sv-state-disabled-layer-container-opacity, var(--sv-comp-card-state-disabled-layer-container-opacity, var(--sv-sys-state-disabled-container-opacity)))
         --sv-layer-container-color-surface: var(--sv-state-disabled-layer-container-color-surface, var(--sv-comp-card-state-disabled-layer-container-color-surface, var(--default-layer-container-color-surface)))
 
       > :where(.sv-layer-outline)
         --sv-layer-outline-color: var(--sv-state-disabled-layer-outline-color, var(--sv-comp-card-state-disabled-layer-outline-color, var(--default-layer-outline-color)))
         --sv-layer-outline-thickness: var(--sv-state-disabled-layer-outline-thickness, var(--sv-comp-card-state-disabled-layer-outline-thickness, var(--default-layer-outline-thickness)))
-        --sv-layer-outline-opacity: var(--sv-state-disabled-layer-outline-opacity, var(--sv-comp-card-state-disabled-layer-outline-opacity, var(--default-layer-outline-opacity)))
+        --sv-layer-outline-opacity: var(--sv-state-disabled-layer-outline-opacity, var(--sv-comp-card-state-disabled-layer-outline-opacity, var(--sv-sys-state-disabled-container-opacity)))
 
     @media (hover: hover)
       &:where(.sv-card--interactive:hover)
