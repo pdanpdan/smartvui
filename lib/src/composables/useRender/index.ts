@@ -39,7 +39,7 @@ export interface UseRenderReturn {
     /** Vue component (or ref or getter for a Vue component) to be rendered. */
     component: MaybeRefOrGetter<C>,
     options?: {
-      /** Parent element to be used to insert the rendered component into. If not specified a ned `div` will be inserted at the end of the document `body`. */
+      /** Parent element to be used to insert the rendered component into. If not specified a new `div` will be inserted at the end of the document `body`. */
       parentElement?: Element | null;
       /** Component props (or a ref or getter for props for Vue component). */
       props?: MaybeRefOrGetter<ComponentProps<C>>;
