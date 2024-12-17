@@ -1,3 +1,5 @@
+import type { UserConfig } from 'vite';
+
 import { readdirSync, statSync } from 'node:fs';
 import { parse, resolve } from 'node:path';
 import { fileURLToPath, URL } from 'node:url';
@@ -151,4 +153,4 @@ export default defineConfig({
       exclude: [ 'src/test_utils/**', 'src/**/*.test.ts', 'src/**/*.d.ts' ],
     },
   },
-});
+} as UserConfig);

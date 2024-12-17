@@ -80,7 +80,7 @@ export default antfu(
         type: 'natural',
         order: 'asc',
         ignoreCase: true,
-        internalPattern: [ '$dev/**', '$lib/**' ],
+        internalPattern: [ '\\$dev/.*', '\\$lib/.*' ],
         newlinesBetween: 'always',
         maxLineLength: undefined,
         groups: [
