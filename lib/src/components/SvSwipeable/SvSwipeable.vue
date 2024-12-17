@@ -37,24 +37,28 @@ const swipeStatus = reactive({
     size: 0,
     swiped: false,
     enabled: false,
+    cancelAnimation: null as (() => void) | null,
   },
 
   inlineEnd: {
     size: 0,
     swiped: false,
     enabled: false,
+    cancelAnimation: null as (() => void) | null,
   },
 
   blockStart: {
     size: 0,
     swiped: false,
     enabled: false,
+    cancelAnimation: null as (() => void) | null,
   },
 
   blockEnd: {
     size: 0,
     swiped: false,
     enabled: false,
+    cancelAnimation: null as (() => void) | null,
   },
 });
 
@@ -105,21 +109,112 @@ const classList = computed(() => {
 function updateSize() {
   const el = toElementValue(elRef);
 
-  if (el == null) {
-    return;
-  }
+  if (el != null) {
+    const style = el.style;
 
-  for (const side of swipeSides) {
-    el.style.setProperty(`--sv-swipeable-${ side[ 0 ] }`, swipeStatus[ side[ 1 ] ].swiped === true ? '100%' : `${ swipeStatus[ side[ 1 ] ].size }px`);
+    for (const side of swipeSides) {
+      const sideName = side[ 0 ];
+      const sideState = swipeStatus[ side[ 1 ] ];
+
+      if (sideState.cancelAnimation != null) {
+        sideState.cancelAnimation();
+      }
+
+      if (sideState.swiped === true) {
+        const slotEl = el.querySelector(`:scope > .sv-swipeable__slot--${ sideName }`);
+
+        if (slotEl != null) {
+          let animationFrame: ReturnType<typeof requestAnimationFrame> | null = null;
+          sideState.cancelAnimation = () => {
+            sideState.cancelAnimation = null;
+
+            if (animationFrame != null) {
+              cancelAnimationFrame(animationFrame);
+              animationFrame = null;
+            }
+
+            style.setProperty(`--sv-swipeable-${ sideName }`, '100%');
+          };
+
+          style.setProperty(`--sv-swipeable-${ sideName }`, '100%');
+          const finalSize = slotEl.getBoundingClientRect()[ sideName.includes('inline') ? 'width' : 'height' ];
+
+          const resize = (size: number, step: number) => {
+            step = Math.ceil(step / 2);
+            size = Math.min(finalSize, size + step);
+            style.setProperty(`--sv-swipeable-${ sideName }`, `${ size }px`);
+
+            if (size < finalSize) {
+              animationFrame = requestAnimationFrame(() => {
+                resize(size, step);
+              });
+            } else if (sideState.cancelAnimation != null) {
+              sideState.cancelAnimation();
+            }
+          };
+
+          resize(sideState.size, Math.max(0, finalSize - sideState.size));
+        } else {
+          style.setProperty(`--sv-swipeable-${ sideName }`, '100%');
+        }
+      } else {
+        style.setProperty(`--sv-swipeable-${ sideName }`, `${ sideState.size }px`);
+      }
+    }
   }
 }
 
 function reset() {
-  if (swipeActive.value != null) {
-    Object.assign(swipeActive.value.ref, { size: 0, swiped: false });
-  }
+  const swipeToReset = swipeActive.value;
 
-  updateSize();
+  if (swipeToReset != null) {
+    if (swipeToReset.cancelAnimation != null) {
+      swipeToReset.cancelAnimation();
+    }
+
+    const el = toElementValue(elRef);
+
+    if (el != null) {
+      const { style } = el;
+      const sideName = swipeToReset.side;
+      const slotEl = el.querySelector(`:scope > .sv-swipeable__slot--${ sideName }`);
+
+      if (slotEl != null) {
+        let animationFrame: ReturnType<typeof requestAnimationFrame> | null = null;
+        swipeToReset.cancelAnimation = () => {
+          swipeToReset.cancelAnimation = null;
+
+          if (animationFrame != null) {
+            cancelAnimationFrame(animationFrame);
+            animationFrame = null;
+          }
+
+          Object.assign(swipeToReset.ref, { size: 0, swiped: false });
+        };
+
+        const resize = (size: number) => {
+          size = Math.floor(size / 2);
+          style.setProperty(`--sv-swipeable-${ sideName }`, `${ size }px`);
+
+          if (size > 0) {
+            animationFrame = requestAnimationFrame(() => {
+              resize(size);
+            });
+          } else if (swipeToReset.cancelAnimation != null) {
+            swipeToReset.cancelAnimation();
+          }
+        };
+
+        resize(slotEl.getBoundingClientRect()[ sideName.includes('inline') ? 'width' : 'height' ]);
+      } else {
+        Object.assign(swipeToReset.ref, { size: 0, swiped: false });
+      }
+    } else {
+      Object.assign(swipeToReset.ref, { size: 0, swiped: false });
+    }
+  } else {
+    updateSize();
+  }
 }
 
 function preventDefault(evt?: UIEvent) {
@@ -203,10 +298,8 @@ function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
 
   swipeStatus[ slotName ].size = Math.abs(movementInline !== 0 ? movementInline : movementBlock);
 
-  const elSlot = el?.querySelector(`:scope > .sv-swipeable__slot--${ toKebabCase(slotName) } > *`);
-  const swipeLimit = slotName.includes('inline')
-    ? (elSlot?.clientWidth ?? 50) * 0.7
-    : (elSlot?.clientHeight ?? 50) * 0.7;
+  const slotEl = el?.querySelector(`:scope > .sv-swipeable__slot--${ toKebabCase(slotName) } > *`);
+  const swipeLimit = Math.min(50, slotName.includes('inline') ? (slotEl?.clientWidth ?? 50) : (slotEl?.clientHeight ?? 50));
   swipeStatus[ slotName ].swiped = swipeStatus[ slotName ].size >= swipeLimit;
 
   if (last === true && swipeStatus[ slotName ].swiped === false) {

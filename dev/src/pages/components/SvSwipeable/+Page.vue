@@ -40,7 +40,7 @@ import {
           </template>
 
           <template #inline-start="{ reset }">
-            <div class="test__slot" style="padding-inline-end: 48px; margin-inline-end: -24px">
+            <div class="test__slot" style="padding-inline-end: 48px; margin-inline-end: -24px; min-width: 300px">
               <div class="sv-t--title-medium">inline start</div>
               <button @click="reset">Action</button>
             </div>
