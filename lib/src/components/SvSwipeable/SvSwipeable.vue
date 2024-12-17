@@ -151,14 +151,15 @@ function hasScrollableParentBlock(el?: HTMLElement | null): boolean {
 }
 
 let onSwipeUnlockTime = 0;
+let prevDirectionMovement = [ 0, 0 ];
 function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
   if (tap === true) {
     return;
   }
 
   const el = toElementValue(elRef);
-  const movementInline = el?.matches(':dir(rtl)') === true ? -movement[ 0 ] : movement[ 0 ];
-  const movementBlock = movement[ 1 ];
+  const movementInline = el?.matches(':dir(rtl)') === true ? -(movement[ 0 ] - prevDirectionMovement[ 0 ]) : movement[ 0 ] - prevDirectionMovement[ 0 ];
+  const movementBlock = movement[ 1 ] - prevDirectionMovement[ 1 ];
 
   const slotName = movementInline > 0
     ? 'inlineStart'
@@ -169,6 +170,10 @@ function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
         : movementBlock < 0
           ? 'blockEnd'
           : null;
+
+  if (last === true) {
+    prevDirectionMovement = [ 0, 0 ];
+  }
 
   if (
     slotName == null
@@ -192,6 +197,7 @@ function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
   preventDefault(event);
 
   if (swipeStatus[ slotName ].swiped === true || onSwipeUnlockTime > Date.now()) {
+    prevDirectionMovement = [ ...movement ];
     return;
   }
 
