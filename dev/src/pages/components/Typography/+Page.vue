@@ -20,7 +20,7 @@ const list = [
 
 <template>
   <div class="sv-page--padded">
-    <h1>SvCardContent</h1>
+    <h1>Typography</h1>
 
     <div class="container">
       <div v-for="c in list" :key="c" class="test sv-bg--surface-container-low sv-t--on-surface" :class="c">
