@@ -94,16 +94,21 @@ const swipeActive = computed(() => {
 
 const classPrefix = 'sv-swipeable';
 const classList = computed(() => {
-  const list = [
+  const main = [
     classPrefix,
     `${ classPrefix }--${ props.disabled === true ? 'disabled' : 'enabled' }`,
   ];
+  const content = [
+    `${ classPrefix }__content`,
+    `${ classPrefix }__content--${ props.disabled === true ? 'disabled' : 'enabled' }`,
+  ];
 
   if (swipeActive.value != null && swipeActive.value.size > 0 && swipeActive.value.swiped === false) {
-    list.push(`${ classPrefix }--dragging`);
+    main.push(`${ classPrefix }--dragging`);
+    content.push(`${ classPrefix }__content--dragging`);
   }
 
-  return list;
+  return { main, content };
 });
 
 function updateSize() {
@@ -356,7 +361,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="elRef" :class="classList">
+  <div ref="elRef" :class="classList.main">
     <div
       class="sv-swipeable__slot sv-swipeable__slot--inline sv-swipeable__slot--inline-start"
       :class="{ 'sv-swipeable__slot--visible': swipeStatus.inlineStart.size !== 0 }"
@@ -417,7 +422,7 @@ onBeforeUnmount(() => {
       />
     </div>
 
-    <div class="sv-swipeable__content">
+    <div :class="classList.content">
       <slot
         :disabled
         :side="swipeActive?.side ?? null"

@@ -6,16 +6,16 @@
     grid-template-columns: [full-start inline-start-start] minmax(min-content, auto) [inline-start-end content-start] 1fr [content-end inline-end-start] minmax(min-content, auto) [inline-end-end full-end]
     grid-template-rows: [full-start block-start-start] minmax(min-content, auto) [block-start-end content-start] 1fr [content-end block-end-start] minmax(min-content, auto) [block-end-end full-end]
 
-    &--enabled
-      cursor: grab
-
-    &--dragging
-      cursor: grabbing
-
     &__content
       display: flex
       border-radius: inherit
       z-index: 0
+
+      &--enabled
+        cursor: grab
+
+      &--dragging
+        cursor: grabbing
 
     &__slot
       display: flex
