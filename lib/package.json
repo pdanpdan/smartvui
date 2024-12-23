@@ -109,7 +109,7 @@
     "@vue/test-utils": "^2.4.6",
     "@vueuse/gesture": "^2.0.0",
     "autoprefixer": "^10.4.20",
-    "bumpp": "^9.9.1",
+    "bumpp": "^9.9.2",
     "happy-dom": "^15.11.7",
     "lightningcss": "^1.28.2",
     "postcss": "^8.4.49",
