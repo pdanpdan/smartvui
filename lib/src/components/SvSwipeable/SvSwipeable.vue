@@ -174,8 +174,14 @@ function reset() {
 
   if (swipeToReset != null) {
     if (swipeToReset.cancelAnimation != null) {
-      swipeToReset.cancelAnimation();
+      if (swipeToReset.ref.swiped === true) {
+        swipeToReset.cancelAnimation();
+      } else {
+        return;
+      }
     }
+
+    Object.assign(swipeToReset.ref, { swiped: false });
 
     const el = toElementValue(elRef);
 
@@ -198,7 +204,7 @@ function reset() {
         };
 
         const resize = (size: number) => {
-          size = Math.floor(size / 2);
+          size = Math.floor(size / 3);
           style.setProperty(`--sv-swipeable-${ sideName }`, `${ size }px`);
 
           if (size > 0) {
@@ -284,9 +290,12 @@ function onSwipe({ movement, tap, last, event }: FullGestureState<'drag'>) {
   }
 
   if (swipeActive.value != null && swipeStatus[ slotName ] !== swipeActive.value.ref) {
-    onSwipeUnlockTime = Date.now() + 300;
-    reset();
-    preventDefault(event);
+    if (swipeActive.value.side.slice(0, 5) === slotName.slice(0, 5)) {
+      onSwipeUnlockTime = Date.now() + 300;
+      reset();
+      preventDefault(event);
+    }
+
     return;
   }
 
@@ -365,14 +374,15 @@ onBeforeUnmount(() => {
     <div
       class="sv-swipeable__slot sv-swipeable__slot--inline sv-swipeable__slot--inline-start"
       :class="{ 'sv-swipeable__slot--visible': swipeStatus.inlineStart.size !== 0 }"
+      :inert="swipeStatus.inlineStart.size === 0"
     >
       <slot
         name="inline-start"
         :disabled
         side="inline-start"
         :size="swipeStatus.inlineStart.size"
-        :swiped="swipeStatus.inlineStart.swiped"
-        :swiping="swipeStatus.inlineStart.swiped"
+        :swiped="swipeStatus.inlineStart.swiped === true"
+        :swiping="swipeStatus.inlineStart.size !== 0 && swipeStatus.inlineStart.swiped !== true"
         :reset
       />
     </div>
@@ -380,14 +390,15 @@ onBeforeUnmount(() => {
     <div
       class="sv-swipeable__slot sv-swipeable__slot--inline sv-swipeable__slot--inline-end"
       :class="{ 'sv-swipeable__slot--visible': swipeStatus.inlineEnd.size !== 0 }"
+      :inert="swipeStatus.inlineEnd.size === 0"
     >
       <slot
         name="inline-end"
         :disabled
         side="inline-end"
         :size="swipeStatus.inlineEnd.size"
-        :swiped="swipeStatus.inlineEnd.swiped"
-        :swiping="swipeStatus.inlineEnd.size > 0 && swipeStatus.inlineEnd.swiped === false"
+        :swiped="swipeStatus.inlineEnd.swiped === true"
+        :swiping="swipeStatus.inlineEnd.size !== 0 && swipeStatus.inlineEnd.swiped !== true"
         :reset
       />
     </div>
@@ -395,14 +406,15 @@ onBeforeUnmount(() => {
     <div
       class="sv-swipeable__slot sv-swipeable__slot--block sv-swipeable__slot--block-start"
       :class="{ 'sv-swipeable__slot--visible': swipeStatus.blockStart.size !== 0 }"
+      :inert="swipeStatus.blockStart.size === 0"
     >
       <slot
         name="block-start"
         :disabled
         side="block-start"
         :size="swipeStatus.blockStart.size"
-        :swiped="swipeStatus.blockStart.swiped"
-        :swiping="swipeStatus.blockStart.size > 0 && swipeStatus.blockStart.swiped === false"
+        :swiped="swipeStatus.blockStart.swiped === true"
+        :swiping="swipeStatus.blockStart.size !== 0 && swipeStatus.blockStart.swiped !== true"
         :reset
       />
     </div>
@@ -410,14 +422,15 @@ onBeforeUnmount(() => {
     <div
       class="sv-swipeable__slot sv-swipeable__slot--block sv-swipeable__slot--block-end"
       :class="{ 'sv-swipeable__slot--visible': swipeStatus.blockEnd.size !== 0 }"
+      :inert="swipeStatus.blockEnd.size === 0"
     >
       <slot
         name="block-end"
         :disabled
         side="block-end"
         :size="swipeStatus.blockEnd.size"
-        :swiped="swipeStatus.blockEnd.swiped"
-        :swiping="swipeStatus.blockEnd.size > 0 && swipeStatus.blockEnd.swiped === false"
+        :swiped="swipeStatus.blockEnd.swiped === true"
+        :swiping="swipeStatus.blockEnd.size !== 0 && swipeStatus.blockEnd.swiped !== true"
         :reset
       />
     </div>
@@ -428,7 +441,7 @@ onBeforeUnmount(() => {
         :side="swipeActive?.side ?? null"
         :size="swipeActive?.size ?? 0"
         :swiped="swipeActive?.swiped === true"
-        :swiping="(swipeActive?.size ?? 0) > 0 && swipeActive?.swiped !== true"
+        :swiping="(swipeActive?.size ?? 0) !== 0 && swipeActive?.swiped !== true"
         :reset
       />
     </div>

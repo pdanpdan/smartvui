@@ -7,6 +7,7 @@
     grid-template-rows: [full-start block-start-start] minmax(min-content, auto) [block-start-end content-start] 1fr [content-end block-end-start] minmax(min-content, auto) [block-end-end full-end]
 
     &__content
+      grid-area: content
       display: flex
       border-radius: inherit
       z-index: 0
@@ -48,6 +49,7 @@
         border-start-start-radius: inherit
         border-end-start-radius: inherit
         inline-size: var(--sv-swipeable-inline-start, 0)
+        clip-path: inset(calc(-1 * var(--sv-swipeable-overflow-clip-inline-start, var(--sv-swipeable-overflow-clip-inline, var(--sv-swipeable-overflow-clip, 0px)))))
 
       &--inline-end
         grid-column: inline-end
@@ -55,6 +57,7 @@
         border-start-end-radius: inherit
         border-end-end-radius: inherit
         inline-size: var(--sv-swipeable-inline-end, 0)
+        clip-path: inset(calc(-1 * var(--sv-swipeable-overflow-clip-inline-end, var(--sv-swipeable-overflow-clip-inline, var(--sv-swipeable-overflow-clip, 0px)))))
 
       &--block-start
         grid-row: block-start
@@ -62,6 +65,7 @@
         border-start-start-radius: inherit
         border-start-end-radius: inherit
         block-size: var(--sv-swipeable-block-start, 0)
+        clip-path: inset(calc(-1 * var(--sv-swipeable-overflow-clip-block-start, var(--sv-swipeable-overflow-clip-block, var(--sv-swipeable-overflow-clip, 0px)))))
 
       &--block-end
         grid-row: block-end
@@ -69,3 +73,4 @@
         border-end-start-radius: inherit
         border-end-end-radius: inherit
         block-size: var(--sv-swipeable-block-end, 0)
+        clip-path: inset(calc(-1 * var(--sv-swipeable-overflow-clip-block-end, var(--sv-swipeable-overflow-clip-block, var(--sv-swipeable-overflow-clip, 0px)))))
