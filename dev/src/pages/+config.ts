@@ -19,6 +19,7 @@ export default {
   title: 'SmartVui Demo',
   description: 'Demo showcasing SmartVui',
   favicon: logoUrl,
+  viewport: null,
 
   stream: 'web',
 

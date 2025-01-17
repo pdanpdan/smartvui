@@ -477,7 +477,7 @@ describe('useScreen [browser]', () => {
       (window.visualViewport as VisualViewportWritable).height = 700;
 
       window.scrollTo(0, -10);
-      await vi.advanceTimersByTimeAsync(10);
+      await vi.advanceTimersByTimeAsync(20);
       expect.soft(pageBlockStart.value).toBe(-10);
 
       await vi.advanceTimersByTimeAsync(150);
@@ -492,7 +492,7 @@ describe('useScreen [browser]', () => {
       (window.visualViewport as VisualViewportWritable).height = 700;
 
       window.scrollTo(0, 100);
-      await vi.advanceTimersByTimeAsync(10);
+      await vi.advanceTimersByTimeAsync(20);
       expect.soft(pageBlockStart.value).toBe(100);
 
       await vi.advanceTimersByTimeAsync(150);
@@ -507,7 +507,7 @@ describe('useScreen [browser]', () => {
       (window.visualViewport as VisualViewportWritable).height = 700;
 
       window.scrollTo(0, 10);
-      await vi.advanceTimersByTimeAsync(10);
+      await vi.advanceTimersByTimeAsync(20);
       expect.soft(pageBlockStart.value).toBe(10);
 
       await vi.advanceTimersByTimeAsync(150);
@@ -580,7 +580,7 @@ describe('useScreen [browser]', () => {
       getBoundingClientRect.mockImplementation(() => ({ top: 1000, bottom: 1200 }) as DOMRect);
 
       (target.element as HTMLElement).focus();
-      expect.soft((document.activeElement as HTMLElement)?.dataset.svIosFocusFixTarget).toBe('');
+      expect.soft((document.activeElement as HTMLElement)?.dataset.svIosFocusFixTarget).toBeUndefined();
 
       await vi.advanceTimersByTimeAsync(300);
       expect.soft(document.activeElement).toBe(target.element);

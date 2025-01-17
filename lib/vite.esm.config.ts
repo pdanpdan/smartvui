@@ -134,10 +134,23 @@ export default defineConfig({
   },
 
   test: {
-    include: [ 'src/**/*.test.ts' ],
-    environmentMatchGlobs: [
-      [ '**', 'happy-dom' ],
-      [ '**\/*.node.test.ts', 'node' ],
+    workspace: [
+      {
+        extends: true,
+        test: {
+          include: [ 'src/**/*.test.ts' ],
+          exclude: [ 'src/**/*.node.test.ts' ],
+          environment: 'happy-dom',
+        },
+      },
+
+      {
+        extends: true,
+        test: {
+          include: [ 'src/**/*.node.test.ts' ],
+          environment: 'node',
+        },
+      },
     ],
     reporters: [ 'default', 'html' ],
     outputFile: {
