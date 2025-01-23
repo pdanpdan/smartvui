@@ -1,3 +1,5 @@
+// @vitest-environment happy-dom
+
 import type { App } from 'vue';
 
 import { beforeAll, describe, expect, it, vi } from 'vitest';

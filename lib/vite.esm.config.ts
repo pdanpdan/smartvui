@@ -134,24 +134,6 @@ export default defineConfig({
   },
 
   test: {
-    workspace: [
-      {
-        extends: true,
-        test: {
-          include: [ 'src/**/*.test.ts' ],
-          exclude: [ 'src/**/*.node.test.ts' ],
-          environment: 'happy-dom',
-        },
-      },
-
-      {
-        extends: true,
-        test: {
-          include: [ 'src/**/*.node.test.ts' ],
-          environment: 'node',
-        },
-      },
-    ],
     reporters: [ 'default', 'html' ],
     outputFile: {
       json: './coverage/json/index.json',

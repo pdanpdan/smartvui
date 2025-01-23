@@ -1,3 +1,5 @@
+// @vitest-environment happy-dom
+
 import type { MockInstance } from 'vitest';
 
 import { mount } from '@vue/test-utils';

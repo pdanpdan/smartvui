@@ -1,3 +1,5 @@
+// @vitest-environment node
+
 import { renderToString } from '@vue/test-utils';
 import { describe, expect, it, vi } from 'vitest';
 import { defineComponent, ref } from 'vue';
