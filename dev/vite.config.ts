@@ -28,9 +28,6 @@ export default defineConfig({
 
   plugins: [
     vike({
-      crawl: {
-        git: true,
-      },
       prerender: true,
       trailingSlash: false,
     }),
