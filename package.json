@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@10.2.1",
   "imports": {
     "$lib/*": "./lib/src/*",
     "$dev/*": "./dev/src/*"
@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.1.1",
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.0",
     "typescript": "^5.7.3",
     "vue": "^3.5.13"
   },

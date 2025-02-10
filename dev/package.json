@@ -12,7 +12,7 @@
     "@mdit/plugin-alert": "^0.16.0",
     "@mdit/plugin-snippet": "^0.16.0",
     "@pdanpdan/vue-keyboard-trap": "^1.2.0",
-    "@shikijs/markdown-it": "^2.3.0",
+    "@shikijs/markdown-it": "^2.3.2",
     "@types/markdown-it-link-attributes": "^3.0.5",
     "@universal-middleware/core": "^0.4.0",
     "@universal-middleware/hattip": "^0.4.0",
@@ -41,6 +41,6 @@
     "typescript": "^5.7.3",
     "unocss": "^65.4.3",
     "vike": "^0.4.220",
-    "vite": "^6.0.11"
+    "vite": "^6.1.0"
   }
 }
