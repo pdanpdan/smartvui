@@ -27,10 +27,7 @@ export default defineConfig({
   },
 
   plugins: [
-    vike({
-      prerender: true,
-      trailingSlash: false,
-    }),
+    vike(),
 
     hattip(),
 

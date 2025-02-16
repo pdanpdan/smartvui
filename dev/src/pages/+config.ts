@@ -21,6 +21,9 @@ export default {
   favicon: logoUrl,
   viewport: null,
 
+  prerender: true,
+  trailingSlash: false,
+
   stream: 'web',
 
   passToClient: [
