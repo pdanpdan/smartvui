@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<{
 
 const modelValue = defineModel<boolean | null>({ default: null });
 
-const attrs = useAttrs();
+const attrs: Record<string, unknown> = useAttrs();
 
 const tagName = computed(() => typeof props.href === 'string' && props.href.trim().length > 0 ? 'a' : 'button');
 

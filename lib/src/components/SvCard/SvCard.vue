@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<SvCardProps>(), {
 
 defineSlots<SvCardSlots>();
 
-const attrs = useAttrs();
+const attrs: Record<string, unknown> = useAttrs();
 
 const cardContent = reactive<SvCardContent>({
   layout: props.layout,
