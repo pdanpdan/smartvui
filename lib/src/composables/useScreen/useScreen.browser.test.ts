@@ -582,7 +582,7 @@ describe('useScreen [browser]', () => {
       getBoundingClientRect.mockImplementation(() => ({ top: 1000, bottom: 1200 }) as DOMRect);
 
       (target.element as HTMLElement).focus();
-      expect.soft((document.activeElement as HTMLElement)?.dataset.svIosFocusFixTarget).toBeUndefined();
+      expect.soft((document.activeElement as HTMLElement)?.dataset.svIosFocusFixTarget).toBe('');
 
       await vi.advanceTimersByTimeAsync(300);
       expect.soft(document.activeElement).toBe(target.element);
