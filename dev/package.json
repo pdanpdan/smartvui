@@ -12,10 +12,10 @@
     "@mdit/plugin-alert": "^0.16.0",
     "@mdit/plugin-snippet": "^0.16.0",
     "@pdanpdan/vue-keyboard-trap": "^1.2.0",
-    "@shikijs/markdown-it": "^3.0.0",
+    "@shikijs/markdown-it": "^3.1.0",
     "@types/markdown-it-link-attributes": "^3.0.5",
-    "@universal-middleware/core": "^0.4.0",
-    "@universal-middleware/hattip": "^0.4.0",
+    "@universal-middleware/core": "^0.4.1",
+    "@universal-middleware/hattip": "^0.4.1",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/compiler-sfc": "^3.5.13",
     "@vue/server-renderer": "^3.5.13",
@@ -25,7 +25,7 @@
     "markdown-it-link-attributes": "^4.0.1",
     "unplugin-vue-markdown": "^28.3.1",
     "vike-vue": "^0.8.6",
-    "vite-plugin-mkcert": "^1.17.6",
+    "vite-plugin-mkcert": "^1.17.7",
     "vue": "^3.5.13"
   },
   "devDependencies": {
@@ -38,9 +38,9 @@
     "postcss": "^8.5.3",
     "postcss-rtlcss": "^5.6.0",
     "sass-embedded": "^1.85.1",
-    "typescript": "^5.7.3",
+    "typescript": "^5.8.2",
     "unocss": "^66.0.0",
-    "vike": "^0.4.223",
+    "vike": "^0.4.224",
     "vite": "^6.2.0"
   }
 }

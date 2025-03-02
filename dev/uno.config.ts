@@ -1,12 +1,12 @@
 import {
   defineConfig,
   presetIcons,
-  presetUno,
+  presetWind3,
 } from 'unocss';
 
 export default defineConfig({
   presets: [
-    presetUno({
+    presetWind3({
       attributifyPseudo: true,
     }),
     presetIcons({
