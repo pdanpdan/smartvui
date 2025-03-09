@@ -138,7 +138,7 @@ export default antfu(
       ],
       'vue/multi-word-component-names': [
         'error',
-        { ignores: [ 'Btn', 'Link', '+Page', '+Layout' ] },
+        { ignores: [ 'Btn', 'Link', '+Page', '+Layout', '+Head' ] },
       ],
       'vue/mustache-interpolation-spacing': [ 'error', 'always' ],
       'vue/no-multi-spaces': 'error',
